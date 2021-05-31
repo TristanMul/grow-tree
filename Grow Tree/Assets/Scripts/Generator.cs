@@ -101,8 +101,8 @@ public class Generator : MonoBehaviour {
 
 			Vector3 pt = new Vector3(
 				radius * Mathf.Cos(theta) * Mathf.Sin(alpha),
-				radius * Mathf.Sin(theta) * Mathf.Sin(alpha),
-				radius * Mathf.Cos(alpha)
+				radius * Mathf.Sin(theta) * Mathf.Sin(alpha), 0
+				/*radius * Mathf.Cos(alpha)*/
 			);
 
 			// translation to match the parent position
