@@ -90,6 +90,7 @@ public class Generator : MonoBehaviour {
 	 * Generates n attractors and stores them in the attractors array
 	 * The points are generated within a sphere of radius r using a random distribution
 	 **/
+	/* =========================Tree's grow in different directions================================== */
 	void GenerateAttractors (int n, float r) {
 		for (int i = 0; i < n; i++) {
 			float radius = Random.Range(0f, 1f);
