@@ -38,10 +38,4 @@ public class CheckBranch : MonoBehaviour
             }
         }
     }
-    private void OnDrawGizmos()
-    {
-           // Gizmos.DrawWireSphere(hit.point, 10f);
-
-
-    }
 }

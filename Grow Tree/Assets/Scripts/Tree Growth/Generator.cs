@@ -139,6 +139,9 @@ public class Generator : MonoBehaviour {
 
 		// we generate the first branch 
 		_firstBranch = new Branch(_startPosition, _startPosition + new Vector3(0, _branchLength, 0), new Vector3(0, 1, 0));
+		_firstBranch._index = indexCounter;
+		indexCounter++;
+		Debug.Log(indexCounter);
 		_branches.Add(_firstBranch);
 		_extremities.Add(_firstBranch);
   }
@@ -153,13 +156,16 @@ public class Generator : MonoBehaviour {
 
 			// we parse the extremities to set them as grown 
 			foreach (Branch b in _extremities) {
-				b._grown = true;
-		
-				GameObject newBranch = GameObject.CreatePrimitive(PrimitiveType.Capsule);
-				newBranch.transform.position = new Vector3((b._start.x + b._end.x) / 2, (b._start.y + b._end.y) / 2, (b._start.z + b._end.z) / 2);
-				newBranch.transform.localScale = new Vector3(0.1f, Vector2.Distance(b._start, b._end) - 0.02f, 0.1f);
-				newBranch.transform.up = b._direction.normalized;
-				newBranch.name = b._index.ToString();
+				if(!b._grown){
+					b._grown = true;
+					GameObject newBranch = GameObject.CreatePrimitive(PrimitiveType.Capsule);
+					newBranch.GetComponent<Renderer>().enabled = false;
+					newBranch.transform.position = new Vector3((b._start.x + b._end.x) / 2, (b._start.y + b._end.y) / 2, (b._start.z + b._end.z) / 2);
+					newBranch.transform.localScale = new Vector3(0.1f, Vector2.Distance(b._start, b._end) - 0.02f, 0.1f);
+					newBranch.transform.up = b._direction.normalized;
+					newBranch.name = b._index.ToString();
+				}
+				
 			}
 
 			// we remove the attractors in kill range
@@ -209,7 +215,6 @@ public class Generator : MonoBehaviour {
 
 					// new branches will be added here
 					List<Branch> newBranches = new List<Branch>();
-
 					foreach (Branch b in _branches) {
 						// if the branch has attraction points, we grow towards them
 						if (b._attractors.Count > 0) {
@@ -244,7 +249,6 @@ public class Generator : MonoBehaviour {
 					_branches.AddRange(newBranches);
 				} else {
 					// we grow the extremities of the tree
-					Debug.Log(_extremities.Count);
 					for (int i = 0; i < _extremities.Count; i++) {
 						Branch e = _extremities[i];
 						// the new branch starts where the extremity ends
