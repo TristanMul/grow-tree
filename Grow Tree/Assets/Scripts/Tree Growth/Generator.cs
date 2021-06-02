@@ -153,10 +153,10 @@ public class Generator : MonoBehaviour {
 			foreach (Branch b in _extremities) {
 				b._grown = true;
 				
-				GameObject newBranch = GameObject.CreatePrimitive(PrimitiveType.Capsule);
+			/*	GameObject newBranch = GameObject.CreatePrimitive(PrimitiveType.Capsule);
 				newBranch.transform.position = new Vector3((b._start.x + b._end.x) / 2, (b._start.y + b._end.y) / 2, (b._start.z + b._end.z) / 2);
 				newBranch.transform.localScale = new Vector3(0.1f, Vector2.Distance(b._start, b._end) - 0.02f, 0.1f);
-				newBranch.transform.up = b._direction.normalized;
+				newBranch.transform.up = b._direction.normalized;*/
 			}
 
 			// we remove the attractors in kill range
@@ -221,7 +221,7 @@ public class Generator : MonoBehaviour {
 							dir.Normalize();
 
 							// our new branch grows in the correct direction
-							Branch nb = new Branch(b._end, b._end + dir * _branchLength, dir, b);
+							Branch nb = new Branch(b._end, b._end + dir * _branchLength, dir, b); 
 							nb._distanceFromRoot = b._distanceFromRoot+1;
 							b._children.Add(nb);
 							newBranches.Add(nb);
@@ -239,6 +239,7 @@ public class Generator : MonoBehaviour {
 				} else {
 					// we grow the extremities of the tree
 					for (int i = 0; i < _extremities.Count; i++) {
+						Debug.Log("End branch");
 						Branch e = _extremities[i];
 						// the new branch starts where the extremity ends
 						Vector3 start = e._end;

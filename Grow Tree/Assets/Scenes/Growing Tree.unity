@@ -1376,7 +1376,7 @@ MonoBehaviour:
   _nbAttractors: 600
   _radius: 5
   _startPosition: {x: 0, y: 0, z: 0}
-  _branchLength: 0.5
+  _branchLength: 0.2
   _timeBetweenIterations: 0.41
   _attractionRange: 2
   _killRange: 0.5
@@ -1415,7 +1415,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1326992713}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
