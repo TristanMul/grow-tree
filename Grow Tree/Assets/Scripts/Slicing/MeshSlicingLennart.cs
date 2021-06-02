@@ -34,7 +34,7 @@ public class MeshSlicingLennart : MonoBehaviour
         Debug.Log("Shlashsh");
 
         bool[] pointAbovePlane = new bool[toCut.mesh.vertices.Length];
-        
+
         for (int i = 0; i < toCut.mesh.vertices.Length; i++)
         {
             pointAbovePlane[i] = plane.GetSide(toCut.mesh.vertices[i] + toCut.transform.position);
@@ -44,20 +44,42 @@ public class MeshSlicingLennart : MonoBehaviour
 
         List<int> newTriangles = new List<int>();
         List<int> slicedTriangles = new List<int>();
+        List<Vector3> newVertices = new List<Vector3>();
 
+        foreach (Vector3 item in oldVertices)
+        {
+            newVertices.Add(item);
+        }
 
         for (int i = 0; i + 2 < toCut.mesh.triangles.Length; i += 3)
         {
             bool triangleInPlane = false;
 
+            bool firstLineThroughPlane = false, secondLineThroughPlane = false, thirdLineThroughPlane = false;
             //Check wether lines go through the plane if they do the triangle goes through the plane
-            if (pointAbovePlane[oldTriangles[i]] != pointAbovePlane[oldTriangles[i + 1]]) { triangleInPlane = true; }
-            if (pointAbovePlane[oldTriangles[i]] != pointAbovePlane[oldTriangles[i + 2]]) { triangleInPlane = true; }
-            if (pointAbovePlane[oldTriangles[i + 1]] != pointAbovePlane[oldTriangles[i + 2]]) { triangleInPlane = true; }
+            if (pointAbovePlane[oldTriangles[i]] != pointAbovePlane[oldTriangles[i + 1]])
+            {
+                triangleInPlane = true;
+                firstLineThroughPlane = true;
+            }
+            if (pointAbovePlane[oldTriangles[i]] != pointAbovePlane[oldTriangles[i + 2]])
+            {
+                triangleInPlane = true;
+                secondLineThroughPlane = true;
+            }
+            if (pointAbovePlane[oldTriangles[i + 1]] != pointAbovePlane[oldTriangles[i + 2]])
+            {
+                triangleInPlane = true;
+                thirdLineThroughPlane = true;
+            }
 
             if (triangleInPlane)
             {
                 //here will come the connecting triangle generation
+                if (firstLineThroughPlane)
+                {
+                    //newVertices.Add();
+                }
             }
             else
             {
@@ -78,7 +100,7 @@ public class MeshSlicingLennart : MonoBehaviour
             }
         }
         toCut.mesh.Clear();
-        toCut.mesh.vertices = oldVertices;//Might need to be changed when there are different vertices
+        toCut.mesh.vertices = newVertices.ToArray();
         toCut.mesh.triangles = newTriangles.ToArray();
         toCut.mesh.RecalculateNormals();
 
