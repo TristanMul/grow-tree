@@ -73,7 +73,7 @@ public class Generator : MonoBehaviour {
 	Branch _firstBranch;
 
 	// the branches 
-	List<Branch> _branches = new List<Branch>();
+	public List<Branch> _branches = new List<Branch>();
 
 	// a list of the current extremities 
 	public List<Branch> _extremities = new List<Branch>();
@@ -232,7 +232,7 @@ public class Generator : MonoBehaviour {
 							Branch nb = new Branch(b._end, b._end + dir * _branchLength, dir, b);
 							nb._index = indexCounter;
 							indexCounter++;
-							Debug.Log(indexCounter);
+							//Debug.Log(indexCounter);
 							nb._distanceFromRoot = b._distanceFromRoot+1;
 							b._children.Add(nb);
 							newBranches.Add(nb);
