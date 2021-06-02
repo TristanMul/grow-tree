@@ -102,7 +102,7 @@ public class Generator : MonoBehaviour {
 			Vector3 pt = new Vector3(
 				radius * Mathf.Cos(theta) * Mathf.Sin(alpha),
 				radius * Mathf.Sin(theta) * Mathf.Sin(alpha),
-				radius * Mathf.Cos(alpha) / 2
+				radius * Mathf.Cos(alpha) / 5
 			);
 
 			// translation to match the parent position
@@ -151,6 +151,14 @@ public class Generator : MonoBehaviour {
 			// we parse the extremities to set them as grown 
 			foreach (Branch b in _extremities) {
 				b._grown = true;
+				
+			}
+			foreach (Branch b in _branches)
+			{
+				GameObject newBranch = GameObject.CreatePrimitive(PrimitiveType.Capsule);
+				newBranch.transform.position = new Vector3((b._start.x + b._end.x) / 2, (b._start.y + b._end.y) / 2, (b._start.z + b._end.z) / 2);
+				newBranch.transform.localScale = new Vector3(0.1f, Vector2.Distance(b._start, b._end) - 0.02f, 0.1f);
+				newBranch.transform.up = b._direction.normalized;
 			}
 
 			// we remove the attractors in kill range
