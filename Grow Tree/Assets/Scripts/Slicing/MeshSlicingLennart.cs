@@ -51,7 +51,7 @@ public class MeshSlicingLennart : MonoBehaviour
             newVertices.Add(item);
         }
 
-        for (int i = 0; i + 2 < toCut.mesh.triangles.Length; i += 3)
+        for (int i = 0; i + 2 < oldTriangles.Length; i += 3)
         {
             bool triangleInPlane = false;
 
@@ -78,7 +78,15 @@ public class MeshSlicingLennart : MonoBehaviour
                 //here will come the connecting triangle generation
                 if (firstLineThroughPlane)
                 {
-                    //newVertices.Add();
+                    newVertices.Add(PointOnPlaneBetweenPoints(oldVertices[oldTriangles[i]], oldVertices[oldTriangles[i + 1]], plane));
+                }
+                if (secondLineThroughPlane)
+                {
+                    newVertices.Add(PointOnPlaneBetweenPoints(oldVertices[oldTriangles[i]], oldVertices[oldTriangles[i + 2]], plane));
+                }
+                if (thirdLineThroughPlane)
+                {
+                    newVertices.Add(PointOnPlaneBetweenPoints(oldVertices[oldTriangles[i + 1]], oldVertices[oldTriangles[i + 2]], plane));
                 }
             }
             else
@@ -112,5 +120,15 @@ public class MeshSlicingLennart : MonoBehaviour
         slicedMesh.mesh.vertices = oldVertices;//adds the same vertices to the mesh
         slicedMesh.mesh.triangles = slicedTriangles.ToArray();//Adds the triangles removed from the other object
         slicedMesh.mesh.RecalculateNormals();//makes sure the lighting works correctly
+    }
+
+    Vector3 PointOnPlaneBetweenPoints(Vector3 pointA, Vector3 pointB, Plane _plane)
+    {
+        Vector3 toReturn = Vector3.zero;
+        Vector3 directionVector = pointB - pointA;
+        float percentageToPlane = _plane.GetDistanceToPoint(pointA) / (_plane.GetDistanceToPoint(pointA) + _plane.GetDistanceToPoint(pointB));
+
+        toReturn = pointA + (directionVector * percentageToPlane);
+        return toReturn;
     }
 }
