@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +8,7 @@ using UnityEngine;
  * Generates a tree
  * Article link
  **/
-public class Generator : MonoBehaviour {
+public class GeneratorOG : MonoBehaviour {
 
 	/**
 	 * Represents a branch 
@@ -25,7 +25,7 @@ public class Generator : MonoBehaviour {
 		public int _verticesId; // the index of the vertices within the vertices array 
 		public int _distanceFromRoot = 0;
 		public bool _grown = false;
-		
+
 		public Branch(Vector3 start, Vector3 end, Vector3 direction, Branch parent = null) {
 			_start = start;
 			_end = end;
@@ -90,7 +90,6 @@ public class Generator : MonoBehaviour {
 	 * Generates n attractors and stores them in the attractors array
 	 * The points are generated within a sphere of radius r using a random distribution
 	 **/
-	/* =========================Tree's grow in different directions================================== */
 	void GenerateAttractors (int n, float r) {
 		for (int i = 0; i < n; i++) {
 			float radius = Random.Range(0f, 1f);
@@ -103,7 +102,7 @@ public class Generator : MonoBehaviour {
 			Vector3 pt = new Vector3(
 				radius * Mathf.Cos(theta) * Mathf.Sin(alpha),
 				radius * Mathf.Sin(theta) * Mathf.Sin(alpha),
-				radius * Mathf.Cos(alpha) / 5
+				radius * Mathf.Cos(alpha)
 			);
 
 			// translation to match the parent position
@@ -152,14 +151,6 @@ public class Generator : MonoBehaviour {
 			// we parse the extremities to set them as grown 
 			foreach (Branch b in _extremities) {
 				b._grown = true;
-				
-			}
-			foreach (Branch b in _branches)
-			{
-				GameObject newBranch = GameObject.CreatePrimitive(PrimitiveType.Capsule);
-				newBranch.transform.position = new Vector3((b._start.x + b._end.x) / 2, (b._start.y + b._end.y) / 2, (b._start.z + b._end.z) / 2);
-				newBranch.transform.localScale = new Vector3(0.1f, Vector2.Distance(b._start, b._end) - 0.02f, 0.1f);
-				newBranch.transform.up = b._direction.normalized;
 			}
 
 			// we remove the attractors in kill range
