@@ -25,7 +25,7 @@ public class Generator : MonoBehaviour {
 		public int _verticesId; // the index of the vertices within the vertices array 
 		public int _distanceFromRoot = 0;
 		public bool _grown = false;
-
+		
 		public Branch(Vector3 start, Vector3 end, Vector3 direction, Branch parent = null) {
 			_start = start;
 			_end = end;
@@ -152,6 +152,9 @@ public class Generator : MonoBehaviour {
 			// we parse the extremities to set them as grown 
 			foreach (Branch b in _extremities) {
 				b._grown = true;
+				GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+				sphere.transform.position = b._start;
+				sphere.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
 			}
 
 			// we remove the attractors in kill range
