@@ -153,9 +153,6 @@ public class Generator : MonoBehaviour {
 			foreach (Branch b in _extremities) {
 				b._grown = true;
 				
-			}
-			foreach (Branch b in _branches)
-			{
 				GameObject newBranch = GameObject.CreatePrimitive(PrimitiveType.Capsule);
 				newBranch.transform.position = new Vector3((b._start.x + b._end.x) / 2, (b._start.y + b._end.y) / 2, (b._start.z + b._end.z) / 2);
 				newBranch.transform.localScale = new Vector3(0.1f, Vector2.Distance(b._start, b._end) - 0.02f, 0.1f);
