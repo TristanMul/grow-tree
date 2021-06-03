@@ -25,6 +25,7 @@ public class Generator : MonoBehaviour {
 		public int _verticesId; // the index of the vertices within the vertices array 
 		public int _distanceFromRoot = 0;
 		public bool _grown = false;
+		public int _index;
 		
 		public Branch(Vector3 start, Vector3 end, Vector3 direction, Branch parent = null) {
 			_start = start;
@@ -61,6 +62,7 @@ public class Generator : MonoBehaviour {
 	public float _invertGrowth = 2f;
 
 
+	private int indexCounter = 0;
 	// the attractor points
 	public List<Vector3> _attractors = new List<Vector3>();
 
@@ -71,7 +73,7 @@ public class Generator : MonoBehaviour {
 	Branch _firstBranch;
 
 	// the branches 
-	List<Branch> _branches = new List<Branch>();
+	public List<Branch> _branches = new List<Branch>();
 
 	// a list of the current extremities 
 	public List<Branch> _extremities = new List<Branch>();
@@ -137,6 +139,9 @@ public class Generator : MonoBehaviour {
 
 		// we generate the first branch 
 		_firstBranch = new Branch(_startPosition, _startPosition + new Vector3(0, _branchLength, 0), new Vector3(0, 1, 0));
+		_firstBranch._index = indexCounter;
+		indexCounter++;
+		Debug.Log(indexCounter);
 		_branches.Add(_firstBranch);
 		_extremities.Add(_firstBranch);
   }
@@ -151,12 +156,16 @@ public class Generator : MonoBehaviour {
 
 			// we parse the extremities to set them as grown 
 			foreach (Branch b in _extremities) {
-				b._grown = true;
+				if(!b._grown){
+					b._grown = true;
+					GameObject newBranch = GameObject.CreatePrimitive(PrimitiveType.Capsule);
+					newBranch.GetComponent<Renderer>().enabled = false;
+					newBranch.transform.position = new Vector3((b._start.x + b._end.x) / 2, (b._start.y + b._end.y) / 2, (b._start.z + b._end.z) / 2);
+					newBranch.transform.localScale = new Vector3(0.1f, Vector2.Distance(b._start, b._end) - 0.02f, 0.1f);
+					newBranch.transform.up = b._direction.normalized;
+					newBranch.name = b._index.ToString();
+				}
 				
-			/*	GameObject newBranch = GameObject.CreatePrimitive(PrimitiveType.Capsule);
-				newBranch.transform.position = new Vector3((b._start.x + b._end.x) / 2, (b._start.y + b._end.y) / 2, (b._start.z + b._end.z) / 2);
-				newBranch.transform.localScale = new Vector3(0.1f, Vector2.Distance(b._start, b._end) - 0.02f, 0.1f);
-				newBranch.transform.up = b._direction.normalized;*/
 			}
 
 			// we remove the attractors in kill range
@@ -206,7 +215,6 @@ public class Generator : MonoBehaviour {
 
 					// new branches will be added here
 					List<Branch> newBranches = new List<Branch>();
-
 					foreach (Branch b in _branches) {
 						// if the branch has attraction points, we grow towards them
 						if (b._attractors.Count > 0) {
@@ -221,7 +229,10 @@ public class Generator : MonoBehaviour {
 							dir.Normalize();
 
 							// our new branch grows in the correct direction
-							Branch nb = new Branch(b._end, b._end + dir * _branchLength, dir, b); 
+							Branch nb = new Branch(b._end, b._end + dir * _branchLength, dir, b);
+							nb._index = indexCounter;
+							indexCounter++;
+							//Debug.Log(indexCounter);
 							nb._distanceFromRoot = b._distanceFromRoot+1;
 							b._children.Add(nb);
 							newBranches.Add(nb);
@@ -239,7 +250,6 @@ public class Generator : MonoBehaviour {
 				} else {
 					// we grow the extremities of the tree
 					for (int i = 0; i < _extremities.Count; i++) {
-						Debug.Log("End branch");
 						Branch e = _extremities[i];
 						// the new branch starts where the extremity ends
 						Vector3 start = e._end;
@@ -249,7 +259,9 @@ public class Generator : MonoBehaviour {
 						Vector3 end = e._end + dir * _branchLength;
 						// a new branch can be created with the same direction as its parent
 						Branch nb = new Branch(start, end, dir, e);
-
+						nb._index = indexCounter;
+						indexCounter++;
+						Debug.Log(indexCounter);
 						// the current extrimity has a new child
 						e._children.Add(nb);
 
