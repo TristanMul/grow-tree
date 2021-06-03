@@ -9,6 +9,8 @@ public class CheckBranch : MonoBehaviour
     [SerializeField] private Camera camera;
     int test = 0;
     [SerializeField] Generator generator;
+
+    List<Generator.Branch> cutOffBranches;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,24 +28,46 @@ public class CheckBranch : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             Ray ray = camera.ScreenPointToRay(Input.mousePosition);
-            if (/*Physics.SphereCast(camera.transform.position,10f, camera.transform.forward, out hit)*/ Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(ray, out hit))
             {
                 Vector3 hitPosition = hit.point;
-                //Instantiate(prefab, hitPosition, Quaternion.Euler(0, 0, 0));
                 if (hit.transform.gameObject.GetComponent<CapsuleCollider>())
                 {
-                    Debug.Log(int.Parse(hit.transform.gameObject.name));
-                    test = int.Parse(hit.transform.gameObject.name) + 1000;
-                   Debug.Log(test);
-                    generator._branches[int.Parse(hit.transform.gameObject.name)]._children.Clear();
+                    Generator.Branch cutOffBranch = generator._branches[int.Parse(hit.transform.gameObject.name)];
+                    cutOffBranch._parent = null;
+                    cutOffBranches = new List<Generator.Branch>();
+                    cutOffBranches.Add(cutOffBranch);
+                    generator._capsules.Remove(generator._capsules[cutOffBranch._index]);
+                    generator._branches.Remove(cutOffBranch);
+                    AddChildrenToList(cutOffBranch);
+
+                    cutOffBranches.Clear();
+                    ResetBranches();
+
+
                 }
-                /*foreach(Generator.Branch branch in )
-                {
-
-                }*/
-
-
             }
         }
+    }
+
+    private void AddChildrenToList(Generator.Branch branch){
+        if(branch._children != null){
+            for (int i = 0; i < branch._children.Count; i++)
+            {
+                generator._capsules.Remove(generator._capsules[branch._children[i]._index]);
+                generator._branches.Remove(branch._children[i]);
+                cutOffBranches.Add(branch._children[i]);
+                AddChildrenToList(branch._children[i]);
+            }
+        }
+    }
+
+    private void ResetBranches(){
+        for (int i = 0; i < generator._capsules.Count; i++)
+        {
+            generator._capsules[i].gameObject.name = i.ToString();
+        }
+
+        generator.indexCounter = generator._branches.Count;
     }
 }
