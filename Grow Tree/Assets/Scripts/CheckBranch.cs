@@ -69,8 +69,8 @@ public class CheckBranch : MonoBehaviour
             generator._capsules[branch._index].transform.GetComponent<Collider>();
             generator._capsules.Remove(generator._capsules[branch._index]);
             generator._branches.Remove(branch);
-            ResetBranches();
             generator._extremities.Remove(branch);
+            ResetBranches();
             cutOffBranches.Add(branch);
         }
     }
