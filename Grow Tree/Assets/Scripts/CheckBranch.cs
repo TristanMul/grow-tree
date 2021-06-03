@@ -40,10 +40,11 @@ public class CheckBranch : MonoBehaviour
                     cutOffBranches.Add(cutOffBranch);
                     generator._capsules.Remove(generator._capsules[cutOffBranch._index]);
                     generator._branches.Remove(cutOffBranch);
+                    ResetBranches();
                     AddChildrenToList(cutOffBranch);
 
                     cutOffBranches.Clear();
-                    ResetBranches();
+                    
 
 
                 }
@@ -55,9 +56,11 @@ public class CheckBranch : MonoBehaviour
         if(branch._children != null){
             for (int i = 0; i < branch._children.Count; i++)
             {
+                Debug.Log("capsule count: " + generator._capsules.Count + " & " + "index: " + branch._children[i]._index + " & " + "indexcounter: " + generator.indexCounter);
                 generator._capsules[branch._children[i]._index].transform.GetComponent<Collider>().enabled = false;
                 generator._capsules.Remove(generator._capsules[branch._children[i]._index]);
                 generator._branches.Remove(branch._children[i]);
+                ResetBranches();
                 cutOffBranches.Add(branch._children[i]);
                 AddChildrenToList(branch._children[i]);
             }
@@ -66,6 +69,7 @@ public class CheckBranch : MonoBehaviour
             generator._capsules[branch._index].transform.GetComponent<Collider>();
             generator._capsules.Remove(generator._capsules[branch._index]);
             generator._branches.Remove(branch);
+            ResetBranches();
             generator._extremities.Remove(branch);
             cutOffBranches.Add(branch);
         }
@@ -83,6 +87,6 @@ public class CheckBranch : MonoBehaviour
         {
             generator._capsules[i].gameObject.name = i.ToString();
         }
-
+        
     }
 }
