@@ -33,6 +33,7 @@ public class CheckBranch : MonoBehaviour
                 Vector3 hitPosition = hit.point;
                 if (hit.transform.gameObject.GetComponent<CapsuleCollider>())
                 {
+                    hit.transform.GetComponent<Collider>().enabled = false;
                     Generator.Branch cutOffBranch = generator._branches[int.Parse(hit.transform.gameObject.name)];
                     cutOffBranch._parent = null;
                     cutOffBranches = new List<Generator.Branch>();
@@ -54,20 +55,34 @@ public class CheckBranch : MonoBehaviour
         if(branch._children != null){
             for (int i = 0; i < branch._children.Count; i++)
             {
+                generator._capsules[branch._children[i]._index].transform.GetComponent<Collider>().enabled = false;
                 generator._capsules.Remove(generator._capsules[branch._children[i]._index]);
                 generator._branches.Remove(branch._children[i]);
                 cutOffBranches.Add(branch._children[i]);
                 AddChildrenToList(branch._children[i]);
             }
         }
+        else{
+            generator._capsules[branch._index].transform.GetComponent<Collider>();
+            generator._capsules.Remove(generator._capsules[branch._index]);
+            generator._branches.Remove(branch);
+            generator._extremities.Remove(branch);
+            cutOffBranches.Add(branch);
+        }
     }
 
     private void ResetBranches(){
+        generator.indexCounter = generator._branches.Count;
+
+        for (int i = 0; i < generator._branches.Count; i++)
+        {
+            generator._branches[i]._index = i;
+        }
+
         for (int i = 0; i < generator._capsules.Count; i++)
         {
             generator._capsules[i].gameObject.name = i.ToString();
         }
 
-        generator.indexCounter = generator._branches.Count;
     }
 }

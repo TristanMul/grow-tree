@@ -160,8 +160,7 @@ public class Generator : MonoBehaviour {
 			foreach (Branch b in _extremities) {
 				if(!b._grown){
 					b._grown = true;
-					Debug.Log("Branches: " + _branches.Count);
-					Debug.Log("Capsules: " + _capsules.Count);
+					Debug.Log("Branches: " + _branches.Count + " & Capsules: " + _capsules.Count);
 				}
 				
 			}
