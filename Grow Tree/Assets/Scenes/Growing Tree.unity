@@ -529,7 +529,7 @@ MonoBehaviour:
   prefab: {fileID: 3173701250483107333, guid: d2f02425018761b428a39c0b39f2dcaa, type: 3}
   camera: {fileID: 963194227}
   generator: {fileID: 1326992714}
-  cutBranchPrefab: {fileID: 6980812962035197423, guid: 014b92c73a92d8146b32853592544220,
+  cutBranchPrefab: {fileID: 3348747014625355422, guid: 30b99c6a974d9344a818c90c583372a9,
     type: 3}
 --- !u!1 &531558664
 GameObject:
@@ -1386,7 +1386,7 @@ MonoBehaviour:
   _randomGrowth: 0.147
   _radialSubdivisions: 10
   _extremitiesSize: 0.03
-  _invertGrowth: 2.41
+  _invertGrowth: 0.9
   indexCounter: 0
   _attractors: []
   _activeAttractors: 

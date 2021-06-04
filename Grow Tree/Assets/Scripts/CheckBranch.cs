@@ -38,6 +38,7 @@ public class CheckBranch : MonoBehaviour
                     hit.transform.GetComponent<Collider>().enabled = false;
                     Generator.Branch cutOffBranch = generator._branches[int.Parse(hit.transform.gameObject.name)];
                     cutOffBranch._parent._children.Remove(cutOffBranch);
+                    cutOffBranch._parent._canGrow = false;
                     cutOffBranch._parent = null;
                     cutOffBranches = new List<Generator.Branch>();
                     cutOffBranches.Add(cutOffBranch);

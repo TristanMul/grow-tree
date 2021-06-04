@@ -26,7 +26,7 @@ public class Generator : MonoBehaviour {
 		public int _distanceFromRoot = 0;
 		public bool _grown = false;
 		public int _index;
-
+		public bool _canGrow = true;
 		public Branch(Vector3 start, Vector3 end, Vector3 direction, Branch parent = null) {
 			_start = start;
 			_end = end;
@@ -172,11 +172,7 @@ public class Generator : MonoBehaviour {
 
 			// we parse the extremities to set them as grown 
 			foreach (Branch b in _extremities) {
-				if(!b._grown){
 					b._grown = true;
-					Debug.Log("Branches: " + _branches.Count + " & Capsules: " + _capsules.Count);
-				}
-				
 			}
 
 			// we remove the attractors in kill range
@@ -204,12 +200,11 @@ public class Generator : MonoBehaviour {
 					Branch closest = null; // will store the closest branch
 					foreach (Branch b in _branches) {
 						float d = Vector3.Distance(b._end, attractor);
-						if (d < _attractionRange && d < min) {
+						if (d < _attractionRange && d < min && b._canGrow) {
 							min = d;
 							closest = b;
 						}
 					}
-
 					// if a branch has been found, we add the attractor to the branch
 					if (closest != null) {
 						closest._attractors.Add(attractor);
@@ -251,7 +246,7 @@ public class Generator : MonoBehaviour {
 							_extremities.Add(nb);
 						} else {
 							// if no attraction points, we only check if the branch is an extremity
-							if (b._children.Count == 0) {
+							if (b._children.Count == 0 && b._canGrow) {
 								_extremities.Add(b);
 							}
 						}
@@ -269,7 +264,9 @@ public class Generator : MonoBehaviour {
 						Vector3 dir = e._direction + RandomGrowthVector();
 						// we add the direction multiplied by the branch length to get the end point
 						Vector3 end = e._end + dir * _branchLength;
-						// a new branch can be created with the same direction as its parent
+                        // a new branch can be created with the same direction as its parent
+                        if (e._canGrow)
+                        {
 						Branch nb = new Branch(start, end, dir, e);
 						nb._index = indexCounter;
 						indexCounter++;
@@ -281,6 +278,7 @@ public class Generator : MonoBehaviour {
 						_branches.Add(nb);
 						AddCapsule(nb);
 						_extremities[i] = nb;
+                        }
 					}
 				}
 			}
