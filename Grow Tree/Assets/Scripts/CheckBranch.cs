@@ -47,7 +47,7 @@ public class CheckBranch : MonoBehaviour
                     AddChildrenToList(cutOffBranch);
 
                     GameObject newBranch = Instantiate(cutBranchPrefab, generator.transform.position, Quaternion.identity);
-                    newBranch.GetComponent<CreateCutBranch>().CreateMesh(cutOffBranches, generator);
+                    newBranch.GetComponent<CreateCutBranch>().CreateMesh(cutOffBranches, cutOffBranch, generator);
                     cutOffBranches.Clear();
                 }
             }
