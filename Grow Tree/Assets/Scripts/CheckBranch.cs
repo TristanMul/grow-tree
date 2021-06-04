@@ -12,7 +12,7 @@ public class CheckBranch : MonoBehaviour
 
     List<Generator.Branch> cutOffBranches;
 
-    [SerializeField] CreateCutBranch createCut;
+    [SerializeField] GameObject cutBranchPrefab;
     // Start is called before the first frame update
     void Start()
     {
@@ -45,18 +45,19 @@ public class CheckBranch : MonoBehaviour
                     generator._branches.Remove(cutOffBranch);
                     ResetBranches();
                     AddChildrenToList(cutOffBranch);
-                    createCut.CreateMesh(cutOffBranch, generator);
+
+                    GameObject newBranch = Instantiate(cutBranchPrefab, generator.transform.position, Quaternion.identity);
+                    newBranch.GetComponent<CreateCutBranch>().CreateMesh(cutOffBranches, generator);
                     cutOffBranches.Clear();
-                    
-
-
                 }
             }
         }
     }
 
-    private void AddChildrenToList(Generator.Branch branch){
-        if(branch._children != null){
+    private void AddChildrenToList(Generator.Branch branch)
+    {
+        if (branch._children != null)
+        {
             for (int i = 0; i < branch._children.Count; i++)
             {
                 generator._capsules[branch._children[i]._index].transform.GetComponent<Collider>().enabled = false;
@@ -67,7 +68,8 @@ public class CheckBranch : MonoBehaviour
                 AddChildrenToList(branch._children[i]);
             }
         }
-        else{
+        else
+        {
             generator._capsules[branch._index].transform.GetComponent<Collider>();
             generator._capsules.Remove(generator._capsules[branch._index]);
             generator._branches.Remove(branch);
@@ -77,7 +79,8 @@ public class CheckBranch : MonoBehaviour
         }
     }
 
-    private void ResetBranches(){
+    private void ResetBranches()
+    {
         generator.indexCounter = generator._branches.Count;
 
         for (int i = 0; i < generator._branches.Count; i++)
@@ -89,6 +92,6 @@ public class CheckBranch : MonoBehaviour
         {
             generator._capsules[i].gameObject.name = i.ToString();
         }
-        
+
     }
 }

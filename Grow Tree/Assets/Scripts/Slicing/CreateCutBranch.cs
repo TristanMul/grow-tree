@@ -7,46 +7,26 @@ using System;
 public class CreateCutBranch : MonoBehaviour
 {
 
-    Generator.Branch branch;
+    List<Generator.Branch> branchesToDraw;
     Generator generator;
 
     MeshFilter meshFilter;
-    public void CreateMesh(Generator.Branch _branch, Generator _generator)
+    public void CreateMesh(List<Generator.Branch> _branch, Generator _generator)
     {
+        branchesToDraw = null;
         meshFilter = GetComponent<MeshFilter>();
 
 
-        branch = _branch;
+        branchesToDraw = _branch;
         generator = _generator;
         MakeMesh();
     }
 
     void MakeMesh()
     {
+        Vector3[] vertices;
+        int[] triangles = new int[(branchesToDraw.Count + 1) * generator._radialSubdivisions * 6];
 
-        float size = 0f;
-        if (branch._children.Count == 0)
-        {
-            size = generator._extremitiesSize;
-        }
-        else
-        {
-            foreach (Generator.Branch bc in branch._children)
-            {
-                size += Mathf.Pow(bc._size, generator._invertGrowth);
-            }
-            size = Mathf.Pow(size, 1f / generator._invertGrowth);
-        }
-        branch._size = size;
-
-        Vector3[] vertices = new Vector3[(branch._children.Count + 2) * generator._radialSubdivisions];
-        int[] triangles = new int[(branch._children.Count + 1) * generator._radialSubdivisions * 6];
-        List<Generator.Branch> branchesToDraw = new List<Generator.Branch>();
-        foreach (Generator.Branch br in branch._children)
-        {
-            branchesToDraw.Add(br);
-        }
-        branchesToDraw.Add(branch);
 
         vertices = generator.currentVertices;
 
