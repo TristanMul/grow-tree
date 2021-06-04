@@ -9,6 +9,8 @@ public class CheckBranch : MonoBehaviour
     [SerializeField] private Camera camera;
     int test = 0;
     [SerializeField] Generator generator;
+
+    [SerializeField] CreateCutBranch createBranch;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,7 +37,11 @@ public class CheckBranch : MonoBehaviour
                     Debug.Log(int.Parse(hit.transform.gameObject.name));
                     test = int.Parse(hit.transform.gameObject.name) + 1000;
                    Debug.Log(test);
-                    generator._branches[int.Parse(hit.transform.gameObject.name)]._children.Clear();
+                    //generator._branches[int.Parse(hit.transform.gameObject.name)]._children.Clear();
+                    generator._branches[int.Parse(hit.transform.gameObject.name)]._parent = null;
+
+                    createBranch.CreateMesh(generator._branches[int.Parse(hit.transform.gameObject.name)], generator);
+
                 }
                 /*foreach(Generator.Branch branch in )
                 {

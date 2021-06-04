@@ -24,6 +24,7 @@ public class MeshGeneration : MonoBehaviour {
 
 	// Start is called before the first frame update
 	void Awake () {
+		Debug.Log("maketree");
 		filter = GetComponent<MeshFilter>();
 		_radius = GameObject.Find("Tree").GetComponent<Generator>()._radius;
 
