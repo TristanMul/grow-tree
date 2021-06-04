@@ -33,7 +33,7 @@ public class CheckBranch : MonoBehaviour
             if (Physics.Raycast(ray, out hit))
             {
                 Vector3 hitPosition = hit.point;
-                if (hit.transform.gameObject.GetComponent<CapsuleCollider>())
+                if (hit.transform.gameObject.GetComponent<CapsuleCollider>() && generator._branches[int.Parse(hit.transform.gameObject.name)] != generator._firstBranch)
                 {
                     hit.transform.GetComponent<Collider>().enabled = false;
                     Generator.Branch cutOffBranch = generator._branches[int.Parse(hit.transform.gameObject.name)];

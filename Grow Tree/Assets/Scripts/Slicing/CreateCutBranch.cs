@@ -96,7 +96,6 @@ public class CreateCutBranch : MonoBehaviour
                 // the triangles 
                 triangles[fid + s * 6] = bId + s;
                 triangles[fid + s * 6 + 1] = tId + s;
-                Debug.Log("it worked" + i);
                 if (s == generator._radialSubdivisions - 1)
                 {
                     triangles[fid + s * 6 + 2] = tId;

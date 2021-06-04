@@ -73,7 +73,7 @@ public class Generator : MonoBehaviour
     public List<int> _activeAttractors = new List<int>();
 
     // reference to the first branch 
-    Branch _firstBranch;
+    public Branch _firstBranch;
 
     // the branches 
     public List<Branch> _branches = new List<Branch>();
@@ -310,7 +310,7 @@ public class Generator : MonoBehaviour
                             Branch nb = new Branch(start, end, dir, e);
                             nb._index = indexCounter;
                             indexCounter++;
-                            Debug.Log(indexCounter);
+                            //Debug.Log(indexCounter);
                             // the current extrimity has a new child
                             e._children.Add(nb);
 
@@ -354,6 +354,7 @@ public class Generator : MonoBehaviour
             b._size = size;
         }
 
+        //Debug.Log(_branches.Count);
         Vector3[] vertices = new Vector3[(_branches.Count + 1) * _radialSubdivisions];
         int[] triangles = new int[_branches.Count * _radialSubdivisions * 6];
 
@@ -439,7 +440,6 @@ public class Generator : MonoBehaviour
                 }
             }
         }
-
         treeMesh.vertices = vertices;
         currentVertices = vertices;
         treeMesh.triangles = triangles;
