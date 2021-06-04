@@ -10,7 +10,7 @@ public class CheckBranch : MonoBehaviour
     int test = 0;
     [SerializeField] Generator generator;
 
-    [SerializeField] CreateCutBranch createBranch;
+    List<Generator.Branch> cutOffBranches;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,28 +28,66 @@ public class CheckBranch : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             Ray ray = camera.ScreenPointToRay(Input.mousePosition);
-            if (/*Physics.SphereCast(camera.transform.position,10f, camera.transform.forward, out hit)*/ Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(ray, out hit))
             {
                 Vector3 hitPosition = hit.point;
-                //Instantiate(prefab, hitPosition, Quaternion.Euler(0, 0, 0));
                 if (hit.transform.gameObject.GetComponent<CapsuleCollider>())
                 {
-                    Debug.Log(int.Parse(hit.transform.gameObject.name));
-                    test = int.Parse(hit.transform.gameObject.name) + 1000;
-                   Debug.Log(test);
-                    //generator._branches[int.Parse(hit.transform.gameObject.name)]._children.Clear();
-                    generator._branches[int.Parse(hit.transform.gameObject.name)]._parent = null;
+                    hit.transform.GetComponent<Collider>().enabled = false;
+                    Generator.Branch cutOffBranch = generator._branches[int.Parse(hit.transform.gameObject.name)];
+                    cutOffBranch._parent._children.Remove(cutOffBranch);
+                    cutOffBranch._parent = null;
+                    cutOffBranches = new List<Generator.Branch>();
+                    cutOffBranches.Add(cutOffBranch);
+                    generator._capsules.Remove(generator._capsules[cutOffBranch._index]);
+                    generator._branches.Remove(cutOffBranch);
+                    ResetBranches();
+                    AddChildrenToList(cutOffBranch);
 
-                    createBranch.CreateMesh(generator._branches[int.Parse(hit.transform.gameObject.name)], generator);
+                    cutOffBranches.Clear();
+                    
+
 
                 }
-                /*foreach(Generator.Branch branch in )
-                {
-
-                }*/
-
-
             }
         }
+    }
+
+    private void AddChildrenToList(Generator.Branch branch){
+        if(branch._children != null){
+            for (int i = 0; i < branch._children.Count; i++)
+            {
+                Debug.Log("capsule count: " + generator._capsules.Count + " & " + "index: " + branch._children[i]._index + " & " + "indexcounter: " + generator.indexCounter);
+                generator._capsules[branch._children[i]._index].transform.GetComponent<Collider>().enabled = false;
+                generator._capsules.Remove(generator._capsules[branch._children[i]._index]);
+                generator._branches.Remove(branch._children[i]);
+                ResetBranches();
+                cutOffBranches.Add(branch._children[i]);
+                AddChildrenToList(branch._children[i]);
+            }
+        }
+        else{
+            generator._capsules[branch._index].transform.GetComponent<Collider>();
+            generator._capsules.Remove(generator._capsules[branch._index]);
+            generator._branches.Remove(branch);
+            generator._extremities.Remove(branch);
+            ResetBranches();
+            cutOffBranches.Add(branch);
+        }
+    }
+
+    private void ResetBranches(){
+        generator.indexCounter = generator._branches.Count;
+
+        for (int i = 0; i < generator._branches.Count; i++)
+        {
+            generator._branches[i]._index = i;
+        }
+
+        for (int i = 0; i < generator._capsules.Count; i++)
+        {
+            generator._capsules[i].gameObject.name = i.ToString();
+        }
+        
     }
 }

@@ -62,7 +62,7 @@ public class Generator : MonoBehaviour {
 	public float _invertGrowth = 2f;
 
 
-	private int indexCounter = 0;
+	public int indexCounter = 0;
 	// the attractor points
 	public List<Vector3> _attractors = new List<Vector3>();
 
@@ -74,6 +74,7 @@ public class Generator : MonoBehaviour {
 
 	// the branches 
 	public List<Branch> _branches = new List<Branch>();
+	public List<GameObject> _capsules = new List<GameObject>();
 
 	// a list of the current extremities 
 	public List<Branch> _extremities = new List<Branch>();
@@ -144,6 +145,7 @@ public class Generator : MonoBehaviour {
 		Debug.Log(indexCounter);
 		_branches.Add(_firstBranch);
 		_extremities.Add(_firstBranch);
+		AddCapsule(_firstBranch);
   }
 
   // Update is called once per frame
@@ -158,12 +160,7 @@ public class Generator : MonoBehaviour {
 			foreach (Branch b in _extremities) {
 				if(!b._grown){
 					b._grown = true;
-					GameObject newBranch = GameObject.CreatePrimitive(PrimitiveType.Capsule);
-					newBranch.GetComponent<Renderer>().enabled = false;
-					newBranch.transform.position = new Vector3((b._start.x + b._end.x) / 2, (b._start.y + b._end.y) / 2, (b._start.z + b._end.z) / 2);
-					newBranch.transform.localScale = new Vector3(0.1f, Vector2.Distance(b._start, b._end) - 0.02f, 0.1f);
-					newBranch.transform.up = b._direction.normalized;
-					newBranch.name = b._index.ToString();
+					Debug.Log("Branches: " + _branches.Count + " & Capsules: " + _capsules.Count);
 				}
 				
 			}
@@ -236,6 +233,7 @@ public class Generator : MonoBehaviour {
 							nb._distanceFromRoot = b._distanceFromRoot+1;
 							b._children.Add(nb);
 							newBranches.Add(nb);
+							AddCapsule(nb);
 							_extremities.Add(nb);
 						} else {
 							// if no attraction points, we only check if the branch is an extremity
@@ -267,6 +265,7 @@ public class Generator : MonoBehaviour {
 
 						// let's add the new branch to the list and set it as the new extremity 
 						_branches.Add(nb);
+						AddCapsule(nb);
 						_extremities[i] = nb;
 					}
 				}
@@ -402,5 +401,15 @@ public class Generator : MonoBehaviour {
 			Gizmos.DrawSphere(b._end, 0.05f);
 			Gizmos.DrawSphere(b._start, 0.05f);
 		}
+	}
+
+	private void AddCapsule(Branch b){
+		GameObject newBranch = GameObject.CreatePrimitive(PrimitiveType.Capsule);
+		newBranch.GetComponent<Renderer>().enabled = false;
+		newBranch.transform.position = new Vector3((b._start.x + b._end.x) / 2, (b._start.y + b._end.y) / 2, (b._start.z + b._end.z) / 2);
+		newBranch.transform.localScale = new Vector3(0.1f, Vector2.Distance(b._start, b._end) - 0.02f, 0.1f);
+		newBranch.transform.up = b._direction.normalized;
+		newBranch.name = b._index.ToString();
+		_capsules.Add(newBranch);
 	}
 }
