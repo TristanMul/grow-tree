@@ -119,7 +119,10 @@ public class Generator : MonoBehaviour {
         */
         foreach(Transform t in otherAtrractors.transform)
         {
-            _attractors.Add(t.position);
+            foreach (Transform c in t)
+            {
+                _attractors.Add(c.position);
+            }
         }
 	}
 
