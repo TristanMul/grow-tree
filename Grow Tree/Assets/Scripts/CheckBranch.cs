@@ -11,6 +11,8 @@ public class CheckBranch : MonoBehaviour
     [SerializeField] Generator generator;
 
     List<Generator.Branch> cutOffBranches;
+
+    [SerializeField] CreateCutBranch createCut;
     // Start is called before the first frame update
     void Start()
     {
@@ -43,7 +45,7 @@ public class CheckBranch : MonoBehaviour
                     generator._branches.Remove(cutOffBranch);
                     ResetBranches();
                     AddChildrenToList(cutOffBranch);
-
+                    createCut.CreateMesh(cutOffBranch, generator);
                     cutOffBranches.Clear();
                     
 
@@ -57,7 +59,6 @@ public class CheckBranch : MonoBehaviour
         if(branch._children != null){
             for (int i = 0; i < branch._children.Count; i++)
             {
-                Debug.Log("capsule count: " + generator._capsules.Count + " & " + "index: " + branch._children[i]._index + " & " + "indexcounter: " + generator.indexCounter);
                 generator._capsules[branch._children[i]._index].transform.GetComponent<Collider>().enabled = false;
                 generator._capsules.Remove(generator._capsules[branch._children[i]._index]);
                 generator._branches.Remove(branch._children[i]);

@@ -26,7 +26,7 @@ public class Generator : MonoBehaviour {
 		public int _distanceFromRoot = 0;
 		public bool _grown = false;
 		public int _index;
-		
+
 		public Branch(Vector3 start, Vector3 end, Vector3 direction, Branch parent = null) {
 			_start = start;
 			_end = end;
@@ -83,6 +83,7 @@ public class Generator : MonoBehaviour {
 	float _timeSinceLastIteration = 0f;
 
 	MeshFilter _filter;
+	public Vector3[] currentVertices;
 
 
 	void Awake () {
@@ -369,6 +370,7 @@ public class Generator : MonoBehaviour {
 		}
 
 		treeMesh.vertices = vertices;
+		currentVertices = vertices;
 		treeMesh.triangles = triangles;
 		treeMesh.RecalculateNormals();
 		_filter.mesh = treeMesh;
