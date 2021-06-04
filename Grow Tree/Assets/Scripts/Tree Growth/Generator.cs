@@ -84,6 +84,10 @@ public class Generator : MonoBehaviour {
 
 	MeshFilter _filter;
 
+    //public List<Transform> customAtrractors = new List<Transform>();
+
+    public GameObject otherAtrractors;
+    //public List<Transform> otherAtrractorsList = new List<Transform>();
 
 	void Awake () {
 		// initilization 
@@ -95,7 +99,8 @@ public class Generator : MonoBehaviour {
 	 **/
 	/* =========================Tree's grow in different directions================================== */
 	void GenerateAttractors (int n, float r) {
-		for (int i = 0; i < n; i++) {
+		/*
+            for (int i = 0; i < n; i++) {
 			float radius = Random.Range(0f, 1f);
 			radius = Mathf.Pow(Mathf.Sin(radius * Mathf.PI/2f), 0.8f);
 			radius*= r;
@@ -114,6 +119,14 @@ public class Generator : MonoBehaviour {
 
 			_attractors.Add(pt);
 		}
+        */
+        foreach(Transform t in otherAtrractors.transform)
+        {
+            foreach (Transform c in t)
+            {
+                _attractors.Add(c.position);
+            }
+        }
 	}
 
 	/**
