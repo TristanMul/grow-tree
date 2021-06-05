@@ -323,8 +323,8 @@ public class Generator : MonoBehaviour
                 }
             }
         }
-
-        ToMesh();
+        if (_extremities.Count >= 0)
+            ToMesh();
     }
 
     /**
