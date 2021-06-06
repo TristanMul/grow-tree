@@ -44,7 +44,6 @@ public class CheckBranch : MonoBehaviour
                     cutOffBranches.Add(cutOffBranch);
                     generator._capsules.Remove(generator._capsules[cutOffBranch._index]);
                     generator._branches.Remove(cutOffBranch);
-                    
                     ResetBranches();
                     AddChildrenToList(cutOffBranch);
                     GameObject newBranch = Instantiate(cutBranchPrefab, generator.transform.position, Quaternion.identity);
