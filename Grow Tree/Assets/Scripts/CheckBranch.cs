@@ -33,11 +33,12 @@ public class CheckBranch : MonoBehaviour
             if (Physics.Raycast(ray, out hit))
             {
                 Vector3 hitPosition = hit.point;
-                if (hit.transform.gameObject.GetComponent<CapsuleCollider>())
+                if (hit.transform.gameObject.GetComponent<CapsuleCollider>() && generator._branches[int.Parse(hit.transform.gameObject.name)] != generator._firstBranch)
                 {
                     hit.transform.GetComponent<Collider>().enabled = false;
                     Generator.Branch cutOffBranch = generator._branches[int.Parse(hit.transform.gameObject.name)];
                     cutOffBranch._parent._children.Remove(cutOffBranch);
+                    cutOffBranch._parent._canGrow = false;
                     cutOffBranch._parent = null;
                     cutOffBranches = new List<Generator.Branch>();
                     cutOffBranches.Add(cutOffBranch);
@@ -45,10 +46,10 @@ public class CheckBranch : MonoBehaviour
                     generator._branches.Remove(cutOffBranch);
                     ResetBranches();
                     AddChildrenToList(cutOffBranch);
-
                     GameObject newBranch = Instantiate(cutBranchPrefab, generator.transform.position, Quaternion.identity);
-                    newBranch.GetComponent<CreateCutBranch>().CreateMesh(cutOffBranches, generator);
+                    newBranch.GetComponent<CreateCutBranch>().CreateMesh(cutOffBranches, cutOffBranch, generator);
                     cutOffBranches.Clear();
+                    
                 }
             }
         }
@@ -81,6 +82,11 @@ public class CheckBranch : MonoBehaviour
 
     private void ResetBranches()
     {
+        foreach (Generator.Branch b in generator._extremities)
+        {
+            b._grown = true;
+        }
+        generator._extremities.Clear();
         generator.indexCounter = generator._branches.Count;
 
         for (int i = 0; i < generator._branches.Count; i++)

@@ -11,13 +11,14 @@ public class CreateCutBranch : MonoBehaviour
     Generator generator;
 
     MeshFilter meshFilter;
-    public void CreateMesh(List<Generator.Branch> _branch, Generator _generator)
+    Generator.Branch branch;
+    public void CreateMesh(List<Generator.Branch> Branches, Generator.Branch cutOffBranch, Generator _generator)
     {
         branchesToDraw = null;
         meshFilter = GetComponent<MeshFilter>();
-
-
-        branchesToDraw = _branch;
+        branch = cutOffBranch;
+        cutOffBranch._parent = null;
+        branchesToDraw = Branches;
         generator = _generator;
         MakeMesh();
     }
@@ -80,7 +81,7 @@ public class CreateCutBranch : MonoBehaviour
                 }*/
 
         // faces construction; this is done in another loop because we need the parent vertices to be computed
-        for (int i = 0; i < branchesToDraw.Count; i++)
+        for (int i = 1; i < branchesToDraw.Count; i++)
         {
             Generator.Branch b = branchesToDraw[i];
             int fid = i * generator._radialSubdivisions * 2 * 3;
@@ -95,7 +96,6 @@ public class CreateCutBranch : MonoBehaviour
                 // the triangles 
                 triangles[fid + s * 6] = bId + s;
                 triangles[fid + s * 6 + 1] = tId + s;
-                Debug.Log("it worked" + i);
                 if (s == generator._radialSubdivisions - 1)
                 {
                     triangles[fid + s * 6 + 2] = tId;
