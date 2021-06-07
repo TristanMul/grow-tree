@@ -29,6 +29,8 @@ public class Generator : MonoBehaviour
         public bool _grown = false;
         public int _index;
         public bool _canGrow = true;
+        public float _finalSize = 0f;
+
         public Branch(Vector3 start, Vector3 end, Vector3 direction, Branch parent = null)
         {
             _start = start;
@@ -38,6 +40,7 @@ public class Generator : MonoBehaviour
         }
     }
 
+    public static Generator instance;
 
     [Header("Generation parameters")]
     [Range(0, 3000)]
@@ -96,6 +99,10 @@ public class Generator : MonoBehaviour
     void Awake()
     {
         // initilization 
+        if(instance == null)
+        {
+            instance = this;
+        }
     }
 
     /**
@@ -339,9 +346,13 @@ public class Generator : MonoBehaviour
         {
             float size = 0f;
             Branch b = _branches[i];
-            if (b._children.Count == 0)
+            if (b._children.Count == 0 && b._canGrow)
             {
                 size = _extremitiesSize;
+            }
+            else if (b._children.Count == 0 && !b._canGrow)
+            {
+                size = b._finalSize;
             }
             else
             {
@@ -481,11 +492,18 @@ public class Generator : MonoBehaviour
     private void AddCapsule(Branch b)
     {
         GameObject newBranch = GameObject.CreatePrimitive(PrimitiveType.Capsule);
+        newBranch.AddComponent(typeof(BranchCollision));
         newBranch.GetComponent<Renderer>().enabled = false;
         newBranch.transform.position = new Vector3((b._start.x + b._end.x) / 2, (b._start.y + b._end.y) / 2, (b._start.z + b._end.z) / 2);
         newBranch.transform.localScale = new Vector3(0.1f, Vector2.Distance(b._start, b._end) - 0.02f, 0.1f);
         newBranch.transform.up = b._direction.normalized;
         newBranch.name = b._index.ToString();
         _capsules.Add(newBranch);
+    }
+
+    public void StopBranchGrowing(int index)
+    {
+        _branches[index]._canGrow = false;
+        Debug.Log("stop growing");
     }
 }
