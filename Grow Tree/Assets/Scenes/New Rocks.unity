@@ -2513,7 +2513,7 @@ MonoBehaviour:
   _radius: 5
   _startPosition: {x: 0, y: 0, z: 0}
   _branchLength: 0.1
-  _timeBetweenIterations: 0.3
+  _timeBetweenIterations: 0.2
   _attractionRange: 2
   _killRange: 0.5
   _randomGrowth: 0.147
