@@ -529,7 +529,7 @@ MonoBehaviour:
   horizontalSpeed: {fileID: 11400000, guid: c6a841ec1b3e4394ea1b6cad06ccbc13, type: 2}
   playerPosition: {fileID: 11400000, guid: 04a7d1491e55e004a88679815728ec22, type: 2}
   canMove: 1
-  sensitivity: 2
+  sensitivity: 1
 --- !u!114 &228621961
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -546,7 +546,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   horizontalSpeed: {fileID: 11400000, guid: c6a841ec1b3e4394ea1b6cad06ccbc13, type: 2}
+  verticalSpeed: {fileID: 11400000, guid: eb34358868860aa42b36db4ae9f693fe, type: 2}
   horizontalSpeedCap: 30
+  verticalSpeedCap: 30
   dragSpeed: 50
 --- !u!54 &228621962
 Rigidbody:
