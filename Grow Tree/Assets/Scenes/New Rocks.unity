@@ -44,7 +44,7 @@ RenderSettings:
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 11
-  m_GIWorkflowMode: 0
+  m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -1189,7 +1189,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 7.9316175e+34, y: 1.8304536e+25, z: 5.21604e-11, w: 9.957117e-39}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -2576,7 +2576,7 @@ MonoBehaviour:
   _timeBetweenIterations: 0.2
   _attractionRange: 2
   _killRange: 0.5
-  _randomGrowth: 0.147
+  _randomGrowth: 0.2
   _radialSubdivisions: 10
   _extremitiesSize: 0.03
   _invertGrowth: 2.41
