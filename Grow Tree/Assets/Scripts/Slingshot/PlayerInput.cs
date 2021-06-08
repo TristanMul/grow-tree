@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerInput : MonoBehaviour
 {
+    [HideInInspector] public bool isClicking;
+
     [SerializeField] private LayerMask hitLayers;
     [SerializeField] private FloatValue horizontalSpeed;
     [SerializeField] private FloatValue verticalSpeed;
@@ -36,6 +38,7 @@ public class PlayerInput : MonoBehaviour
         {
             mousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, camera.transform.position.z + 2f);
             previousMousePosition = camera.ScreenToWorldPoint(mousePosition);
+            isClicking = true;
         }
         else if (Input.GetMouseButton(0))
         {
@@ -61,6 +64,8 @@ public class PlayerInput : MonoBehaviour
         else
         {
             horizontalSpeed.Value = 0f;
+            verticalSpeed.Value = 0f;
+            isClicking = false;
         }
 
     }
