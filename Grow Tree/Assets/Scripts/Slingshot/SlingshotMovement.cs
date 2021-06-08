@@ -9,6 +9,9 @@ public class SlingshotMovement : MonoBehaviour
     [SerializeField] private bool canMove;
     [SerializeField] private float sensitivity;
     private Rigidbody rigidBody;
+    [Header("Clamp Range")]
+    public float minValue = 0.5f;
+    public float maxValue = 7f;
 
     // Start is called before the first frame update
     void Start()
@@ -34,7 +37,7 @@ public class SlingshotMovement : MonoBehaviour
 
         float clampXPosition;
         rigidBody.velocity = new Vector3(horizontalSpeed.Value * sensitivity, 0f, 0f);
-        clampXPosition = Mathf.Clamp(transform.position.x, 0.5f, 6.9f);
+        clampXPosition = Mathf.Clamp(transform.position.x, minValue, maxValue);
         transform.position = new Vector3(clampXPosition, transform.position.y, transform.position.z);
     }
 

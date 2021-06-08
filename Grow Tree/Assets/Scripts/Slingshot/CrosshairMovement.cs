@@ -12,6 +12,9 @@ public class CrosshairMovement : MonoBehaviour
     private Rigidbody rigidBody;
     private Vector3 myPos;
     private SpriteRenderer _renderer;
+    [Header("Clamp Range")]
+    public float minValue = 0.5f;
+    public float maxValue = 7f;
 
     // Start is called before the first frame update
     void Awake()
@@ -47,7 +50,7 @@ public class CrosshairMovement : MonoBehaviour
             _renderer.enabled = true;
             float clampYPosition;
             rigidBody.velocity = new Vector3(0f, verticalValue.Value * sensitivity, 0f);
-            clampYPosition = Mathf.Clamp(transform.position.y, 0.5f, 6.9f);
+            clampYPosition = Mathf.Clamp(transform.position.y, minValue, maxValue);
             transform.position = new Vector3(transform.position.x, clampYPosition, transform.position.z);
         }
         else
