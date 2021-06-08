@@ -2575,8 +2575,8 @@ MonoBehaviour:
   _branchLength: 0.1
   _timeBetweenIterations: 0.2
   _attractionRange: 2
-  _killRange: 0.5
-  _randomGrowth: 0.2
+  _killRange: 0.25
+  _randomGrowth: 0.15
   _radialSubdivisions: 10
   _extremitiesSize: 0.03
   _invertGrowth: 2.41

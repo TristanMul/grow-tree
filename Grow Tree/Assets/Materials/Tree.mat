@@ -79,8 +79,8 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _RimFalloff: 2.06
-    - _RimWidth: 0.202
+    - _RimFalloff: 1
+    - _RimWidth: 1
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
