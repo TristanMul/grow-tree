@@ -6,53 +6,99 @@ public class CheckBranch : MonoBehaviour
 {
     [SerializeField] private GameObject prefab;
     RaycastHit hit;
-    [SerializeField] private Camera camera;
-    int test = 0;
     [SerializeField] Generator generator;
 
     List<Generator.Branch> cutOffBranches;
 
     [SerializeField] GameObject cutBranchPrefab;
+    [SerializeField] GameObject sliceTrailPrefab;
+    GameObject sliceTrail;
+    bool isSlicing = false;
+    Camera camera;
     // Start is called before the first frame update
     void Start()
     {
-
+        camera = Camera.main;
     }
 
     // Update is called once per frame
     void Update()
     {
-        CheckClosestBranch();
+        if(Input.GetMouseButtonDown(0)){
+            StartSlicing();
+        }
+        else if(Input.GetMouseButtonUp(0)){
+            StopSlicing();
+        }
+
+        if(isSlicing){
+            SliceBranch();
+        }
+
     }
 
-    void CheckClosestBranch()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Ray ray = camera.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hit))
-            {
-                Vector3 hitPosition = hit.point;
-                if (hit.transform.gameObject.GetComponent<CapsuleCollider>() && generator._branches[int.Parse(hit.transform.gameObject.name)] != generator._firstBranch)
-                {
-                    hit.transform.GetComponent<Collider>().enabled = false;
-                    Generator.Branch cutOffBranch = generator._branches[int.Parse(hit.transform.gameObject.name)];
-                    cutOffBranch._parent._children.Remove(cutOffBranch);
-                    cutOffBranch._parent._canGrow = false;
-                    cutOffBranch._parent = null;
-                    cutOffBranches = new List<Generator.Branch>();
-                    cutOffBranches.Add(cutOffBranch);
-                    generator._capsules.Remove(generator._capsules[cutOffBranch._index]);
-                    generator._branches.Remove(cutOffBranch);
-                    ResetBranches();
-                    AddChildrenToList(cutOffBranch);
-                    GameObject newBranch = Instantiate(cutBranchPrefab, generator.transform.position, Quaternion.identity);
-                    newBranch.GetComponent<CreateCutBranch>().CreateMesh(cutOffBranches, cutOffBranch, generator);
-                    cutOffBranches.Clear();
+    private void OnTriggerEnter2D(Collider2D other) {
+        
+    }
 
-                }
+    void SliceBranch()
+    {
+        
+        Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out hit))
+        {
+            Vector3 hitPosition = hit.point;
+            if (hit.transform.gameObject.GetComponent<CapsuleCollider>() && generator._branches[int.Parse(hit.transform.gameObject.name)] != generator._firstBranch)
+            {
+                hit.transform.GetComponent<Collider>().enabled = false;
+                Generator.Branch cutOffBranch = generator._branches[int.Parse(hit.transform.gameObject.name)];
+                SliceOffBranch(cutOffBranch);
+                DuplicateBranch(cutOffBranch);
+                
+                // cutOffBranch._parent._children.Remove(cutOffBranch);
+                // cutOffBranch._parent._canGrow = false;
+                // cutOffBranch._parent = null;
+                // cutOffBranches = new List<Generator.Branch>();
+                // cutOffBranches.Add(cutOffBranch);
+                // generator._capsules.Remove(generator._capsules[cutOffBranch._index]);
+                // generator._branches.Remove(cutOffBranch);
+                // ResetBranches();
+                // AddChildrenToList(cutOffBranch);
+
+                // GameObject newBranch = Instantiate(cutBranchPrefab, generator.transform.position, Quaternion.identity);
+                // newBranch.GetComponent<CreateCutBranch>().CreateMesh(cutOffBranches, cutOffBranch, generator);
+
+                cutOffBranches.Clear();
             }
         }
+        
+    }
+
+    void StartSlicing(){
+        isSlicing = true;
+    }
+
+    void StopSlicing(){
+        isSlicing = false;
+    }
+
+    void SliceOffBranch(Generator.Branch cutOffBranch){
+        cutOffBranch._parent._children.Remove(cutOffBranch);
+        cutOffBranch._parent._canGrow = false;
+        cutOffBranch._parent = null;
+
+        cutOffBranches = new List<Generator.Branch>();
+        cutOffBranches.Add(cutOffBranch);
+        generator._capsules.Remove(generator._capsules[cutOffBranch._index]);
+        generator._branches.Remove(cutOffBranch);
+
+        ResetBranches();
+        AddChildrenToList(cutOffBranch);
+    }
+
+    void DuplicateBranch(Generator.Branch cutOffBranch){
+        GameObject newBranch = Instantiate(cutBranchPrefab, generator.transform.position, Quaternion.identity);
+        newBranch.GetComponent<CreateCutBranch>().CreateMesh(cutOffBranches, cutOffBranch, generator);
     }
 
     private void AddChildrenToList(Generator.Branch branch)
