@@ -539,7 +539,7 @@ public class Generator : MonoBehaviour
         _branches[index]._canGrow = false;
         _branches[index].hitBarrier = true;
         _branches[index]._finalSize = _branches[index]._size;
-        OnStopGrowing();
+        OnStopGrowing?.Invoke();
         Debug.Log("stop growing");
     }
 }
