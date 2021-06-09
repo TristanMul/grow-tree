@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CheckBranch : MonoBehaviour
 {
+    [SerializeField] private FinishGame loseGame;
     [SerializeField] private GameObject prefab;
     RaycastHit hit;
     [SerializeField] private Camera camera;
@@ -49,7 +50,7 @@ public class CheckBranch : MonoBehaviour
                     GameObject newBranch = Instantiate(cutBranchPrefab, generator.transform.position, Quaternion.identity);
                     newBranch.GetComponent<CreateCutBranch>().CreateMesh(cutOffBranches, cutOffBranch, generator);
                     cutOffBranches.Clear();
-
+                    loseGame.CheckIfLost();
                 }
             }
         }
