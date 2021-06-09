@@ -46,11 +46,11 @@ public class CheckBranch : MonoBehaviour
                     generator._capsules.Remove(generator._capsules[cutOffBranch._index]);
                     generator._branches.Remove(cutOffBranch);
                     ResetBranches();
+                    StartCoroutine(loseGame.CheckIfLost());
                     AddChildrenToList(cutOffBranch);
                     GameObject newBranch = Instantiate(cutBranchPrefab, generator.transform.position, Quaternion.identity);
                     newBranch.GetComponent<CreateCutBranch>().CreateMesh(cutOffBranches, cutOffBranch, generator);
                     cutOffBranches.Clear();
-                    loseGame.CheckIfLost();
                 }
             }
         }

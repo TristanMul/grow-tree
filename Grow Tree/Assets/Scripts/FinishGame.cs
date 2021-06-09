@@ -10,22 +10,27 @@ public class FinishGame : MonoBehaviour
     private int growingBranches = 0;
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Wingame raised");
         winGame.Raise();
     }
 
-    public void CheckIfLost()
+    public IEnumerator CheckIfLost()
     {
+        yield return new WaitForSeconds(0.5f);
             growingBranches = 0;
         foreach(Generator.Branch branch in generator._extremities)
         {
+            Debug.Log("Checking branch");
             if (branch._canGrow)
             {
+                Debug.Log("Branch can grow");
                 growingBranches++;
             }
         }
         Debug.Log(growingBranches);
         if (growingBranches == 0)
         {
+            Debug.Log("Losegame raised");
             loseGame.Raise();
         }
     }
