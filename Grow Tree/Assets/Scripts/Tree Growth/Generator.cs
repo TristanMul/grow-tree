@@ -529,7 +529,7 @@ public class Generator : MonoBehaviour
         }
         if (!toReturn)
         {
-            OnStartGrowing();
+            OnStartGrowing?.Invoke();
         }
         return toReturn;
     }
