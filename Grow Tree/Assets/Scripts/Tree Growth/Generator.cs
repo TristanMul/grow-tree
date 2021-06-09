@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 /**
  * @author Ciphered <https://ciphered.xyz
@@ -97,6 +98,10 @@ public class Generator : MonoBehaviour
     public GameObject otherAtrractors;
     //public List<Transform> otherAtrractorsList = new List<Transform>();
 
+    //events
+    public event Action OnStopGrowing;
+    public event Action OnStartGrowing;
+
     void Awake()
     {
         // initilization 
@@ -148,8 +153,8 @@ public class Generator : MonoBehaviour
 	 **/
     Vector3 RandomGrowthVector()
     {
-        float alpha = Random.Range(0f, Mathf.PI);
-        float theta = Random.Range(0f, Mathf.PI * 2f);
+        float alpha = UnityEngine.Random.Range(0f, Mathf.PI);
+        float theta = UnityEngine.Random.Range(0f, Mathf.PI * 2f);
 
         Vector3 pt = new Vector3(
             Mathf.Cos(theta) * Mathf.Sin(alpha),
@@ -335,10 +340,10 @@ public class Generator : MonoBehaviour
                 }
             }
 
-
+        }
             if (_extremities.Count >= 0)
                 ToMesh();
-        }
+        
     }
 
     /**
@@ -522,6 +527,10 @@ public class Generator : MonoBehaviour
 
             }
         }
+        if (!toReturn)
+        {
+            OnStartGrowing?.Invoke();
+        }
         return toReturn;
     }
 
@@ -530,6 +539,7 @@ public class Generator : MonoBehaviour
         _branches[index]._canGrow = false;
         _branches[index].hitBarrier = true;
         _branches[index]._finalSize = _branches[index]._size;
+        OnStopGrowing?.Invoke();
         Debug.Log("stop growing");
     }
 }

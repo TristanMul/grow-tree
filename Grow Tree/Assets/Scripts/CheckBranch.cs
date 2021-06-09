@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CheckBranch : MonoBehaviour
 {
+    [SerializeField] private FinishGame loseGame;
     [SerializeField] private GameObject prefab;
     RaycastHit hit;
     [SerializeField] Generator generator;
@@ -54,19 +55,6 @@ public class CheckBranch : MonoBehaviour
                 Generator.Branch cutOffBranch = generator._branches[int.Parse(hit.transform.gameObject.name)];
                 SliceOffBranch(cutOffBranch);
                 DuplicateBranch(cutOffBranch);
-                
-                // cutOffBranch._parent._children.Remove(cutOffBranch);
-                // cutOffBranch._parent._canGrow = false;
-                // cutOffBranch._parent = null;
-                // cutOffBranches = new List<Generator.Branch>();
-                // cutOffBranches.Add(cutOffBranch);
-                // generator._capsules.Remove(generator._capsules[cutOffBranch._index]);
-                // generator._branches.Remove(cutOffBranch);
-                // ResetBranches();
-                // AddChildrenToList(cutOffBranch);
-
-                // GameObject newBranch = Instantiate(cutBranchPrefab, generator.transform.position, Quaternion.identity);
-                // newBranch.GetComponent<CreateCutBranch>().CreateMesh(cutOffBranches, cutOffBranch, generator);
 
                 cutOffBranches.Clear();
             }
