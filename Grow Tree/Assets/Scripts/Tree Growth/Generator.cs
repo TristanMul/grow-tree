@@ -176,7 +176,6 @@ public class Generator : MonoBehaviour
         _firstBranch = new Branch(_startPosition, _startPosition + new Vector3(0, _branchLength, 0), new Vector3(0, 1, 0));
         _firstBranch._index = indexCounter;
         indexCounter++;
-        Debug.Log(indexCounter);
         _branches.Add(_firstBranch);
         _extremities.Add(_firstBranch);
         AddCapsule(_firstBranch);

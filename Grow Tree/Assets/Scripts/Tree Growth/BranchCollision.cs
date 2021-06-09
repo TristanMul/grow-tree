@@ -16,8 +16,8 @@ public class BranchCollision : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.gameObject.tag);
-        if(other.gameObject.tag == "Barrier")
+/*        Debug.Log(other.gameObject.tag);*/
+        if(other.gameObject.tag == "Barrier" || other.gameObject.tag == "Sun")
         {
             Generator.instance.StopBranchGrowing(index);
         }
