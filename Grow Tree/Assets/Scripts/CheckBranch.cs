@@ -37,19 +37,6 @@ public class CheckBranch : MonoBehaviour
                 {
                     hit.transform.GetComponent<Collider>().enabled = false;
                     Generator.Branch cutOffBranch = generator._branches[int.Parse(hit.transform.gameObject.name)];
-                    if (cutOffBranch._parent._children.Count > 1)
-                    {
-                        float size = 0;
-                        foreach (Generator.Branch bc in cutOffBranch._parent._children)
-                        {
-                            size += Mathf.Pow(bc._size, generator._invertGrowth);
-                        }
-                        cutOffBranch._parent._finalSize = Mathf.Pow(size, 1f / generator._invertGrowth);
-                    }
-                    else
-                    {
-                        cutOffBranch._parent._finalSize = cutOffBranch._size;
-                    }
                     cutOffBranch._parent._children.Remove(cutOffBranch);
                     cutOffBranch._parent._canGrow = false;
                     cutOffBranch._parent = null;

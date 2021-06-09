@@ -30,6 +30,7 @@ public class Generator : MonoBehaviour
         public int _index;
         public bool _canGrow = true;
         public float _finalSize = 0;
+        
         public Branch(Vector3 start, Vector3 end, Vector3 direction, Branch parent = null)
         {
             _start = start;
@@ -344,10 +345,6 @@ public class Generator : MonoBehaviour
             {
                 size = _extremitiesSize;
             }
-            else if(b._children.Count == 0 && !b._canGrow)
-            {
-                size = b._finalSize;
-            }
             else
             {
                 foreach (Branch bc in b._children)
@@ -356,7 +353,10 @@ public class Generator : MonoBehaviour
                 }
                 size = Mathf.Pow(size, 1f / _invertGrowth);
             }
+            if(b._size < size)
+            {
             b._size = size;
+            }
         }
 
         //Debug.Log(_branches.Count);
