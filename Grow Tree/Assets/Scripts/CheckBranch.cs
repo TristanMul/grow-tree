@@ -25,21 +25,20 @@ public class CheckBranch : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButtonDown(0)){
-            StartSlicing();
-        }
-        else if(Input.GetMouseButtonUp(0)){
-            StopSlicing();
-        }
-
-        if(isSlicing){
-            SliceBranch();
-        }
 
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        
+        if(other.gameObject.CompareTag("Slicer")){
+            GetComponent<Collider>().enabled = false;
+
+            Generator.Branch cutOffBranch = generator._branches[int.Parse(transform.gameObject.name)];
+            SliceOffBranch(cutOffBranch);
+            DuplicateBranch(cutOffBranch);
+
+            cutOffBranches.Clear();
+
+        }
     }
 
     void SliceBranch()
