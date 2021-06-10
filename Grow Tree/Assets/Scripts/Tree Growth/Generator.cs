@@ -86,7 +86,7 @@ public class Generator : MonoBehaviour
 
     // a list of the current extremities 
     public List<Branch> _extremities = new List<Branch>();
-
+    public bool finishGrowing = false;
     // the elpsed time since the last iteration, this is used for the purpose of animation
     float _timeSinceLastIteration = 0f;
 
@@ -146,6 +146,7 @@ public class Generator : MonoBehaviour
                 _attractors.Add(c.position);
             }
         }
+        _nbAttractors = _attractors.Count;
     }
 
     /**
@@ -186,8 +187,9 @@ public class Generator : MonoBehaviour
     {
         branchHitBarrier = BranchHitBarrier();
         
-        if (!branchHitBarrier)
+        if (!branchHitBarrier && !finishGrowing)
         {
+            Debug.Log(finishGrowing);
             _timeSinceLastIteration += Time.deltaTime;
 
             // we check if we need to run a new iteration 
