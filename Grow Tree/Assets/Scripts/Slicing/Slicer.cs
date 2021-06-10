@@ -4,18 +4,20 @@ using UnityEngine;
 
 public class Slicer : MonoBehaviour
 {
-    [SerializeField] GameObject sliceTrailPrefab;
+    [SerializeField] GameObject sliceObjectPrefab;
 
     Rigidbody2D rb;
     Camera cam;
     bool isSlicing = false;
-    GameObject sliceTrail;
+    GameObject sliceObject;
+    Vector3 rayStart;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         cam = Camera.main;
+        rayStart = cam.transform.position;
     }
 
     // Update is called once per frame
@@ -34,20 +36,29 @@ public class Slicer : MonoBehaviour
     }
 
     void Slicing(){
-        Debug.Log("slice");
-        rb.position = cam.ScreenToWorldPoint(Input.mousePosition);
+        sliceObject.transform.position = GetRayEndPoint();
     }
 
     void StartSlicing(){
-        Debug.Log("start");
         isSlicing = true;
-        sliceTrail = Instantiate(sliceTrailPrefab, transform);
+        sliceObject = Instantiate(sliceObjectPrefab, transform);
     }
 
     void StopSlicing(){
-        Debug.Log("stop");
         isSlicing = false;
-        sliceTrail.transform.parent = null;
-        Destroy(sliceTrail, 1f);
+        Destroy(sliceObject, 1f);
+    }
+
+    Vector3 GetRayEndPoint(){
+        Vector3 planePos = new Vector3 (0, cam.transform.position.y, 0);
+        Plane plane = new Plane(Vector3.forward, planePos);
+
+        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+
+        float distance; // Distance between the start of the ray and the point where it hits the plane.
+        plane.Raycast(ray, out distance);
+        Vector3 rayEnd = ray.GetPoint(distance);
+        Debug.DrawLine(rayStart, rayEnd);
+        return rayEnd;
     }
 }

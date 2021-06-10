@@ -5,69 +5,43 @@ using UnityEngine;
 public class CheckBranch : MonoBehaviour
 {
     [SerializeField] private FinishGame loseGame;
-    [SerializeField] private GameObject prefab;
+    [SerializeField] GameObject cutBranchPrefab;
     RaycastHit hit;
-    [SerializeField] Generator generator;
+    Generator generator;
 
     List<Generator.Branch> cutOffBranches;
 
-    [SerializeField] GameObject cutBranchPrefab;
-    [SerializeField] GameObject sliceTrailPrefab;
-    GameObject sliceTrail;
-    bool isSlicing = false;
-    Camera camera;
-    // Start is called before the first frame update
-    void Start()
-    {
-        camera = Camera.main;
+
+    private void OnEnable() {
+        generator = GameObject.Find("Tree").GetComponent<Generator>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if(Input.GetMouseButtonDown(0)){
-            StartSlicing();
+    // private void OnTriggerEnter2D(Collider2D other) {
+    //     if(other.gameObject.CompareTag("Slicer")){
+    //         Debug.Log("slice");
+    //         GetComponent<Collider>().enabled = false;
+
+    //         Generator.Branch cutOffBranch = generator._branches[int.Parse(transform.gameObject.name)];
+    //         SliceOffBranch(cutOffBranch);
+    //         DuplicateBranch(cutOffBranch);
+
+    //         cutOffBranches.Clear();
+
+    //     }
+    // }
+
+    private void OnTriggerEnter(Collider other) {
+        if(other.gameObject.CompareTag("Slicer")){
+            Debug.Log("slice");
+            GetComponent<Collider>().enabled = false;
+
+            Generator.Branch cutOffBranch = generator._branches[int.Parse(transform.gameObject.name)];
+            SliceOffBranch(cutOffBranch);
+            DuplicateBranch(cutOffBranch);
+
+            cutOffBranches.Clear();
+
         }
-        else if(Input.GetMouseButtonUp(0)){
-            StopSlicing();
-        }
-
-        if(isSlicing){
-            SliceBranch();
-        }
-
-    }
-
-    private void OnTriggerEnter2D(Collider2D other) {
-        
-    }
-
-    void SliceBranch()
-    {
-        
-        Ray ray = camera.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out hit))
-        {
-            Vector3 hitPosition = hit.point;
-            if (hit.transform.gameObject.GetComponent<CapsuleCollider>() && generator._branches[int.Parse(hit.transform.gameObject.name)] != generator._firstBranch)
-            {
-                hit.transform.GetComponent<Collider>().enabled = false;
-                Generator.Branch cutOffBranch = generator._branches[int.Parse(hit.transform.gameObject.name)];
-                SliceOffBranch(cutOffBranch);
-                DuplicateBranch(cutOffBranch);
-
-                cutOffBranches.Clear();
-            }
-        }
-        
-    }
-
-    void StartSlicing(){
-        isSlicing = true;
-    }
-
-    void StopSlicing(){
-        isSlicing = false;
     }
 
     void SliceOffBranch(Generator.Branch cutOffBranch){
