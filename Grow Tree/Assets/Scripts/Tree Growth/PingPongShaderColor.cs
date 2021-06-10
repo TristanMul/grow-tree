@@ -4,15 +4,29 @@ using UnityEngine;
 
 public class PingPongShaderColor : MonoBehaviour
 {
-    Shader shader;
+    [SerializeField] Shader normalShader;
+    [SerializeField] Shader collidedShader;
+    Generator generator;
+    Renderer renderer;
     // Start is called before the first frame update
     void Start()
     {
-        shader = GetComponent<Renderer>().material.shader;
+        generator = GetComponent<Generator>();
+        renderer = GetComponent<Renderer>();
+
+        generator.OnStopGrowing += SwitchToCollision;
+        generator.OnStartGrowing += SwitchToNormal;
+        SwitchToNormal();
+        
     }
 
-    // Update is called once per frame
-    void Update()
+    void SwitchToNormal()
     {
+        renderer.material.shader = normalShader;
+    }
+
+    void SwitchToCollision()
+    {
+        renderer.material.shader = collidedShader;
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 /**
  * @author Ciphered <https://ciphered.xyz
@@ -98,6 +99,10 @@ public class Generator : MonoBehaviour
 
     public VectorList attractorList;
 
+    //events
+    public event Action OnStopGrowing;
+    public event Action OnStartGrowing;
+
     void Awake()
     {
         // initilization 
@@ -123,8 +128,8 @@ public class Generator : MonoBehaviour
 	 **/
     Vector3 RandomGrowthVector()
     {
-        float alpha = Random.Range(0f, Mathf.PI);
-        float theta = Random.Range(0f, Mathf.PI * 2f);
+        float alpha = UnityEngine.Random.Range(0f, Mathf.PI);
+        float theta = UnityEngine.Random.Range(0f, Mathf.PI * 2f);
 
         Vector3 pt = new Vector3(
             Mathf.Cos(theta) * Mathf.Sin(alpha),
@@ -146,7 +151,6 @@ public class Generator : MonoBehaviour
         _firstBranch = new Branch(_startPosition, _startPosition + new Vector3(0, _branchLength, 0), new Vector3(0, 1, 0));
         _firstBranch._index = indexCounter;
         indexCounter++;
-        Debug.Log(indexCounter);
         _branches.Add(_firstBranch);
         _extremities.Add(_firstBranch);
         AddCapsule(_firstBranch);
@@ -155,7 +159,9 @@ public class Generator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!BranchHitBarrier())
+        branchHitBarrier = BranchHitBarrier();
+        
+        if (!branchHitBarrier)
         {
             _timeSinceLastIteration += Time.deltaTime;
 
@@ -312,15 +318,10 @@ public class Generator : MonoBehaviour
                 }
             }
 
-
+        }
             if (_extremities.Count >= 0)
                 ToMesh();
-
-            //foreach(Generator.Branch extremedy in _extremities)
-            //{
-            //    activeAttractors.Add(extremedy._start);
-            //}
-        }
+        
     }
 
     /**
@@ -489,6 +490,8 @@ public class Generator : MonoBehaviour
         _capsules.Add(newBranch);
     }
 
+
+    bool branchHitBarrier;
     /// <summary>
     /// Checks if any branches have hit a barrier
     /// </summary>
@@ -504,6 +507,10 @@ public class Generator : MonoBehaviour
 
             }
         }
+        if (branchHitBarrier && !toReturn)
+        {
+            OnStartGrowing?.Invoke();
+        }
         return toReturn;
     }
 
@@ -512,6 +519,7 @@ public class Generator : MonoBehaviour
         _branches[index]._canGrow = false;
         _branches[index].hitBarrier = true;
         _branches[index]._finalSize = _branches[index]._size;
-        Debug.Log("stop growing");
+        OnStopGrowing?.Invoke();
+        Highlighter.instance.AddCircleFromWorldPos(_branches[index]._start);
     }
 }
