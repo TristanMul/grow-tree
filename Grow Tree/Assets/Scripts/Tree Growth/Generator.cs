@@ -184,7 +184,9 @@ public class Generator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!BranchHitBarrier())
+        branchHitBarrier = BranchHitBarrier();
+        
+        if (!branchHitBarrier)
         {
             _timeSinceLastIteration += Time.deltaTime;
 
@@ -511,6 +513,8 @@ public class Generator : MonoBehaviour
         _capsules.Add(newBranch);
     }
 
+
+    bool branchHitBarrier;
     /// <summary>
     /// Checks if any branches have hit a barrier
     /// </summary>
@@ -526,7 +530,7 @@ public class Generator : MonoBehaviour
 
             }
         }
-        if (!toReturn)
+        if (branchHitBarrier && !toReturn)
         {
             OnStartGrowing?.Invoke();
         }
@@ -539,6 +543,6 @@ public class Generator : MonoBehaviour
         _branches[index].hitBarrier = true;
         _branches[index]._finalSize = _branches[index]._size;
         OnStopGrowing?.Invoke();
-        Debug.Log("stop growing");
+        Highlighter.instance.AddCircleFromWorldPos(_branches[index]._start);
     }
 }
