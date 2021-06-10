@@ -70,6 +70,7 @@ public class Generator : MonoBehaviour
     public float _invertGrowth = 2f;
 
 
+
     public int indexCounter = 0;
     // the attractor points
     public List<Vector3> _attractors = new List<Vector3>();
@@ -97,6 +98,9 @@ public class Generator : MonoBehaviour
 
     public GameObject otherAtrractors;
     //public List<Transform> otherAtrractorsList = new List<Transform>();
+    
+    [Header("Other")]
+    [SerializeField] GameObject branchColliderPrefab;
 
     //events
     public event Action OnStopGrowing;
@@ -503,9 +507,10 @@ public class Generator : MonoBehaviour
 
     private void AddCapsule(Branch b)
     {
-        GameObject newBranch = GameObject.CreatePrimitive(PrimitiveType.Capsule);
-        newBranch.AddComponent(typeof(BranchCollision));
-        newBranch.GetComponent<Renderer>().enabled = false;
+        // GameObject newBranch = GameObject.CreatePrimitive(PrimitiveType.Capsule);
+        // newBranch.AddComponent(typeof(BranchCollision));
+        // newBranch.GetComponent<Renderer>().enabled = false;
+        GameObject newBranch = Instantiate(branchColliderPrefab) ;
         newBranch.transform.position = new Vector3((b._start.x + b._end.x) / 2, (b._start.y + b._end.y) / 2, (b._start.z + b._end.z) / 2);
         newBranch.transform.localScale = new Vector3(0.1f, Vector2.Distance(b._start, b._end) - 0.02f, 0.1f);
         newBranch.transform.up = b._direction.normalized;

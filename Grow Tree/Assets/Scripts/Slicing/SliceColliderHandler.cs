@@ -6,19 +6,19 @@ public class SliceColliderHandler : MonoBehaviour
 {
     [SerializeField] float minSlicingSpeed;
 
-    Rigidbody2D rb;
-    Collider2D collider;
+    Rigidbody rb;
+    Collider collider;
     Vector2 previousPos;
 
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        collider = GetComponent<Collider2D>();
+        rb = GetComponent<Rigidbody>();
+        collider = GetComponent<Collider>();
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         CanSlice();
     }

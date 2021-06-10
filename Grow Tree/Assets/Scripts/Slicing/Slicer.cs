@@ -36,7 +36,7 @@ public class Slicer : MonoBehaviour
     }
 
     void Slicing(){
-        sliceObject.transform.position = ActivateRay();
+        sliceObject.transform.position = GetRayEndPoint();
     }
 
     void StartSlicing(){
@@ -49,7 +49,7 @@ public class Slicer : MonoBehaviour
         Destroy(sliceObject, 1f);
     }
 
-    Vector3 ActivateRay(){
+    Vector3 GetRayEndPoint(){
         Vector3 planePos = new Vector3 (0, cam.transform.position.y, 0);
         Plane plane = new Plane(Vector3.forward, planePos);
 
