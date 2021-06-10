@@ -102,6 +102,8 @@ public class Generator : MonoBehaviour
     [Header("Other")]
     [SerializeField] GameObject branchColliderPrefab;
 
+    public VectorList attractorList;
+
     //events
     public event Action OnStopGrowing;
     public event Action OnStartGrowing;
@@ -114,35 +116,9 @@ public class Generator : MonoBehaviour
             instance = this;
         }
     }
-
-    /**
-	 * Generates n attractors and stores them in the attractors array
-	 * The points are generated within a sphere of radius r using a random distribution
-	 **/
-    /* =========================Tree's grow in different directions================================== */
-    void GenerateAttractors(int n, float r)
+    
+    void GenerateAttractors()
     {
-        /*
-            for (int i = 0; i < n; i++) {
-			float radius = Random.Range(0f, 1f);
-			radius = Mathf.Pow(Mathf.Sin(radius * Mathf.PI/2f), 0.8f);
-			radius*= r;
-			// 2 angles are generated from which a direction will be computed
-			float alpha = Random.Range(0f, Mathf.PI);
-			float theta = Random.Range(0f, Mathf.PI*2f);
-
-			Vector3 pt = new Vector3(
-				radius * Mathf.Cos(theta) * Mathf.Sin(alpha),
-				radius * Mathf.Sin(theta) * Mathf.Sin(alpha),
-				radius * Mathf.Cos(alpha) / 5
-			);
-
-			// translation to match the parent position
-			pt+= transform.position;
-
-			_attractors.Add(pt);
-		}
-        */
         foreach (Transform t in otherAtrractors.transform)
         {
             foreach (Transform c in t)
@@ -172,7 +148,7 @@ public class Generator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GenerateAttractors(_nbAttractors, _radius);
+        GenerateAttractors();
 
         _filter = GetComponent<MeshFilter>();
 
@@ -227,6 +203,7 @@ public class Generator : MonoBehaviour
                     foreach (Branch b in _branches)
                     {
                         b._attractors.Clear();
+                        attractorList.ClearList();
                     }
 
                     // each attractor is associated to its closest branch, if in attraction range
@@ -253,11 +230,13 @@ public class Generator : MonoBehaviour
                                 for (int i = _attractors.Count - 1; i >= 0; i--)
                                 {
                                     closest._attractors.Remove(_attractors[i]);
+                                    attractorList.UnregisterObject(_attractors[i]);
                                 }
                             }
                             else
                             {
                                 closest._attractors.Add(attractor);
+                                attractorList.RegisterObject(attractor);
                                 _activeAttractors.Add(ia);
                             }
                         }
@@ -270,7 +249,6 @@ public class Generator : MonoBehaviour
                     {
                         // because new extremities will be set here, we clear the current ones
                         _extremities.Clear();
-
                         // new branches will be added here
                         List<Branch> newBranches = new List<Branch>();
                         foreach (Branch b in _branches)
@@ -549,5 +527,6 @@ public class Generator : MonoBehaviour
         _branches[index]._finalSize = _branches[index]._size;
         OnStopGrowing?.Invoke();
         Highlighter.instance.AddCircleFromWorldPos(_branches[index]._start);
+        Highlighter.instance.ClearCircles();
     }
 }

@@ -12,6 +12,8 @@ public class CreateCutBranch : MonoBehaviour
 
     MeshFilter meshFilter;
     Generator.Branch branch;
+    Rigidbody rb;
+    float angularVelRange = .25f;
     public void CreateMesh(List<Generator.Branch> Branches, Generator.Branch cutOffBranch, Generator _generator)
     {
         branchesToDraw = null;
@@ -21,6 +23,11 @@ public class CreateCutBranch : MonoBehaviour
         branchesToDraw = Branches;
         generator = _generator;
         MakeMesh();
+        rb = GetComponent<Rigidbody>();
+        
+        rb.angularVelocity = (new Vector3(0f, 0f, UnityEngine.Random.Range(-angularVelRange, angularVelRange)));
+        rb.velocity = new Vector3(0f, 1f, 0f);
+        //UnityEngine.Random.Range(-angularVelRange, angularVelRange)
     }
 
     void MakeMesh()
@@ -31,54 +38,7 @@ public class CreateCutBranch : MonoBehaviour
 
         vertices = generator.currentVertices;
 
-        /*        int i = 0;
-                foreach (Generator.Branch b in branchesToDraw)
-                {
-                    // the index position of the vertices
-                    int vid = generator._radialSubdivisions * i;
-                    b._verticesId = vid;
 
-                    // quaternion to rotate the vertices along the branch direction
-                    Quaternion quat = Quaternion.FromToRotation(Vector3.up, b._direction);
-
-                    // construction of the vertices 
-                    for (int s = 0; s < generator._radialSubdivisions; s++)
-                    {
-                        // radial angle of the vertex
-                        float alpha = ((float)s / generator._radialSubdivisions) * Mathf.PI * 2f;
-
-                        // radius is hard-coded to 0.1f for now
-                        Vector3 pos = new Vector3(Mathf.Cos(alpha) * b._size, 0, Mathf.Sin(alpha) * b._size);
-                        pos = quat * pos; // rotation
-
-                        *//*                // if the branch is an extremity, we have it growing slowly
-                                        if (b._children.Count == 0 && !b._grown)
-                                        {
-                                            pos += b._start + (b._end - b._start) * _timeSinceLastIteration / _timeBetweenIterations;
-                                        }
-                                        else
-                                        {
-                                            pos += b._end;
-                                        }*//*
-
-                        vertices[vid + s] = pos - transform.position; // from tree object coordinates to [0; 0; 0]
-
-                        // if this is the tree root, vertices of the base are added at the end of the array 
-                        try
-                        {
-                            if (b._parent == null)
-                            {
-                                vertices[generator._branches.Count * generator._radialSubdivisions + s] = b._start + new Vector3(Mathf.Cos(alpha) * b._size, 0, Mathf.Sin(alpha) * b._size) - transform.position;
-                            }
-                        }
-                        catch (IndexOutOfRangeException exeption)
-                        {
-                            Debug.LogError(exeption.Data);
-                        }
-                    }
-
-                    i++;
-                }*/
 
         // faces construction; this is done in another loop because we need the parent vertices to be computed
         for (int i = 1; i < branchesToDraw.Count; i++)
@@ -121,6 +81,11 @@ public class CreateCutBranch : MonoBehaviour
             }
         }
 
+/*        for (int i = 0; i < vertices.Length; i++)
+        {
+            vertices[i] -= branch._start;
+        }
+        transform.position += branch._start;*/
         Mesh branchMesh = new Mesh();
 
         branchMesh.vertices = vertices;
