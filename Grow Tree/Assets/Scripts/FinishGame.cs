@@ -6,9 +6,11 @@ public class FinishGame : MonoBehaviour
 {
     [SerializeField] private GameEvent winGame;
     [SerializeField] private GameEvent loseGame;
-    [SerializeField] private GameObject flower;
+    [SerializeField] private GameObject[] flowers;
     [SerializeField] Generator generator;
     [SerializeField] private int flowerRatio;
+    [SerializeField] private int clusterMax = 3;
+    [SerializeField] private float maxDeviation;
     private int growingBranches = 0;
     private void OnTriggerEnter(Collider other)
     {
@@ -36,15 +38,22 @@ public class FinishGame : MonoBehaviour
     }
     public void Tester()
     {
-        StartCoroutine(growExtremities());
+        StartCoroutine(growFlowers());
     }
 
-    public IEnumerator growExtremities()
+    public IEnumerator growFlowers()
     {
-        foreach(Generator.Branch branch in generator._extremities)
+        for(int i=generator._extremities.Count -1; i >= 0; i--)
         {
-            Instantiate(flower, branch._end, new Quaternion(0, 0, 0, 0));
-            yield return new WaitForSeconds(0.1f);
+            int randomNumber = Random.Range(2, clusterMax);
+            for(int j=0; j<randomNumber; j++)
+            {
+            int randomItem = Random.Range(0, flowers.Length);
+            float x = Random.Range(-maxDeviation, maxDeviation);
+            float y = Random.Range(-maxDeviation, maxDeviation);
+            Instantiate(flowers[randomItem], generator._extremities[i]._end + new Vector3(x,y,-0.5f), new Quaternion(0, 0, 0, 0));
+            }
+            yield return new WaitForSeconds(0.05f);
         }
     }
 }

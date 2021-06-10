@@ -3489,9 +3489,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   winGame: {fileID: 11400000, guid: 85a81a7bcc440174ab744296887e8561, type: 2}
   loseGame: {fileID: 11400000, guid: 3e16d612130c25145bffa8316987c27c, type: 2}
-  flower: {fileID: 21300000, guid: dba9c0d8dce6346548c13674648bb7f4, type: 3}
+  flowers:
+  - {fileID: 1963939198551799680, guid: 444cea73941c12d43ac12ba3010eca24, type: 3}
   generator: {fileID: 1326992714}
   flowerRatio: 7
+  clusterMax: 5
+  maxDeviation: 0.25
 --- !u!54 &1919158863
 Rigidbody:
   m_ObjectHideFlags: 0
