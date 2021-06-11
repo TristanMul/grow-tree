@@ -8,19 +8,19 @@ public class PingPongShaderColor : MonoBehaviour
     [SerializeField] Shader collidedShader;
     Generator generator;
     Renderer renderer;
+    public static PingPongShaderColor instance;
     // Start is called before the first frame update
     void Start()
     {
         generator = GetComponent<Generator>();
         renderer = GetComponent<Renderer>();
-
-        generator.OnStopGrowing += SwitchToCollision;
-        generator.OnStartGrowing += SwitchToNormal;
-        SwitchToNormal();
-        
+        if (!instance)
+        {
+            instance = this;
+        }
     }
 
-    void SwitchToNormal()
+    public void SwitchToNormal()
     {
         renderer.material.shader = normalShader;
     }

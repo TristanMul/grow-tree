@@ -34,6 +34,7 @@ public class Highlighter : MonoBehaviour
 
     public void ClearCircles()
     {
+        Debug.Log("clear circles");
         foreach(GameObject circle in circles)
         {
             Destroy(circle);
