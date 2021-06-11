@@ -2494,6 +2494,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5914857903402369969, guid: a690fb50cf9c49941bce80cf8c5a5dae,
+        type: 3}
+      propertyPath: sliceObjectPrefab
+      value: 
+      objectReference: {fileID: 5201212812551447740, guid: da941861b468da8498a39655f20f92f6,
+        type: 3}
     - target: {fileID: 5914857903402369970, guid: a690fb50cf9c49941bce80cf8c5a5dae,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3608,6 +3614,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7103415322470691946, guid: 9b841fce405295145beb3ca4a64e430a,
+        type: 3}
+      propertyPath: cameraOffset.z
+      value: -6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7103415322470691946, guid: 9b841fce405295145beb3ca4a64e430a,
+        type: 3}
+      propertyPath: cameraSmoothing
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7103415322470691949, guid: 9b841fce405295145beb3ca4a64e430a,
         type: 3}
