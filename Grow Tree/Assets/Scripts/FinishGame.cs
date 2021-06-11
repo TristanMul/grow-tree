@@ -9,13 +9,24 @@ public class FinishGame : MonoBehaviour
     [SerializeField] private GameObject[] flowers;
     [SerializeField] Generator generator;
     [SerializeField] private int flowerRatio;
+    [SerializeField] private int clusterMin = 5;
     [SerializeField] private int clusterMax = 3;
     [SerializeField] private float maxDeviation;
+    bool coroutineActivated = false;
     private int growingBranches = 0;
+
+    public void Test()
+    {
+        if (!coroutineActivated)
+        {
+            coroutineActivated = true;
+            StartCoroutine(waitSeconds());
+        }
+    }
     private void OnTriggerEnter(Collider other)
     {
-       // Debug.Log("Wingame raised");
         winGame.Raise();
+        generator._timeBetweenIterations = 0.05f;
     }
 
     public IEnumerator CheckIfLost()
@@ -32,20 +43,20 @@ public class FinishGame : MonoBehaviour
         Debug.Log(growingBranches);
         if (growingBranches == 0)
         {
-            //Debug.Log("Losegame raised");
             loseGame.Raise();
         }
     }
-    public void Tester()
+    public IEnumerator waitSeconds()
     {
+        yield return new WaitForSeconds(1f);
+        generator.finishGrowing = true;
         StartCoroutine(growFlowers());
     }
-
     public IEnumerator growFlowers()
     {
         for(int i=generator._extremities.Count -1; i >= 0; i--)
         {
-            int randomNumber = Random.Range(2, clusterMax);
+            int randomNumber = Random.Range(clusterMin, clusterMax);
             for(int j=0; j<randomNumber; j++)
             {
             int randomItem = Random.Range(0, flowers.Length);
