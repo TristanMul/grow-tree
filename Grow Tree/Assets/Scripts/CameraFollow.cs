@@ -14,11 +14,29 @@ public class CameraFollow : MonoBehaviour
 
     void Start()
     {
+        
     }
     
     void LateUpdate()
     {
-        _attractorsList = activeAttractors.CurrentObjectList;
+        Debug.Log(Generator.instance._extremities.Count);
+        //_attractorsList = activeAttractors.CurrentObjectList;
+        //for (int i = 0; i < Generator.instance._extremities.Count; i++)
+        //{
+        //    _attractorsList.Add(Generator.instance._extremities[i]._start);
+        //}
+        _attractorsList.Clear();
+        foreach (Generator.Branch extremedy in Generator.instance._extremities)
+        {
+            if (extremedy._canGrow)
+            {
+                _attractorsList.Add(extremedy._start);
+            }
+            //else
+            //{
+            //    _attractorsList.Remove(extremedy._start);
+            //}
+        }
 
         if (_attractorsList.Count == 0)
             return;
@@ -40,6 +58,6 @@ public class CameraFollow : MonoBehaviour
             bounds.Encapsulate(_attractorsList[i]);
         }
 
-        return bounds.center;
+        return new Vector3(bounds.center.x, bounds.center.y + 3f, bounds.center.z);
     }
 }
