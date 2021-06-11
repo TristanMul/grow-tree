@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Slicer : MonoBehaviour
 {
-    [SerializeField] GameObject sliceTrailPrefab;
+    [SerializeField] GameObject sliceObjectPrefab;
 
     Rigidbody2D rb;
     Camera cam;
-    bool isUpdateTrail = false;
-    GameObject sliceTrail;
+    bool isSlicing = false;
+    GameObject sliceObject;
     Vector3 rayStart;
 
     // Start is called before the first frame update
@@ -24,35 +24,32 @@ public class Slicer : MonoBehaviour
     void Update()
     {
         if(Input.GetMouseButtonDown(0)){
-            StartUpdateTrail();
+            StartSlicing();
         }
         else if(Input.GetMouseButtonUp(0)){
-            StopUpdateTrail();
+            StopSlicing();
         }
 
-        if(isUpdateTrail){
-            UpdateTrail();
-            ShootRay();
+        if(isSlicing){
+            Slicing();
         }
     }
 
-    void UpdateTrail(){
-        sliceTrail.transform.position = GetRayEndPoint();
+    void Slicing(){
+        sliceObject.transform.position = GetRayEndPoint();
     }
 
-    void StartUpdateTrail(){
-        isUpdateTrail = true;
-        sliceTrail = Instantiate(sliceTrailPrefab, transform);
+    void StartSlicing(){
+        isSlicing = true;
+        sliceObject = Instantiate(sliceObjectPrefab, transform);
     }
 
-    void StopUpdateTrail(){
-        isUpdateTrail = false;
-        Destroy(sliceTrail, 2f);
+    void StopSlicing(){
+        isSlicing = false;
+        Destroy(sliceObject, 2f);
     }
 
     Vector3 GetRayEndPoint(){
-        rayStart = cam.transform.position;
-
         Vector3 planePos = new Vector3 (0, cam.transform.position.y, 0);
         Plane plane = new Plane(Vector3.forward, planePos);
 
@@ -61,25 +58,7 @@ public class Slicer : MonoBehaviour
         float distance; // Distance between the start of the ray and the point where it hits the plane.
         plane.Raycast(ray, out distance);
         Vector3 rayEnd = ray.GetPoint(distance);
-        // Debug.DrawLine(rayStart, rayEnd);
+        Debug.DrawLine(rayStart, rayEnd);
         return rayEnd;
-    }
-
-    void ShootRay(){
-        rayStart = cam.transform.position;
-
-        Vector3 planePos = new Vector3 (0, cam.transform.position.y, 0);
-        Plane plane = new Plane(Vector3.forward, planePos);
-
-        float range = 0 - cam.transform.position.z;
-
-        RaycastHit hit;
-        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-        if(Physics.Raycast(ray, out hit, range)){
-            if(hit.collider.CompareTag("Branch")){
-                hit.collider.GetComponent<CheckBranch>().CutBranch();
-            }
-        }
-
     }
 }

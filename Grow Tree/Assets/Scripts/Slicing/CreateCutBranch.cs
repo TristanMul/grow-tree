@@ -24,11 +24,10 @@ public class CreateCutBranch : MonoBehaviour
         generator = _generator;
         MakeMesh();
         rb = GetComponent<Rigidbody>();
-
+        
         rb.angularVelocity = (new Vector3(0f, 0f, UnityEngine.Random.Range(-angularVelRange, angularVelRange)));
         rb.velocity = new Vector3(0f, 1f, 0f);
         //UnityEngine.Random.Range(-angularVelRange, angularVelRange)
-        StartCoroutine(RemoveInTime(2f));
     }
 
     void MakeMesh()
@@ -82,11 +81,11 @@ public class CreateCutBranch : MonoBehaviour
             }
         }
 
-        /*        for (int i = 0; i < vertices.Length; i++)
-                {
-                    vertices[i] -= branch._start;
-                }
-                transform.position += branch._start;*/
+/*        for (int i = 0; i < vertices.Length; i++)
+        {
+            vertices[i] -= branch._start;
+        }
+        transform.position += branch._start;*/
         Mesh branchMesh = new Mesh();
 
         branchMesh.vertices = vertices;
@@ -95,11 +94,7 @@ public class CreateCutBranch : MonoBehaviour
         meshFilter.mesh = branchMesh;
     }
 
-    IEnumerator RemoveInTime(float duration)
-    {
-        yield return new WaitForSeconds(duration);
-        Destroy(gameObject);
-    }
+
 
 
 }
