@@ -46,7 +46,7 @@ public class Slicer : MonoBehaviour
 
     void StopSlicing(){
         isSlicing = false;
-        Destroy(sliceObject, 1f);
+        Destroy(sliceObject, 2f);
     }
 
     Vector3 GetRayEndPoint(){
