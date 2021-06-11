@@ -2569,6 +2569,7 @@ GameObject:
   - component: {fileID: 1326992717}
   - component: {fileID: 1326992716}
   - component: {fileID: 1326992718}
+  - component: {fileID: 1326992719}
   m_Layer: 0
   m_Name: Tree
   m_TagString: Untagged
@@ -2697,6 +2698,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1326992719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1326992713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8d28d65e3cc0a04c8f4cf62e6eac273, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalShader: {fileID: 4800000, guid: 6160535e33126094ba13c32371af08ee, type: 3}
+  collidedShader: {fileID: 4800000, guid: dd634194929f3544aaf32d15d1e62077, type: 3}
 --- !u!1001 &1428103324
 PrefabInstance:
   m_ObjectHideFlags: 0
