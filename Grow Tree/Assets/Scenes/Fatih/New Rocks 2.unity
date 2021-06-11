@@ -2603,6 +2603,7 @@ MonoBehaviour:
   _attractors: []
   _activeAttractors: 
   _capsules: []
+  finishGrowing: 0
   currentVertices: []
   otherAtrractors: {fileID: 2058506580}
   branchColliderPrefab: {fileID: 3114706243474454963, guid: f655fedf26d588245886a6d10f829172,
@@ -2686,7 +2687,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1919158862}
-        m_MethodName: Tester
+        m_MethodName: Test
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3728,6 +3729,7 @@ MonoBehaviour:
   - {fileID: 1963939198551799680, guid: 444cea73941c12d43ac12ba3010eca24, type: 3}
   generator: {fileID: 1326992714}
   flowerRatio: 7
+  clusterMin: 5
   clusterMax: 5
   maxDeviation: 0.25
 --- !u!54 &1919158863
