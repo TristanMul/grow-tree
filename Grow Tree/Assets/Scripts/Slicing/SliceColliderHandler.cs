@@ -8,7 +8,7 @@ public class SliceColliderHandler : MonoBehaviour
 
     Rigidbody rb;
     Collider collider;
-    Vector2 previousPos;
+    Vector3 previousPos;
 
     // Start is called before the first frame update
     void Start()
@@ -18,16 +18,17 @@ public class SliceColliderHandler : MonoBehaviour
     }
 
     // Update is called once per frame
-    void LateUpdate()
+    void Update()
     {
-        CanSlice();
+        // CanSlice();
     }
 
     void CanSlice(){
-        Vector2 currentPos = rb.position;
+        Vector3 currentPos = rb.position;
 
-        float velocity = (currentPos - previousPos).magnitude * Time.deltaTime;
-        if(velocity > minSlicingSpeed){
+        Vector3 velocity = (currentPos - previousPos) / Time.deltaTime;
+        Debug.Log(velocity.magnitude);
+        if(velocity.magnitude > minSlicingSpeed){
             collider.enabled = true;
         }
         else{
