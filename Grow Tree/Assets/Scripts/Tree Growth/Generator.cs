@@ -487,9 +487,6 @@ public class Generator : MonoBehaviour
 
     private void AddCapsule(Branch b)
     {
-        // GameObject newBranch = GameObject.CreatePrimitive(PrimitiveType.Capsule);
-        // newBranch.AddComponent(typeof(BranchCollision));
-        // newBranch.GetComponent<Renderer>().enabled = false;
         GameObject newBranch = Instantiate(branchColliderPrefab) ;
         newBranch.transform.position = new Vector3((b._start.x + b._end.x) / 2, (b._start.y + b._end.y) / 2, (b._start.z + b._end.z) / 2);
         newBranch.transform.localScale = new Vector3(0.1f, Vector2.Distance(b._start, b._end) - 0.02f, 0.1f);
@@ -529,6 +526,5 @@ public class Generator : MonoBehaviour
         _branches[index]._finalSize = _branches[index]._size;
         OnStopGrowing?.Invoke();
         Highlighter.instance.AddCircleFromWorldPos(_branches[index]._start);
-        Highlighter.instance.ClearCircles();
     }
 }
