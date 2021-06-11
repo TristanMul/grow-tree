@@ -7,6 +7,7 @@ TagManager:
   - Barrier
   - Slicer
   - Sun
+  - Branch
   layers:
   - Default
   - TransparentFX
