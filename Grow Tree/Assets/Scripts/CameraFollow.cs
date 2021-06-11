@@ -7,24 +7,38 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] private VectorList activeAttractors;
     [SerializeField] private List<Vector3> _attractorsList;
     public Vector3 cameraOffset;
+    Vector3 newPos;
     public float cameraSmoothing;
     private Vector3 velocity;
     private List<Vector3> generator;
     private float interval = 1f;
-
+    private float timeSinceIteration = 0;
     void Start()
     {
+
     }
-    
+
     void LateUpdate()
     {
-        _attractorsList = activeAttractors.CurrentObjectList;
+        timeSinceIteration += Time.deltaTime;
+        if ( timeSinceIteration> Generator.instance._timeBetweenIterations)
+        {
+            _attractorsList.Clear();
+            foreach (Generator.Branch extremedy in Generator.instance._extremities)
+            {
+                if (extremedy._canGrow)
+                {
+                    _attractorsList.Add(extremedy._start);
+                }
+            }
 
-        if (_attractorsList.Count == 0)
-            return;
-        Vector3 centerPos = GetCenterPoint();
-        Vector3 newPos = centerPos + cameraOffset;
-        transform.position = Vector3.SmoothDamp(transform.position, newPos, ref velocity, cameraSmoothing);
+            if (_attractorsList.Count == 0)
+                return;
+            Vector3 centerPos = GetCenterPoint();
+            newPos = centerPos + cameraOffset;
+            timeSinceIteration = 0;
+        }
+            transform.position = Vector3.SmoothDamp(transform.position, newPos, ref velocity, cameraSmoothing);
     }
 
     Vector3 GetCenterPoint()
@@ -40,6 +54,6 @@ public class CameraFollow : MonoBehaviour
             bounds.Encapsulate(_attractorsList[i]);
         }
 
-        return bounds.center;
+        return new Vector3(bounds.center.x, bounds.center.y + 3f, bounds.center.z);
     }
 }
