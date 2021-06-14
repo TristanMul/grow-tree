@@ -61,7 +61,6 @@ public class Slicer : MonoBehaviour
         float distance; // Distance between the start of the ray and the point where it hits the plane.
         plane.Raycast(ray, out distance);
         Vector3 rayEnd = ray.GetPoint(distance);
-        // Debug.DrawLine(rayStart, rayEnd);
         return rayEnd;
     }
 
@@ -71,11 +70,9 @@ public class Slicer : MonoBehaviour
         Vector3 planePos = new Vector3 (0, cam.transform.position.y, 0);
         Plane plane = new Plane(Vector3.forward, planePos);
 
-        float range = 0 - cam.transform.position.z;
-
         RaycastHit hit;
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-        if(Physics.Raycast(ray, out hit, range)){
+        if(Physics.Raycast(ray, out hit)){
             if(hit.collider.CompareTag("Branch")){
                 hit.collider.GetComponent<CheckBranch>().CutBranch();
             }
