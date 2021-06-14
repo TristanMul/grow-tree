@@ -57,3 +57,5 @@ public class CameraFollow : MonoBehaviour
         return new Vector3(bounds.center.x, bounds.center.y + 3f, bounds.center.z);
     }
 }
+//Dit is een comment
+
