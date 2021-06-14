@@ -529,6 +529,5 @@ public class Generator : MonoBehaviour
         _branches[index]._finalSize = _branches[index]._size;
         OnStopGrowing?.Invoke();
         Highlighter.instance.AddCircleFromWorldPos(_branches[index]._start);
-        Highlighter.instance.ClearCircles();
     }
 }
