@@ -43,3 +43,5 @@ public class CameraFollow : MonoBehaviour
         return bounds.center;
     }
 }
+//Dit is een comment
+
