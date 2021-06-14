@@ -21,7 +21,7 @@ public class CameraFollow : MonoBehaviour
     void LateUpdate()
     {
         timeSinceIteration += Time.deltaTime;
-        if ( timeSinceIteration> Generator.instance._timeBetweenIterations)
+        if (timeSinceIteration > Generator.instance._timeBetweenIterations)
         {
             _attractorsList.Clear();
             foreach (Generator.Branch extremedy in Generator.instance._extremities)
@@ -38,7 +38,7 @@ public class CameraFollow : MonoBehaviour
             newPos = centerPos + cameraOffset;
             timeSinceIteration = 0;
         }
-            transform.position = Vector3.SmoothDamp(transform.position, newPos, ref velocity, cameraSmoothing);
+        transform.position = Vector3.SmoothDamp(transform.position, newPos, ref velocity, cameraSmoothing);
     }
 
     Vector3 GetCenterPoint()
