@@ -486,6 +486,51 @@ MonoBehaviour:
   loseGame: {fileID: 1919158862}
   cutBranchPrefab: {fileID: 3348747014625355422, guid: 30b99c6a974d9344a818c90c583372a9,
     type: 3}
+--- !u!1 &422872781 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5914857903402369974, guid: a690fb50cf9c49941bce80cf8c5a5dae,
+    type: 3}
+  m_PrefabInstance: {fileID: 1158448001}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &422872782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 422872781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f550226b0889794aa4fc0fe1e135192, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 85a81a7bcc440174ab744296887e8561, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 422872783}
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &422872783 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5914857903402369969, guid: a690fb50cf9c49941bce80cf8c5a5dae,
+    type: 3}
+  m_PrefabInstance: {fileID: 1158448001}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 422872781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5175aecdec64c81458c245a7641669e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &431872242
 PrefabInstance:
   m_ObjectHideFlags: 0
