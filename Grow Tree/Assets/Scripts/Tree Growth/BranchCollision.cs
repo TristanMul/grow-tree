@@ -6,6 +6,7 @@ public class BranchCollision : MonoBehaviour
 {
     int index;
     Collider collider;
+    GameObject pingPongBranch;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +21,14 @@ public class BranchCollision : MonoBehaviour
         if(other.gameObject.tag == "Barrier")
         {
             Generator.instance.StopBranchGrowing(index);
+
+
+            if (pingPongBranch)
+            {
+                GameObject newBranch = Instantiate(pingPongBranch);
+                CreateCutBranch cutBranch = newBranch.GetComponent<CreateCutBranch>();
+                //cutBranch.CreateMesh();
+            }
         }
     }
 }
