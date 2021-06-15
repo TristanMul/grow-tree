@@ -5,7 +5,7 @@ using UnityEngine;
 public class Highlighter : MonoBehaviour
 {
     [SerializeField] GameObject highlightCircle;
-    List<GameObject> circles = new List<GameObject>();
+    [HideInInspector] public List<GameObject> circles = new List<GameObject>();
     Camera cam;
     public static Highlighter instance;
     private void Start()
@@ -34,7 +34,6 @@ public class Highlighter : MonoBehaviour
 
     public void ClearCircles()
     {
-        Debug.Log("clear circles");
         foreach(GameObject circle in circles)
         {
             Destroy(circle);

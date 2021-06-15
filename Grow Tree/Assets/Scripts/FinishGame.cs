@@ -26,9 +26,8 @@ public class FinishGame : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         winGame.Raise();
-        generator._timeBetweenIterations = 0.05f;
         Highlighter.instance.ClearCircles();
-        PingPongShaderColor.instance.SwitchToNormal();
+        generator._timeBetweenIterations = 0.05f;
     }
 
     public IEnumerator CheckIfLost()
