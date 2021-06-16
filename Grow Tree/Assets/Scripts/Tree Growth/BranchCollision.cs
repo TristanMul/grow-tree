@@ -17,12 +17,12 @@ public class BranchCollision : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        /*        Debug.Log(other.gameObject.tag);*/
+        /*Debug.Log(other.gameObject.tag);*/
         if (other.gameObject.tag == "Barrier")
         {
 
-                Generator.instance.StopBranchGrowing(index) ;
-            
+            Generator.instance.StopBranchGrowing(index);
+
         }
     }
 }

@@ -32,6 +32,7 @@ public class Generator : MonoBehaviour
         public bool _canGrow = true;
         public float _finalSize = 0f;
         public bool hitBarrier = false;
+        public bool detached = false;
 
         public Branch(Vector3 start, Vector3 end, Vector3 direction, Branch parent = null)
         {
@@ -528,7 +529,7 @@ public class Generator : MonoBehaviour
         _branches[index].hitBarrier = true;
         _branches[index]._finalSize = _branches[index]._size;
         OnStopGrowing?.Invoke();
-        Highlighter.instance.AddCircleFromWorldPos(_branches[index]._start);
+        Highlighter.instance.AddCircleFromWorldPos(_branches[index]);
     }
 
 

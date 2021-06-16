@@ -85,7 +85,9 @@ public class CheckBranch : MonoBehaviour
             generator._extremities.Remove(branch);
             ResetBranches();
             cutOffBranches.Add(branch);
+            
         }
+        branch.detached = true;
     }
 
     private void ResetBranches()
