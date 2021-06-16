@@ -66,7 +66,7 @@ public class Slicer : MonoBehaviour
         if(swipeDistance > minDistance){
             Time.fixedDeltaTime = 0.01f;
             Vector3 direction = (GetRayEndPoint() - sliceObject.transform.position).normalized;
-            sliceObject.GetComponent<Rigidbody>().velocity = direction * sliceSpeed * swipeDistance;
+            sliceObject.GetComponent<Rigidbody>().velocity = direction * sliceSpeed;
         }
         else{
             Time.fixedDeltaTime = 0.02f;
