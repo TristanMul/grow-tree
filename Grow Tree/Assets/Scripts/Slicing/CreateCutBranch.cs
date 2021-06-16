@@ -16,6 +16,7 @@ public class CreateCutBranch : MonoBehaviour
     float angularVelRange = .25f;
     public void CreateMesh(List<Generator.Branch> Branches, Generator.Branch cutOffBranch, Generator _generator)
     {
+
         branchesToDraw = null;
         meshFilter = GetComponent<MeshFilter>();
         branch = cutOffBranch;
@@ -31,6 +32,8 @@ public class CreateCutBranch : MonoBehaviour
             rb.angularVelocity = (new Vector3(0f, 0f, UnityEngine.Random.Range(-angularVelRange, angularVelRange)));
             rb.velocity = new Vector3(0f, 1f, 0f);
         }
+        Highlighter.instance.UpdateCircles();
+
         //UnityEngine.Random.Range(-angularVelRange, angularVelRange)
     }
 

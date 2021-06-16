@@ -596,7 +596,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &531558665
 Transform:
   m_ObjectHideFlags: 0
@@ -3468,7 +3468,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   highlightCircle: {fileID: 2629922539039076625, guid: ad8745d3e778b7c4bba0fa4a3c0c7bec,
     type: 3}
-  circles: []
 --- !u!114 &1788676321
 MonoBehaviour:
   m_ObjectHideFlags: 0

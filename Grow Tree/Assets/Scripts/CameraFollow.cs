@@ -35,7 +35,7 @@ public class CameraFollow : MonoBehaviour
     //    timeSinceIteration += Time.deltaTime;
     //    if (timeSinceIteration > Generator.instance._timeBetweenIterations)
         {
-            if (radar.circles.Count == 0)
+            if (radar.highlights.Count == 0)
             {
                 _attractorsList.Clear();
                 foreach (Generator.Branch extremedy in Generator.instance._extremities)
