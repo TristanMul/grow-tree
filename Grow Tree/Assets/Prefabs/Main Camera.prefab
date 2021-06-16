@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7103415322470691950}
   - component: {fileID: 7103415322470691945}
   - component: {fileID: 7103415322470691946}
+  - component: {fileID: 1592230683}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -115,8 +116,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activeAttractors: {fileID: 11400000, guid: a5cb163dede309440b266b725befc409, type: 2}
   _attractorsList: []
+  finishPosition: {fileID: 0}
   cameraOffset: {x: 0, y: 0, z: -10}
   cameraSmoothing: 3
   minZoom: 100
   maxZoom: 75
   zoomLimiter: 100
+--- !u!114 &1592230683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7103415322470691949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f550226b0889794aa4fc0fe1e135192, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 85a81a7bcc440174ab744296887e8561, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7103415322470691946}
+        m_MethodName: MoveToFinish
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

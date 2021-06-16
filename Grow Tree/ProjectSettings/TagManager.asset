@@ -7,6 +7,8 @@ TagManager:
   - Barrier
   - Slicer
   - Sun
+  - Branch
+  - FinishCamera
   layers:
   - Default
   - TransparentFX
