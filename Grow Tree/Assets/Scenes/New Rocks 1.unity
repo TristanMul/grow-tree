@@ -2494,6 +2494,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5914857903402369969, guid: a690fb50cf9c49941bce80cf8c5a5dae,
+        type: 3}
+      propertyPath: sliceObjectPrefab
+      value: 
+      objectReference: {fileID: 5201212812551447740, guid: da941861b468da8498a39655f20f92f6,
+        type: 3}
     - target: {fileID: 5914857903402369970, guid: a690fb50cf9c49941bce80cf8c5a5dae,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3747,7 +3753,7 @@ MonoBehaviour:
   winGame: {fileID: 11400000, guid: 85a81a7bcc440174ab744296887e8561, type: 2}
   loseGame: {fileID: 11400000, guid: 3e16d612130c25145bffa8316987c27c, type: 2}
   flowers:
-  - {fileID: 1963939198551799680, guid: 444cea73941c12d43ac12ba3010eca24, type: 3}
+  - {fileID: 5668859698987896634, guid: 7e87b4f5dbedb5449b560fdfc49eb9c7, type: 3}
   generator: {fileID: 1326992714}
   flowerRatio: 7
   clusterMin: 5
