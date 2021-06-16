@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class Slicer : MonoBehaviour
 {
-    [SerializeField] GameObject sliceTrailPrefab;
+    [SerializeField] GameObject sliceObjectPrefab;
+    [SerializeField] float sliceSpeed;  // Speed of sliceObject.
+    [SerializeField] float minDistance; // Minimum distance betweeen touch point and sliceObject to move sliceObject.
 
     Rigidbody2D rb;
     Camera cam;
     bool isUpdateTrail = false;
-    GameObject sliceTrail;
+    GameObject sliceObject;
     Vector3 rayStart;
+    Vector3 prevTouchPos;
 
     // Start is called before the first frame update
     void Start()
@@ -30,24 +33,47 @@ public class Slicer : MonoBehaviour
             StopUpdateTrail();
         }
 
+    }
+
+    private void FixedUpdate() {
         if(isUpdateTrail){
-            UpdateTrail();
-            ShootRay();
+            MoveSliceObject();
+            // UpdateTrail();
+            // ShootRay();
         }
+        
     }
 
     void UpdateTrail(){
-        sliceTrail.transform.position = GetRayEndPoint();
+        sliceObject.transform.position = GetRayEndPoint();
     }
 
     void StartUpdateTrail(){
         isUpdateTrail = true;
-        sliceTrail = Instantiate(sliceTrailPrefab, transform);
+        sliceObject = Instantiate(sliceObjectPrefab, transform);
+        sliceObject.transform.position = GetRayEndPoint();
     }
 
     void StopUpdateTrail(){
         isUpdateTrail = false;
-        Destroy(sliceTrail, 2f);
+        Destroy(sliceObject);
+    }
+
+    void MoveSliceObject(){
+        if(!sliceObject) return;
+
+        float swipeDistance = Vector3.Distance(GetRayEndPoint(), sliceObject.transform.position);
+        if(swipeDistance > minDistance){
+            Time.fixedDeltaTime = 0.01f;
+            Vector3 direction = (GetRayEndPoint() - sliceObject.transform.position).normalized;
+            sliceObject.GetComponent<Rigidbody>().velocity = direction * sliceSpeed * swipeDistance;
+        }
+        else{
+            Time.fixedDeltaTime = 0.02f;
+            sliceObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        }
+
+        
     }
 
     Vector3 GetRayEndPoint(){
@@ -61,22 +87,7 @@ public class Slicer : MonoBehaviour
         float distance; // Distance between the start of the ray and the point where it hits the plane.
         plane.Raycast(ray, out distance);
         Vector3 rayEnd = ray.GetPoint(distance);
+        Debug.DrawLine(rayStart, rayEnd);
         return rayEnd;
-    }
-
-    void ShootRay(){
-        rayStart = cam.transform.position;
-
-        Vector3 planePos = new Vector3 (0, cam.transform.position.y, 0);
-        Plane plane = new Plane(Vector3.forward, planePos);
-
-        RaycastHit hit;
-        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-        if(Physics.Raycast(ray, out hit)){
-            if(hit.collider.CompareTag("Branch")){
-                hit.collider.GetComponent<CheckBranch>().CutBranch();
-            }
-        }
-
     }
 }
