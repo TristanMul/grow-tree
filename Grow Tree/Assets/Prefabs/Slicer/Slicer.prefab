@@ -47,6 +47,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sliceObjectPrefab: {fileID: 5201212812551447740, guid: da941861b468da8498a39655f20f92f6,
     type: 3}
+  sliceSpeed: 30
+  minDistance: 0.2
 --- !u!114 &1896511369651932693
 MonoBehaviour:
   m_ObjectHideFlags: 0

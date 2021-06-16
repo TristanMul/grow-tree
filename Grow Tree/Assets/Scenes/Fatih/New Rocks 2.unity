@@ -483,9 +483,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91157c87ce4e9804683b2003406c2a17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loseGame: {fileID: 1919158862}
   cutBranchPrefab: {fileID: 3348747014625355422, guid: 30b99c6a974d9344a818c90c583372a9,
     type: 3}
+  breakParticles: {fileID: 0}
 --- !u!1001 &431872242
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2008,6 +2008,75 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1001 &1037266475
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2102506386247937301, guid: 98f11b6c0dc6d1d4aae62bbc609da802,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2102506386247937301, guid: 98f11b6c0dc6d1d4aae62bbc609da802,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.6723976
+      objectReference: {fileID: 0}
+    - target: {fileID: 2102506386247937301, guid: 98f11b6c0dc6d1d4aae62bbc609da802,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -30.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 2102506386247937301, guid: 98f11b6c0dc6d1d4aae62bbc609da802,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2102506386247937301, guid: 98f11b6c0dc6d1d4aae62bbc609da802,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2102506386247937301, guid: 98f11b6c0dc6d1d4aae62bbc609da802,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2102506386247937301, guid: 98f11b6c0dc6d1d4aae62bbc609da802,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2102506386247937301, guid: 98f11b6c0dc6d1d4aae62bbc609da802,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 2102506386247937301, guid: 98f11b6c0dc6d1d4aae62bbc609da802,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2102506386247937301, guid: 98f11b6c0dc6d1d4aae62bbc609da802,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2102506386247937301, guid: 98f11b6c0dc6d1d4aae62bbc609da802,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2102506386247937302, guid: 98f11b6c0dc6d1d4aae62bbc609da802,
+        type: 3}
+      propertyPath: m_Name
+      value: FinishCamera
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 98f11b6c0dc6d1d4aae62bbc609da802, type: 3}
 --- !u!1001 &1071050614
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3434,6 +3503,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1723124075 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2102506386247937301, guid: 98f11b6c0dc6d1d4aae62bbc609da802,
+    type: 3}
+  m_PrefabInstance: {fileID: 1037266475}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1788676319
 GameObject:
   m_ObjectHideFlags: 0
@@ -3468,6 +3543,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   highlightCircle: {fileID: 2629922539039076625, guid: ad8745d3e778b7c4bba0fa4a3c0c7bec,
     type: 3}
+  circles: []
 --- !u!114 &1788676321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3609,6 +3685,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7103415322470691946, guid: 9b841fce405295145beb3ca4a64e430a,
+        type: 3}
+      propertyPath: finishPosition
+      value: 
+      objectReference: {fileID: 1723124075}
     - target: {fileID: 7103415322470691949, guid: 9b841fce405295145beb3ca4a64e430a,
         type: 3}
       propertyPath: m_Name
