@@ -17,18 +17,12 @@ public class BranchCollision : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-/*        Debug.Log(other.gameObject.tag);*/
-        if(other.gameObject.tag == "Barrier")
+        /*        Debug.Log(other.gameObject.tag);*/
+        if (other.gameObject.tag == "Barrier")
         {
-            Generator.instance.StopBranchGrowing(index);
 
-
-            if (pingPongBranch)
-            {
-                GameObject newBranch = Instantiate(pingPongBranch);
-                CreateCutBranch cutBranch = newBranch.GetComponent<CreateCutBranch>();
-                //cutBranch.CreateMesh();
-            }
+                Generator.instance.StopBranchGrowing(index) ;
+            
         }
     }
 }

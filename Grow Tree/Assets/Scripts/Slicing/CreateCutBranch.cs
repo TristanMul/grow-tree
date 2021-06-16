@@ -24,9 +24,10 @@ public class CreateCutBranch : MonoBehaviour
         generator = _generator;
         MakeMesh();
 
+        rb = GetComponent<Rigidbody>();
+
         if (rb)
         {
-            rb = GetComponent<Rigidbody>();
             rb.angularVelocity = (new Vector3(0f, 0f, UnityEngine.Random.Range(-angularVelRange, angularVelRange)));
             rb.velocity = new Vector3(0f, 1f, 0f);
         }
