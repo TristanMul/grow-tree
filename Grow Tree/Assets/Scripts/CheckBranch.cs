@@ -5,6 +5,7 @@ using UnityEngine;
 public class CheckBranch : MonoBehaviour
 {
     [SerializeField] GameObject cutBranchPrefab;
+    public GameObject breakParticles;
     RaycastHit hit;
     Generator generator;
 
@@ -23,7 +24,7 @@ public class CheckBranch : MonoBehaviour
             Generator.Branch cutOffBranch = generator._branches[int.Parse(transform.gameObject.name)];
             SliceOffBranch(cutOffBranch);
             DuplicateBranch(cutOffBranch);
-
+            GameObject particles = Instantiate(breakParticles, gameObject.transform.position, Quaternion.identity);
             cutOffBranches.Clear();
 
         }

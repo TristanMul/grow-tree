@@ -116,4 +116,7 @@ MonoBehaviour:
   activeAttractors: {fileID: 11400000, guid: a5cb163dede309440b266b725befc409, type: 2}
   _attractorsList: []
   cameraOffset: {x: 0, y: 0, z: -10}
-  cameraSmoothing: 5
+  cameraSmoothing: 3
+  minZoom: 100
+  maxZoom: 75
+  zoomLimiter: 100

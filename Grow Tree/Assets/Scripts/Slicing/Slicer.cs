@@ -76,6 +76,11 @@ public class Slicer : MonoBehaviour
         
     }
 
+    void DisableThis()
+    {
+        this.enabled = false;
+    }
+
     Vector3 GetRayEndPoint(){
         rayStart = cam.transform.position;
 

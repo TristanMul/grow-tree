@@ -98,7 +98,7 @@ public class Generator : MonoBehaviour
 
     public GameObject otherAtrractors;
     //public List<Transform> otherAtrractorsList = new List<Transform>();
-    
+
     [Header("Other")]
     [SerializeField] GameObject branchColliderPrefab;
 
@@ -111,12 +111,12 @@ public class Generator : MonoBehaviour
     void Awake()
     {
         // initilization 
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
         }
     }
-    
+
     void GenerateAttractors()
     {
         foreach (Transform t in otherAtrractors.transform)
@@ -166,7 +166,7 @@ public class Generator : MonoBehaviour
     void Update()
     {
         branchHitBarrier = BranchHitBarrier();
-        
+
         if (!branchHitBarrier && !finishGrowing)
         {
             Debug.Log(finishGrowing);
@@ -326,9 +326,9 @@ public class Generator : MonoBehaviour
             }
 
         }
-            if (_extremities.Count >= 0)
-                ToMesh();
-        
+        if (_extremities.Count >= 0)
+            ToMesh();
+
     }
 
     /**
@@ -355,9 +355,9 @@ public class Generator : MonoBehaviour
                 }
                 size = Mathf.Pow(size, 1f / _invertGrowth);
             }
-            if(b._size < size)
+            if (b._size < size)
             {
-            b._size = size;
+                b._size = size;
             }
         }
 
@@ -527,4 +527,22 @@ public class Generator : MonoBehaviour
         OnStopGrowing?.Invoke();
         Highlighter.instance.AddCircleFromWorldPos(_branches[index]._start);
     }
+
+
+/*    bool isStopping;
+    public IEnumerator StopGrowingInTime(float duration, Branch branch)
+    {
+        if (!isStopping)
+        {
+            isStopping = true;
+
+            yield return new WaitForSeconds(duration);
+            if (branch != null)
+            {
+                StopBranchGrowing(branch);
+            }
+            isStopping = false;
+        }
+        yield return null;
+    }*/
 }
