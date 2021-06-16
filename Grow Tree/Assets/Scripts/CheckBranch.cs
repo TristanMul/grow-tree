@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class CheckBranch : MonoBehaviour
 {
-    [SerializeField] private FinishGame loseGame;
     [SerializeField] GameObject cutBranchPrefab;
+    public GameObject breakParticles;
     RaycastHit hit;
     Generator generator;
 
@@ -16,20 +16,6 @@ public class CheckBranch : MonoBehaviour
         generator = GameObject.Find("Tree").GetComponent<Generator>();
     }
 
-    // private void OnTriggerEnter2D(Collider2D other) {
-    //     if(other.gameObject.CompareTag("Slicer")){
-    //         Debug.Log("slice");
-    //         GetComponent<Collider>().enabled = false;
-
-    //         Generator.Branch cutOffBranch = generator._branches[int.Parse(transform.gameObject.name)];
-    //         SliceOffBranch(cutOffBranch);
-    //         DuplicateBranch(cutOffBranch);
-
-    //         cutOffBranches.Clear();
-
-    //     }
-    // }
-
     private void OnTriggerEnter(Collider other) {
         if(other.gameObject.CompareTag("Slicer")){
             Debug.Log("slice");
@@ -38,13 +24,25 @@ public class CheckBranch : MonoBehaviour
             Generator.Branch cutOffBranch = generator._branches[int.Parse(transform.gameObject.name)];
             SliceOffBranch(cutOffBranch);
             DuplicateBranch(cutOffBranch);
-
+            GameObject particles = Instantiate(breakParticles, gameObject.transform.position, Quaternion.identity);
             cutOffBranches.Clear();
 
         }
     }
 
+    public void CutBranch(){
+        GetComponent<Collider>().enabled = false;
+
+        Generator.Branch cutOffBranch = generator._branches[int.Parse(transform.gameObject.name)];
+        SliceOffBranch(cutOffBranch);
+        DuplicateBranch(cutOffBranch);
+
+        cutOffBranches.Clear();
+    }
+
     void SliceOffBranch(Generator.Branch cutOffBranch){
+        if(cutOffBranch == generator._firstBranch) return;
+
         cutOffBranch._parent._children.Remove(cutOffBranch);
         cutOffBranch._parent._canGrow = false;
         cutOffBranch._parent = null;

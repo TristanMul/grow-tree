@@ -6,6 +6,7 @@ public class CameraFollow : MonoBehaviour
 {
     [SerializeField] private VectorList activeAttractors;
     [SerializeField] private List<Vector3> _attractorsList;
+    [SerializeField] private Transform finishPosition;
     public Vector3 cameraOffset;
     Vector3 newPos;
     public float cameraSmoothing;
@@ -17,11 +18,16 @@ public class CameraFollow : MonoBehaviour
     public float zoomLimiter = 50f;
     private Camera cam;
     private Highlighter radar;
+    private bool finished;
 
     void Awake()
     {
         cam = GetComponent<Camera>();
         radar = GameObject.Find("Canvas").GetComponent<Highlighter>();
+        if(finishPosition == null)
+        {
+            finishPosition = GameObject.Find("FinishCamera").GetComponent<Transform>();
+        }
     }
 
     void LateUpdate()
@@ -50,7 +56,12 @@ public class CameraFollow : MonoBehaviour
             {
                 velocity = Vector3.zero;
             }
+        if (finished)
+        {
+            //transform.position = Vector3.SmoothDamp(transform.position, finishPosition.position, ref velocity, cameraSmoothing);
+            transform.position = Vector3.Lerp(transform.position, finishPosition.position,Time.deltaTime);
         }
+    }
     //}
 
     void ZoomCamera()
@@ -65,6 +76,11 @@ public class CameraFollow : MonoBehaviour
         newPos = centerPos + cameraOffset;
 
         transform.position = Vector3.SmoothDamp(transform.position, newPos, ref velocity, cameraSmoothing);
+    }
+
+    public void MoveToFinish()
+    {
+        finished = true;
     }
 
     Vector3 GetCenterPoint()

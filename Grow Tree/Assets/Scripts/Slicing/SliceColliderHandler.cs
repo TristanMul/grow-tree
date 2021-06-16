@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class SliceColliderHandler : MonoBehaviour
 {
+    [SerializeField] GameObject sliceTrailPrefab;
     [SerializeField] float minSlicingSpeed;
 
+    GameObject sliceTrail;
     Rigidbody rb;
     Collider collider;
     Vector3 previousPos;
@@ -20,22 +22,28 @@ public class SliceColliderHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // CanSlice();
+    }
+
+    /// <summary>
+    /// This function is called every fixed framerate frame, if the MonoBehaviour is enabled.
+    /// </summary>
+    void FixedUpdate()
+    {
+        CanSlice();
+        
     }
 
     void CanSlice(){
-        Vector3 currentPos = rb.position;
-
-        Vector3 velocity = (currentPos - previousPos) / Time.deltaTime;
-        Debug.Log(velocity.magnitude);
-        if(velocity.magnitude > minSlicingSpeed){
+        if(rb.velocity.magnitude > minSlicingSpeed){
             collider.enabled = true;
+            sliceTrail = Instantiate(sliceTrailPrefab,transform);
         }
         else{
             collider.enabled = false;
+            if(sliceTrail){
+                Destroy(sliceTrail, 1f);
+            }
         }
-
-        previousPos = currentPos;
 
     }
 
