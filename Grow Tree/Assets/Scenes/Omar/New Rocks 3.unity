@@ -2598,8 +2598,8 @@ MonoBehaviour:
   _killRange: 0.3
   _randomGrowth: 0.15
   _radialSubdivisions: 10
-  _extremitiesSize: 0.03
-  _invertGrowth: 2.41
+  _extremitiesSize: 0.02
+  _invertGrowth: 1.5
   indexCounter: 0
   _attractors: []
   _activeAttractors: 
@@ -3622,6 +3622,11 @@ PrefabInstance:
       propertyPath: finishPosition
       value: 
       objectReference: {fileID: 1740844326}
+    - target: {fileID: 7103415322470691946, guid: 9b841fce405295145beb3ca4a64e430a,
+        type: 3}
+      propertyPath: cameraOffset.z
+      value: -8
+      objectReference: {fileID: 0}
     - target: {fileID: 7103415322470691949, guid: 9b841fce405295145beb3ca4a64e430a,
         type: 3}
       propertyPath: m_Name
