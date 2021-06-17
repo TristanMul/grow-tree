@@ -26,7 +26,6 @@ public class CheckBranch : MonoBehaviour
             DuplicateBranch(cutOffBranch);
             GameObject particles = Instantiate(breakParticles, gameObject.transform.position, Quaternion.identity);
             cutOffBranches.Clear();
-
         }
     }
 

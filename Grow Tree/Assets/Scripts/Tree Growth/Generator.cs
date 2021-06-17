@@ -104,6 +104,7 @@ public class Generator : MonoBehaviour
     [SerializeField] GameObject branchColliderPrefab;
 
     public VectorList attractorList;
+    public List<Vector2> UVs = new List<Vector2>();
 
     //events
     public event Action OnStopGrowing;
@@ -327,9 +328,10 @@ public class Generator : MonoBehaviour
             }
 
         }
+        
         if (_extremities.Count >= 0)
             ToMesh();
-
+        //GameOverCheck();
     }
 
     /**
@@ -452,7 +454,49 @@ public class Generator : MonoBehaviour
         currentVertices = vertices;
         treeMesh.triangles = triangles;
         treeMesh.RecalculateNormals();
+        UVs.Clear();
+
+        for (int i = 0; i < vertices.Length; i++)
+        {
+            UVs.Add(new Vector2(vertices[i].x * 2 - (int)vertices[i].x * 2, vertices[i].y * 2 - (int)vertices[i].y) * 2);
+        }
+        treeMesh.SetUVs(0, UVs);
         _filter.mesh = treeMesh;
+    }
+
+    public List<Branch> turnedOffBranch = new List<Branch>();
+    void GameOverCheck()
+    {
+        //if (_branches.Count != 0 && turnedOffBranch.Count != 0)
+        //{
+        //    Debug.Log("ex: " + _branches.Count);
+        //    Debug.Log("off " + turnedOffBranch.Count);
+        //}
+
+        //foreach (Branch b in _branches)
+        //{
+        //    if (!b._canGrow && !branchHitBarrier)
+        //    {
+        //        turnedOffBranch.Add(b);
+        //    }
+        //}
+        turnedOffBranch.Clear();
+        for (int i = 0; i < _extremities.Count; i++)
+        {
+            if (!_extremities[i]._canGrow)
+            {
+                turnedOffBranch.Add(_extremities[i]);
+            }
+        }
+        Debug.Log("ex: " + _extremities.Count);
+        Debug.Log("off " + turnedOffBranch.Count);
+
+        if (turnedOffBranch.Count > _branches.Count &&
+            turnedOffBranch.Count != 0 && _branches.Count != 0)
+        {
+            Debug.Log("no excrement");
+            //finishGrowing = true;
+        }
     }
 
     void OnDrawGizmos()
@@ -502,7 +546,7 @@ public class Generator : MonoBehaviour
     /// Checks if any branches have hit a barrier
     /// </summary>
     /// <returns></returns>
-    bool BranchHitBarrier()
+    public bool BranchHitBarrier()
     {
         bool toReturn = false;
         foreach (Branch branch in _branches)

@@ -2610,6 +2610,7 @@ MonoBehaviour:
   branchColliderPrefab: {fileID: 3114706243474454963, guid: f655fedf26d588245886a6d10f829172,
     type: 3}
   attractorList: {fileID: 11400000, guid: a5cb163dede309440b266b725befc409, type: 2}
+  UVs: []
 --- !u!4 &1326992715
 Transform:
   m_ObjectHideFlags: 0
@@ -2650,7 +2651,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fe5bad708d19a7048b14a5e9a38f7539, type: 2}
+  - {fileID: 2100000, guid: 9cee19a1bcef0814fadd36a8c5803f1f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3475,7 +3476,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   highlightCircle: {fileID: 2629922539039076625, guid: ad8745d3e778b7c4bba0fa4a3c0c7bec,
     type: 3}
-  circles: []
 --- !u!114 &1788676321
 MonoBehaviour:
   m_ObjectHideFlags: 0
