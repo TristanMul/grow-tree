@@ -31,35 +31,37 @@ public class CameraFollow : MonoBehaviour
     }
 
     void LateUpdate()
-    //{
-    //    timeSinceIteration += Time.deltaTime;
-    //    if (timeSinceIteration > Generator.instance._timeBetweenIterations)
+    {
+        if (radar.highlights.Count == 0)
         {
-            if (radar.highlights.Count == 0)
+            _attractorsList.Clear();
+            foreach (Generator.Branch extremedy in Generator.instance._extremities)
             {
-                _attractorsList.Clear();
-                foreach (Generator.Branch extremedy in Generator.instance._extremities)
+                if (extremedy._canGrow)
                 {
-                    if (extremedy._canGrow)
-                    {
-                        _attractorsList.Add(extremedy._start);
-                    }
+                    _attractorsList.Add(extremedy._start);
                 }
+            }
 
-                if (_attractorsList.Count == 0)
-                    return;
-                MoveCamera();
-                ZoomCamera();
-                timeSinceIteration = 0;
-            }
-            else
-            {
-                velocity = Vector3.zero;
-            }
+            if (_attractorsList.Count == 0)
+                return;
+            MoveCamera();
+            ZoomCamera();
+            timeSinceIteration = 0;
+        }else
+        {
+            velocity = Vector3.zero;
+        }
+
+        if(cam.velocity == Vector3.zero && !Generator.instance.BranchHitBarrier())
+        {
+            print("dead");
+        }
+
         if (finished)
         {
             //transform.position = Vector3.SmoothDamp(transform.position, finishPosition.position, ref velocity, cameraSmoothing);
-            transform.position = Vector3.Lerp(transform.position, finishPosition.position,Time.deltaTime);
+            transform.position = Vector3.Lerp(transform.position, finishPosition.position, Time.deltaTime);
         }
     }
     //}
