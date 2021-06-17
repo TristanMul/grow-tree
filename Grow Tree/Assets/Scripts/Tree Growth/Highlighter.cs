@@ -54,7 +54,7 @@ public class Highlighter : MonoBehaviour
     /// <param name="branches"></param>
     public void UpdateCircles()
     {
-        for (int i = highlights.Count-1; i > 0; i--)//Reverse for loop so you can remove stuff
+        for (int i = highlights.Count-1; i >= 0; i--)//Reverse for loop so you can remove stuff
         {
             if (highlights[i].branch.detached)
             {
