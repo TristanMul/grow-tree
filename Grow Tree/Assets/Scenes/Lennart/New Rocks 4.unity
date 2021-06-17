@@ -2666,8 +2666,8 @@ MonoBehaviour:
   _killRange: 0.3
   _randomGrowth: 0.15
   _radialSubdivisions: 10
-  _extremitiesSize: 0.03
-  _invertGrowth: 2.41
+  _extremitiesSize: 0.015
+  _invertGrowth: 1.5
   indexCounter: 0
   _attractors: []
   _activeAttractors: 
@@ -3543,7 +3543,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   highlightCircle: {fileID: 2629922539039076625, guid: ad8745d3e778b7c4bba0fa4a3c0c7bec,
     type: 3}
-  circles: []
 --- !u!114 &1788676321
 MonoBehaviour:
   m_ObjectHideFlags: 0

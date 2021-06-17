@@ -52,7 +52,7 @@ public class Generator : MonoBehaviour
     public float _radius = 5f;
     public Vector3 _startPosition = new Vector3(0, 0, 0);
     [Range(0f, 0.5f)]
-    public float _branchLength = 0.2f;
+    public float _branchLength;
     [Range(0f, 1f)]
     public float _timeBetweenIterations = 0.5f;
     [Range(0f, 3f)]
@@ -271,7 +271,17 @@ public class Generator : MonoBehaviour
                                 dir.Normalize();
 
                                 // our new branch grows in the correct direction
-                                Branch nb = new Branch(b._end, b._end + dir * _branchLength, dir, b);
+                                Branch nb;
+                                Debug.Log(b._children.Count);
+                                if(b._children.Count > 0)
+                                {
+                                    Debug.Log("more than 1");
+                                    nb = new Branch(b._end, b._end + dir * (_branchLength *.1f), dir, b);
+                                }
+                                else
+                                {
+                                    nb = new Branch(b._end, b._end + dir * _branchLength, dir, b);
+                                }
                                 nb._index = indexCounter;
                                 indexCounter++;
                                 //Debug.Log(indexCounter);
@@ -306,7 +316,8 @@ public class Generator : MonoBehaviour
                         // we add randomness to the direction
                         Vector3 dir = e._direction + RandomGrowthVector();
                         // we add the direction multiplied by the branch length to get the end point
-                        Vector3 end = e._end + dir * _branchLength;
+                        Vector3 end;
+                        end = e._end + dir * _branchLength;
                         // a new branch can be created with the same direction as its parent
                         if (e._canGrow)
                         {
@@ -385,8 +396,11 @@ public class Generator : MonoBehaviour
                 float alpha = ((float)s / _radialSubdivisions) * Mathf.PI * 2f;
 
                 // radius is hard-coded to 0.1f for now
-                Vector3 pos = new Vector3(Mathf.Cos(alpha) * b._size, 0, Mathf.Sin(alpha) * b._size);
+                Vector3 pos;
+                pos = new Vector3(Mathf.Cos(alpha) * b._size, 0, Mathf.Sin(alpha) * b._size);
+
                 pos = quat * pos; // rotation
+
 
                 // if the branch is an extremity, we have it growing slowly
                 if (b._children.Count == 0 && !b._grown)
@@ -488,7 +502,7 @@ public class Generator : MonoBehaviour
 
     private void AddCapsule(Branch b)
     {
-        GameObject newBranch = Instantiate(branchColliderPrefab) ;
+        GameObject newBranch = Instantiate(branchColliderPrefab);
         newBranch.transform.position = new Vector3((b._start.x + b._end.x) / 2, (b._start.y + b._end.y) / 2, (b._start.z + b._end.z) / 2);
         newBranch.transform.localScale = new Vector3(0.1f, Vector2.Distance(b._start, b._end) - 0.02f, 0.1f);
         newBranch.transform.up = b._direction.normalized;
@@ -530,20 +544,20 @@ public class Generator : MonoBehaviour
     }
 
 
-/*    bool isStopping;
-    public IEnumerator StopGrowingInTime(float duration, Branch branch)
-    {
-        if (!isStopping)
+    /*    bool isStopping;
+        public IEnumerator StopGrowingInTime(float duration, Branch branch)
         {
-            isStopping = true;
-
-            yield return new WaitForSeconds(duration);
-            if (branch != null)
+            if (!isStopping)
             {
-                StopBranchGrowing(branch);
+                isStopping = true;
+
+                yield return new WaitForSeconds(duration);
+                if (branch != null)
+                {
+                    StopBranchGrowing(branch);
+                }
+                isStopping = false;
             }
-            isStopping = false;
-        }
-        yield return null;
-    }*/
+            yield return null;
+        }*/
 }
