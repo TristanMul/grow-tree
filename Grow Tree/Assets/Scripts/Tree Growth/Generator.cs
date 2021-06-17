@@ -273,10 +273,10 @@ public class Generator : MonoBehaviour
                                 // our new branch grows in the correct direction
                                 Branch nb;
                                 Debug.Log(b._children.Count);
-                                if(b._children.Count > 0)
+                                if (b._children.Count > 0)
                                 {
                                     Debug.Log("more than 1");
-                                    nb = new Branch(b._end, b._end + dir * (_branchLength *.1f), dir, b);
+                                    nb = new Branch(b._end, b._end + dir * (_branchLength * .1f), dir, b);
                                 }
                                 else
                                 {
@@ -466,7 +466,17 @@ public class Generator : MonoBehaviour
         currentVertices = vertices;
         treeMesh.triangles = triangles;
         treeMesh.RecalculateNormals();
+
+
+        List<Vector2> UVs = new List<Vector2>();
+        for (int i = 0; i < vertices.Length; i++)
+        {
+            UVs.Add(new Vector2(vertices[i].x - (int)vertices[i].x, vertices[i].y - (int)vertices[i].y));
+        }
+        treeMesh.SetUVs(0, UVs);
+
         _filter.mesh = treeMesh;
+
     }
 
     void OnDrawGizmos()
