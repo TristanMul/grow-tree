@@ -56,7 +56,6 @@ public class Highlighter : MonoBehaviour
     {
         for (int i = highlights.Count-1; i >= 0; i--)//Reverse for loop so you can remove stuff
         {
-            Debug.Log("update " + i);
             if (highlights[i].branch.detached)
             {
                 Destroy(highlights[i].circleGameObject);
