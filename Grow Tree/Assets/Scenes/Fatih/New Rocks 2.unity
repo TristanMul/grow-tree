@@ -2712,7 +2712,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1228111902}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.37, y: 0, z: 0}
+  m_LocalPosition: {x: -2.37, y: 0.18, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2771,6 +2771,7 @@ MonoBehaviour:
   branchColliderPrefab: {fileID: 3114706243474454963, guid: f655fedf26d588245886a6d10f829172,
     type: 3}
   attractorList: {fileID: 11400000, guid: a5cb163dede309440b266b725befc409, type: 2}
+  UVs: []
 --- !u!4 &1326992715
 Transform:
   m_ObjectHideFlags: 0
@@ -2811,7 +2812,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fe5bad708d19a7048b14a5e9a38f7539, type: 2}
+  - {fileID: 2100000, guid: 9cee19a1bcef0814fadd36a8c5803f1f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
