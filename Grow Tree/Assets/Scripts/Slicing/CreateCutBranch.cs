@@ -98,7 +98,9 @@ public class CreateCutBranch : MonoBehaviour
         branchMesh.vertices = vertices;
         branchMesh.triangles = triangles;
         branchMesh.RecalculateNormals();
+        branchMesh.SetUVs(0 ,Generator.instance.UVs);
         meshFilter.mesh = branchMesh;
+
     }
 
 
