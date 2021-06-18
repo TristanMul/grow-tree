@@ -10,7 +10,7 @@ public class Loader : MonoBehaviour
     private void Start()
     {
         //Disable at launch!!!
-        PlayerPrefs.DeleteAll();
+        //PlayerPrefs.DeleteAll();
 
         if (!PlayerPrefs.HasKey("level"))
             SceneManager.LoadScene("0");
