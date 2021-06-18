@@ -56,10 +56,10 @@ MonoBehaviour:
   _killRange: 0.3
   _randomGrowth: 0.15
   _radialSubdivisions: 10
-  _extremitiesSize: 0.03
-  _invertGrowth: 2.41
+  _extremitiesSize: 0.025
+  _invertGrowth: 2.2
   indexCounter: 0
-  maxBranchCount: 200
+  maxBranchCount: 100
   _attractors: []
   _activeAttractors: 
   _capsules: []

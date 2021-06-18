@@ -36,7 +36,7 @@ public class SliceColliderHandler : MonoBehaviour
     void CanSlice(){
         if(rb.velocity.magnitude > minSlicingSpeed){
             collider.enabled = true;
-            sliceTrail = Instantiate(sliceTrailPrefab,transform);
+            //sliceTrail = Instantiate(sliceTrailPrefab,transform);
         }
         else{
             collider.enabled = false;
