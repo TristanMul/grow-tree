@@ -73,6 +73,7 @@ public class Generator : MonoBehaviour
 
 
     public int indexCounter = 0;
+    public int maxBranchCount;
     // the attractor points
     public List<Vector3> _attractors = new List<Vector3>();
 
@@ -89,6 +90,7 @@ public class Generator : MonoBehaviour
     // a list of the current extremities 
     public List<Branch> _extremities = new List<Branch>();
     public bool finishGrowing = false;
+    public bool alternate;
     // the elpsed time since the last iteration, this is used for the purpose of animation
     float _timeSinceLastIteration = 0f;
 
@@ -169,7 +171,7 @@ public class Generator : MonoBehaviour
     {
         branchHitBarrier = BranchHitBarrier();
 
-        if (!branchHitBarrier && !finishGrowing)
+        if (!branchHitBarrier && !finishGrowing && (_branches.Count < maxBranchCount || !alternate))
         {
             Debug.Log(finishGrowing);
             _timeSinceLastIteration += Time.deltaTime;

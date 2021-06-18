@@ -2669,10 +2669,12 @@ MonoBehaviour:
   _extremitiesSize: 0.03
   _invertGrowth: 2.41
   indexCounter: 0
+  maxBranchCount: 200
   _attractors: []
   _activeAttractors: 
   _capsules: []
   finishGrowing: 0
+  alternate: 1
   currentVertices: []
   otherAtrractors: {fileID: 2058506580}
   branchColliderPrefab: {fileID: 3114706243474454963, guid: f655fedf26d588245886a6d10f829172,
