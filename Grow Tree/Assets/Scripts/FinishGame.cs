@@ -35,7 +35,6 @@ public class FinishGame : MonoBehaviour
 
     public IEnumerator CheckIfLost()
     {
-        Debug.Log("Checking if lost");
         yield return new WaitForSeconds(0.5f);
         growingBranches = 0;
         foreach (Generator.Branch branch in generator._extremities)
@@ -45,10 +44,9 @@ public class FinishGame : MonoBehaviour
                 growingBranches++;
             }
         }
-        Debug.Log(growingBranches);
-        if (growingBranches == 0)
+
+        if (growingBranches == 0 && Highlighter.instance.highlights.Count == 0)
         {
-            Debug.Log("Lost");
             loseGame.Raise();
         }
     }

@@ -23,7 +23,7 @@ public class CameraFollow : MonoBehaviour
     void Awake()
     {
         cam = GetComponent<Camera>();
-        radar = GameObject.Find("Canvas").GetComponent<Highlighter>();
+        radar = GameObject.Find("MainCanvas").GetComponent<Highlighter>();
         if(finishPosition == null)
         {
             finishPosition = GameObject.Find("FinishCamera").GetComponent<Transform>();
