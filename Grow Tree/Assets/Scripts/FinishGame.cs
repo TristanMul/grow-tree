@@ -59,20 +59,20 @@ public class FinishGame : MonoBehaviour
     public IEnumerator growFlowers()
     {
 
-        for (int i=generator._branches.Count-1; i>=0; i--)
+        for (int i=/*generator._branches.Count-1*/generator._extremities.Count-1; i>=0; i--)
         {
-            if(generator._branches[i]._children.Count == 0)
-            {
+            /*if(generator._branches[i]._children.Count == 0)
+            {*/
                 int randomNumber = Random.Range(clusterMin, clusterMax);
                 for (int j = 0; j < randomNumber; j++)
                 {
                     int randomItem = Random.Range(0, flowers.Length);
                     float x = Random.Range(-maxDeviation, maxDeviation);
                     float y = Random.Range(-maxDeviation, maxDeviation);
-                    Instantiate(flowers[randomItem], generator._branches[i]._end + new Vector3(x, y, -0.5f), new Quaternion(0, 0, 0, 0));
+                    Instantiate(flowers[randomItem], /*generator._branches[i]._end*/generator._extremities[i]._end + new Vector3(x, y, -0.5f), new Quaternion(0, 0, 0, 0));
                 }
-                yield return new WaitForSeconds(0.05f);
-            }
+                yield return new WaitForSeconds(0.01f);
+           /* }*/
         }
     }
 }
