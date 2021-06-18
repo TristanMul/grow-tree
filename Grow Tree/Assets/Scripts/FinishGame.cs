@@ -25,9 +25,12 @@ public class FinishGame : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
+        if (other.CompareTag("Branch"))
+        {
         winGame.Raise();
         Highlighter.instance.ClearCircles();
         generator._timeBetweenIterations = 0.05f;
+        }
     }
 
     public IEnumerator CheckIfLost()
