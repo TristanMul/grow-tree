@@ -470,9 +470,8 @@ public class Generator : MonoBehaviour
         currentVertices = vertices;
         treeMesh.triangles = triangles;
         treeMesh.RecalculateNormals();
-
-
-        List<Vector2> UVs = new List<Vector2>();
+        UVs.Clear();
+        
         for (int i = 0; i < vertices.Length; i++)
         {
             UVs.Add(new Vector2(vertices[i].x - (int)vertices[i].x, vertices[i].y - (int)vertices[i].y));
