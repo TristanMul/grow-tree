@@ -173,7 +173,6 @@ public class Generator : MonoBehaviour
 
         if (!branchHitBarrier && !finishGrowing && (_branches.Count < maxBranchCount || !alternate))
         {
-            Debug.Log(finishGrowing);
             _timeSinceLastIteration += Time.deltaTime;
 
             // we check if we need to run a new iteration 

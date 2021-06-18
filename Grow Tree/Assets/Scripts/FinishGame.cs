@@ -27,15 +27,16 @@ public class FinishGame : MonoBehaviour
     {
         if (other.CompareTag("Branch"))
         {
-        winGame.Raise();
-        Highlighter.instance.ClearCircles();
-        generator._timeBetweenIterations = 0.05f;
+            Highlighter.instance.ClearCircles();
+            winGame.Raise();
+            generator._timeBetweenIterations = 0.05f;
         }
     }
 
     public IEnumerator CheckIfLost()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(generator._timeBetweenIterations + 0.01f);
+
         growingBranches = 0;
         foreach (Generator.Branch branch in generator._extremities)
         {
@@ -45,9 +46,13 @@ public class FinishGame : MonoBehaviour
             }
         }
 
-        if (growingBranches == 0 && Highlighter.instance.highlights.Count == 0)
+        if (growingBranches == 0 && Highlighter.instance.highlights.Count == 0 && winGame != null)
         {
-            loseGame.Raise();
+            yield return new WaitForSeconds(0.5f);
+            if (growingBranches == 0)
+            {
+                loseGame.Raise();
+            }
         }
     }
     public IEnumerator waitSeconds()
