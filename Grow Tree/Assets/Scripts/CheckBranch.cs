@@ -5,6 +5,7 @@ using UnityEngine;
 public class CheckBranch : MonoBehaviour
 {
     [SerializeField] GameObject cutBranchPrefab;
+    FinishGame finish;
     public GameObject breakParticles;
     RaycastHit hit;
     Generator generator;
@@ -13,6 +14,7 @@ public class CheckBranch : MonoBehaviour
 
 
     private void OnEnable() {
+        finish = GameObject.Find("Sun").GetComponent<FinishGame>();
         generator = GameObject.Find("Tree").GetComponent<Generator>();
     }
 
@@ -20,12 +22,12 @@ public class CheckBranch : MonoBehaviour
         if(other.gameObject.CompareTag("Slicer")){
             Debug.Log("slice");
             GetComponent<Collider>().enabled = false;
-
             Generator.Branch cutOffBranch = generator._branches[int.Parse(transform.gameObject.name)];
             SliceOffBranch(cutOffBranch);
             DuplicateBranch(cutOffBranch);
             GameObject particles = Instantiate(breakParticles, gameObject.transform.position, Quaternion.identity);
             generator.maxBranchCount += cutOffBranches.Count;
+            StartCoroutine(finish.CheckIfLost());
             cutOffBranches.Clear();
         }
     }

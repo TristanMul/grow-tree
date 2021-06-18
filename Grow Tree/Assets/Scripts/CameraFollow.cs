@@ -53,10 +53,10 @@ public class CameraFollow : MonoBehaviour
             velocity = Vector3.zero;
         }
 
-        if(cam.velocity == Vector3.zero && !Generator.instance.BranchHitBarrier())
-        {
-            print("dead");
-        }
+        //if(cam.velocity == Vector3.zero && !Generator.instance.BranchHitBarrier())
+        //{
+        //    print("dead");
+        //}
 
         if (finished)
         {
@@ -98,7 +98,7 @@ public class CameraFollow : MonoBehaviour
             bounds.Encapsulate(_attractorsList[i]);
         }
 
-        return new Vector3(bounds.center.x, bounds.center.y + 3f, bounds.center.z);
+        return new Vector3(bounds.center.x, bounds.center.y, bounds.center.z);
     }
 
     float GreatestDistance()
@@ -109,6 +109,6 @@ public class CameraFollow : MonoBehaviour
             bounds.Encapsulate(_attractorsList[i]);
         }
 
-        return bounds.size.x;
+        return bounds.size.x + 5f;
     }
 }

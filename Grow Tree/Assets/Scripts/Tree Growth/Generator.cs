@@ -275,10 +275,9 @@ public class Generator : MonoBehaviour
 
                                 // our new branch grows in the correct direction
                                 Branch nb;
-                                Debug.Log(b._children.Count);
+
                                 if (b._children.Count > 0)
                                 {
-                                    Debug.Log("more than 1");
                                     nb = new Branch(b._end, b._end + dir * (_branchLength * .1f), dir, b);
                                 }
                                 else
