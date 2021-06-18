@@ -98,7 +98,7 @@ public class CameraFollow : MonoBehaviour
             bounds.Encapsulate(_attractorsList[i]);
         }
 
-        return new Vector3(bounds.center.x, bounds.center.y + 3f, bounds.center.z);
+        return new Vector3(bounds.center.x, bounds.center.y, bounds.center.z);
     }
 
     float GreatestDistance()
