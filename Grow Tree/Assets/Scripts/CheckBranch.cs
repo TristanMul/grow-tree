@@ -25,6 +25,7 @@ public class CheckBranch : MonoBehaviour
             SliceOffBranch(cutOffBranch);
             DuplicateBranch(cutOffBranch);
             GameObject particles = Instantiate(breakParticles, gameObject.transform.position, Quaternion.identity);
+            generator.maxBranchCount += cutOffBranches.Count;
             cutOffBranches.Clear();
         }
     }
