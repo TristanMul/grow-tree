@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: test
+  m_Name: TreeTextureInFront
   m_Shader: {fileID: 4800000, guid: c42163615ed676844a5d72f4b5f2098f, type: 3}
   m_ShaderKeywords: _EMISSION _USERIM_ON
   m_LightmapFlags: 4
