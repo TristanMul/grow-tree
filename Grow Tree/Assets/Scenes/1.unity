@@ -3450,7 +3450,7 @@ PrefabInstance:
     - target: {fileID: 7103415322470691946, guid: 9b841fce405295145beb3ca4a64e430a,
         type: 3}
       propertyPath: cameraOffset.z
-      value: -7
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 7103415322470691946, guid: 9b841fce405295145beb3ca4a64e430a,
         type: 3}
@@ -3590,6 +3590,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8725497777045582086, guid: 8bd131f0dd6069a4b93f329be7bbd411,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8725497777045582086, guid: 8bd131f0dd6069a4b93f329be7bbd411,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.10498047
+      objectReference: {fileID: 0}
+    - target: {fileID: 8725497777519351591, guid: 8bd131f0dd6069a4b93f329be7bbd411,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.10253906
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8bd131f0dd6069a4b93f329be7bbd411, type: 3}
