@@ -12,7 +12,8 @@ public class CameraFollow : MonoBehaviour
     public float cameraSmoothing;
     private Vector3 velocity;
     private List<Vector3> generator;
-    private float timeSinceIteration = 1;
+    [SerializeField] private float timeSinceIteration = 1;
+    private float iterationTimer;
     public float minZoom = 40f;
     public float maxZoom = 10f;
     public float zoomLimiter = 50f;
@@ -22,6 +23,7 @@ public class CameraFollow : MonoBehaviour
 
     void Awake()
     {
+        iterationTimer = 0f;
         cam = GetComponent<Camera>();
         radar = GameObject.Find("Canvas").GetComponent<Highlighter>();
         if(finishPosition == null)
@@ -32,6 +34,8 @@ public class CameraFollow : MonoBehaviour
 
     void LateUpdate()
     {
+        iterationTimer += Time.deltaTime;
+
         if (radar.highlights.Count == 0)
         {
             _attractorsList.Clear();
@@ -45,10 +49,15 @@ public class CameraFollow : MonoBehaviour
 
             if (_attractorsList.Count == 0)
                 return;
-            MoveCamera();
+            
+            if (iterationTimer > timeSinceIteration)
+            {
+                MoveCamera();
+                iterationTimer = 0f;
+            }
             ZoomCamera();
-            timeSinceIteration = 0;
-        }else
+        }
+        else
         {
             velocity = Vector3.zero;
         }

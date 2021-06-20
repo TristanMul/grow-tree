@@ -46,10 +46,6 @@ public class Generator : MonoBehaviour
     public static Generator instance;
 
     [Header("Generation parameters")]
-    [Range(0, 3000)]
-    public int _nbAttractors = 400;
-    [Range(0f, 10f)]
-    public float _radius = 5f;
     public Vector3 _startPosition = new Vector3(0, 0, 0);
     [Range(0f, 0.5f)]
     public float _branchLength;
@@ -99,7 +95,7 @@ public class Generator : MonoBehaviour
 
     //public List<Transform> customAtrractors = new List<Transform>();
 
-    public GameObject otherAtrractors;
+    public GameObject otherAttractors;
     //public List<Transform> otherAtrractorsList = new List<Transform>();
 
     [Header("Other")]
@@ -123,14 +119,13 @@ public class Generator : MonoBehaviour
 
     void GenerateAttractors()
     {
-        foreach (Transform t in otherAtrractors.transform)
+        foreach (Transform t in otherAttractors.transform)
         {
             foreach (Transform c in t)
             {
                 _attractors.Add(c.position);
             }
         }
-        _nbAttractors = _attractors.Count;
     }
 
     /**
@@ -196,7 +191,6 @@ public class Generator : MonoBehaviour
                         if (Vector3.Distance(b._end, _attractors[i]) < _killRange)
                         {
                             _attractors.Remove(_attractors[i]);
-                            _nbAttractors--;
                             break;
                         }
                     }
