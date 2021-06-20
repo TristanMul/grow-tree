@@ -14,6 +14,7 @@ public class CreateCutBranch : MonoBehaviour
     Generator.Branch branch;
     Rigidbody rb;
     float angularVelRange = .25f;
+
     public void CreateMesh(List<Generator.Branch> Branches, Generator.Branch cutOffBranch, Generator _generator)
     {
 
@@ -42,10 +43,7 @@ public class CreateCutBranch : MonoBehaviour
         Vector3[] vertices;
         int[] triangles = new int[(branchesToDraw.Count + 1) * generator._radialSubdivisions * 6];
 
-
         vertices = generator.currentVertices;
-
-
 
         // faces construction; this is done in another loop because we need the parent vertices to be computed
         for (int i = 1; i < branchesToDraw.Count; i++)
@@ -100,10 +98,5 @@ public class CreateCutBranch : MonoBehaviour
         branchMesh.RecalculateNormals();
         branchMesh.SetUVs(0 ,Generator.instance.UVs);
         meshFilter.mesh = branchMesh;
-
     }
-
-
-
-
 }
