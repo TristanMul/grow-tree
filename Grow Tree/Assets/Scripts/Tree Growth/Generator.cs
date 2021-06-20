@@ -96,6 +96,7 @@ public class Generator : MonoBehaviour
     //public List<Transform> customAtrractors = new List<Transform>();
 
     public GameObject otherAttractors;
+    public GameObject CapsulesParent;
     //public List<Transform> otherAtrractorsList = new List<Transform>();
 
     [Header("Other")]
@@ -548,6 +549,7 @@ public class Generator : MonoBehaviour
         newBranch.transform.up = b._direction.normalized;
         newBranch.name = b._index.ToString();
         _capsules.Add(newBranch);
+        newBranch.transform.parent = CapsulesParent.transform;
     }
 
 
