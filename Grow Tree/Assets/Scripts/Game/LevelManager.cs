@@ -34,6 +34,6 @@ public class LevelManager: MonoBehaviour
     public void ReloadCurrentScene()
     {
         Debug.Log("Retrying level");
-        SceneManager.LoadScene(PlayerPrefs.GetInt("level").ToString());
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
