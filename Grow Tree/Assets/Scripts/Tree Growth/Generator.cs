@@ -168,7 +168,6 @@ public class Generator : MonoBehaviour
 
         if (!branchHitBarrier && !finishGrowing && (_branches.Count < maxBranchCount || !alternate))
         {
-            Debug.Log(finishGrowing);
             _timeSinceLastIteration += Time.deltaTime;
 
             // we check if we need to run a new iteration 
@@ -269,10 +268,9 @@ public class Generator : MonoBehaviour
 
                                 // our new branch grows in the correct direction
                                 Branch nb;
-                                Debug.Log(b._children.Count);
+
                                 if (b._children.Count > 0)
                                 {
-                                    Debug.Log("more than 1");
                                     nb = new Branch(b._end, b._end + dir * (_branchLength * .1f), dir, b);
                                 }
                                 else

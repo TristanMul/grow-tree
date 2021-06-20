@@ -7,24 +7,13 @@ using UnityEngine.SceneManagement;
 public class LevelManager: MonoBehaviour
 {
     public static LevelManager instance;
-    [SerializeField] private Text amountOfCoins;
-    [SerializeField] private Text completeLevelText;
+
     private void Start()
     {
         if(instance == null)
         {
             instance = this;
         }
-        amountOfCoins.text = PlayerPrefs.GetInt("Coin").ToString();
-    }
-    public void AddCoins(int coinsAdded)
-    {
-        PlayerPrefs.SetInt("Coin", PlayerPrefs.GetInt("Coin") + coinsAdded);
-        amountOfCoins.text = PlayerPrefs.GetInt("Coin").ToString();
-    }
-    public void UpdateLevelCompleteText()
-    {
-        completeLevelText.text = "LEVEL " + PlayerPrefs.GetInt("leveltext").ToString() + " COMPLETE";
     }
 
     public void LoadNextScene()
@@ -41,6 +30,7 @@ public class LevelManager: MonoBehaviour
         // Go to next level.
         SceneManager.LoadScene(PlayerPrefs.GetInt("level").ToString());
     }
+
     public void ReloadCurrentScene()
     {
         Debug.Log("Retrying level");

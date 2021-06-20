@@ -25,7 +25,7 @@ public class CameraFollow : MonoBehaviour
     {
         iterationTimer = 0f;
         cam = GetComponent<Camera>();
-        radar = GameObject.Find("Canvas").GetComponent<Highlighter>();
+        radar = GameObject.Find("MainCanvas").GetComponent<Highlighter>();
         if(finishPosition == null)
         {
             finishPosition = GameObject.Find("FinishCamera").GetComponent<Transform>();
@@ -62,10 +62,10 @@ public class CameraFollow : MonoBehaviour
             velocity = Vector3.zero;
         }
 
-        if(cam.velocity == Vector3.zero && !Generator.instance.BranchHitBarrier())
-        {
-            print("dead");
-        }
+        //if(cam.velocity == Vector3.zero && !Generator.instance.BranchHitBarrier())
+        //{
+        //    print("dead");
+        //}
 
         if (finished)
         {
@@ -118,6 +118,6 @@ public class CameraFollow : MonoBehaviour
             bounds.Encapsulate(_attractorsList[i]);
         }
 
-        return bounds.size.x;
+        return bounds.size.x + 5f;
     }
 }
