@@ -3767,31 +3767,6 @@ PrefabInstance:
       propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1919158862}
-    - target: {fileID: 3680122567213996720, guid: 52be7bd6dfa6da246a126c073249dded,
-        type: 3}
-      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Test
-      objectReference: {fileID: 0}
-    - target: {fileID: 3680122567213996723, guid: 52be7bd6dfa6da246a126c073249dded,
-        type: 3}
-      propertyPath: m_ReceiveShadows
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3680122567213996724, guid: 52be7bd6dfa6da246a126c073249dded,
-        type: 3}
-      propertyPath: otherAtrractors
-      value: 
-      objectReference: {fileID: 2058506580}
-    - target: {fileID: 3680122567213996724, guid: 52be7bd6dfa6da246a126c073249dded,
-        type: 3}
-      propertyPath: alternate
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3680122567213996724, guid: 52be7bd6dfa6da246a126c073249dded,
-        type: 3}
-      propertyPath: _killRange
-      value: 0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 3680122567213996724, guid: 52be7bd6dfa6da246a126c073249dded,
         type: 3}
       propertyPath: otherAttractors

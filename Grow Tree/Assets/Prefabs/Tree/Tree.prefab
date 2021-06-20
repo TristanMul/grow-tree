@@ -54,8 +54,8 @@ MonoBehaviour:
   _killRange: 0.5
   _randomGrowth: 0.15
   _radialSubdivisions: 10
-  _extremitiesSize: 0.025
-  _invertGrowth: 2.2
+  _extremitiesSize: 0.03
+  _invertGrowth: 2.4
   indexCounter: 0
   maxBranchCount: 100
   _attractors: []
