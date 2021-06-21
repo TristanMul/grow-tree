@@ -582,24 +582,11 @@ public class Generator : MonoBehaviour
         _branches[index].hitBarrier = true;
         _branches[index]._finalSize = _branches[index]._size;
         OnStopGrowing?.Invoke();
+        if (!finishGrowing)
+        {
         Highlighter.instance.AddCircleFromWorldPos(_branches[index]);
+        }
     }
 
 
-    /*    bool isStopping;
-        public IEnumerator StopGrowingInTime(float duration, Branch branch)
-        {
-            if (!isStopping)
-            {
-                isStopping = true;
-
-                yield return new WaitForSeconds(duration);
-                if (branch != null)
-                {
-                    StopBranchGrowing(branch);
-                }
-                isStopping = false;
-            }
-            yield return null;
-        }*/
 }
