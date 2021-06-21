@@ -21,13 +21,14 @@ public class FinishGame : MonoBehaviour
         {
             coroutineActivated = true;
             StartCoroutine(waitSeconds());
+           
         }
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Branch"))
         {
-            Highlighter.instance.ClearCircles();
+            
             winGame.Raise();
             generator._timeBetweenIterations = 0.05f;
         }
@@ -58,6 +59,7 @@ public class FinishGame : MonoBehaviour
     public IEnumerator waitSeconds()
     {
         yield return new WaitForSeconds(1f);
+        Highlighter.instance.ClearCircles();
         generator.finishGrowing = true;
         StartCoroutine(growFlowers());
     }

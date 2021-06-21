@@ -582,10 +582,7 @@ public class Generator : MonoBehaviour
         _branches[index].hitBarrier = true;
         _branches[index]._finalSize = _branches[index]._size;
         OnStopGrowing?.Invoke();
-        if (!finishGrowing)
-        {
         Highlighter.instance.AddCircleFromWorldPos(_branches[index]);
-        }
     }
 
 

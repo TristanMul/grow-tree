@@ -20,7 +20,6 @@ public class CheckBranch : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) {
         if(other.gameObject.CompareTag("Slicer")){
-            Debug.Log("slice");
             GetComponent<Collider>().enabled = false;
             Generator.Branch cutOffBranch = generator._branches[int.Parse(transform.gameObject.name)];
             SliceOffBranch(cutOffBranch);
