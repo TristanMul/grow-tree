@@ -212,6 +212,10 @@ PrefabInstance:
       propertyPath: m_CastShadows
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2380810, guid: 5578b82f17c954843901e8b68ca21dcc, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5578b82f17c954843901e8b68ca21dcc, type: 3}
 --- !u!4 &31535711 stripped
@@ -605,7 +609,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 531558664}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.91, y: 2.66, z: 2.77}
+  m_LocalPosition: {x: -0.91, y: 2.66, z: 3.52}
   m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_Children:
   - {fileID: 31535711}
@@ -1266,10 +1270,10 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 1
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 0.7
+    m_Strength: 0.5
     m_Bias: 0.05
     m_NormalBias: 0.4
     m_NearPlane: 0.2
@@ -3365,10 +3369,40 @@ PrefabInstance:
       propertyPath: cameraOffset.z
       value: -6
       objectReference: {fileID: 0}
+    - target: {fileID: 7103415322470691946, guid: 9b841fce405295145beb3ca4a64e430a,
+        type: 3}
+      propertyPath: zoomLimiter
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7103415322470691946, guid: 9b841fce405295145beb3ca4a64e430a,
+        type: 3}
+      propertyPath: cameraSmoothing
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7103415322470691946, guid: 9b841fce405295145beb3ca4a64e430a,
+        type: 3}
+      propertyPath: timeSinceIteration
+      value: 0.005
+      objectReference: {fileID: 0}
     - target: {fileID: 7103415322470691949, guid: 9b841fce405295145beb3ca4a64e430a,
         type: 3}
       propertyPath: m_Name
       value: Main Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 7103415322470691951, guid: 9b841fce405295145beb3ca4a64e430a,
+        type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0.38412246
+      objectReference: {fileID: 0}
+    - target: {fileID: 7103415322470691951, guid: 9b841fce405295145beb3ca4a64e430a,
+        type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0.83255523
+      objectReference: {fileID: 0}
+    - target: {fileID: 7103415322470691951, guid: 9b841fce405295145beb3ca4a64e430a,
+        type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0.9811321
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b841fce405295145beb3ca4a64e430a, type: 3}
@@ -3538,7 +3572,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.75
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1919158859
 MeshRenderer:
@@ -3595,7 +3629,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1919158857}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.22, y: 7.13, z: 0}
+  m_LocalPosition: {x: 10.87, y: 6.95, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children: []
   m_Father: {fileID: 0}
@@ -6114,7 +6148,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7497369239896672976}
   m_LocalRotation: {x: -0, y: -0, z: -0.6681376, w: 0.7440378}
-  m_LocalPosition: {x: 7.32, y: 2.37, z: 0}
+  m_LocalPosition: {x: 7.25, y: 2.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7497369239216497223}
@@ -6992,6 +7026,16 @@ PrefabInstance:
       propertyPath: CapsulesParent
       value: 
       objectReference: {fileID: 136612052}
+    - target: {fileID: 3680122567213996724, guid: 52be7bd6dfa6da246a126c073249dded,
+        type: 3}
+      propertyPath: _timeBetweenIterations
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3680122567213996724, guid: 52be7bd6dfa6da246a126c073249dded,
+        type: 3}
+      propertyPath: _branchLength
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 3680122567213996725, guid: 52be7bd6dfa6da246a126c073249dded,
         type: 3}
       propertyPath: m_LocalPosition.x
