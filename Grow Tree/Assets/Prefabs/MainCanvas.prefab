@@ -800,7 +800,11 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
+<<<<<<< HEAD
   m_AnchoredPosition: {x: 0.000061035156, y: -0.10510254}
+=======
+  m_AnchoredPosition: {x: 0.000061035156, y: -0.105163574}
+>>>>>>> parent of 92a0ab8 (Blooming changes)
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2003218874
@@ -962,7 +966,11 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
+<<<<<<< HEAD
   m_AnchoredPosition: {x: 0, y: 0.10266113}
+=======
+  m_AnchoredPosition: {x: 0, y: 0.1026001}
+>>>>>>> parent of 92a0ab8 (Blooming changes)
   m_SizeDelta: {x: 0, y: -0.20532}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1030166171
