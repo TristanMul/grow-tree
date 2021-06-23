@@ -7,6 +7,7 @@ public class FinishGame : MonoBehaviour
     [SerializeField] private GameEvent winGame;
     [SerializeField] private GameEvent loseGame;
     [SerializeField] private GameObject[] flowers;
+    private GameObject rockformation;
     [SerializeField] Generator generator;
     [SerializeField] private int flowerRatio;
     [SerializeField] private int clusterMin = 5;
@@ -14,7 +15,10 @@ public class FinishGame : MonoBehaviour
     [SerializeField] private float maxDeviation;
     bool coroutineActivated = false;
     private int growingBranches = 0;
-
+    public void Start()
+    {
+        rockformation = GameObject.Find("Rock formation");
+    }
     public void Test()
     {
         if (!coroutineActivated)
@@ -28,6 +32,10 @@ public class FinishGame : MonoBehaviour
     {
         if (other.CompareTag("Branch"))
         {
+            foreach (Transform children in rockformation.transform)
+            {
+                children.transform.GetChild(0).GetComponentInChildren<Collider>().enabled = false;
+            }
             winGame.Raise();
             generator._timeBetweenIterations = 0.05f;
         winGame.Raise();
