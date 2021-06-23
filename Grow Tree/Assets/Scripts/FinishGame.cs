@@ -6,6 +6,7 @@ public class FinishGame : MonoBehaviour
 {
     [SerializeField] private GameEvent winGame;
     [SerializeField] private GameEvent loseGame;
+    private GameObject rockformation;
     [SerializeField] private GameObject[] flowers;
     [SerializeField] Generator generator;
     [SerializeField] private int flowerRatio;
@@ -15,6 +16,10 @@ public class FinishGame : MonoBehaviour
     bool coroutineActivated = false;
     private int growingBranches = 0;
 
+    public void Start()
+    {
+        rockformation = GameObject.Find("Rock formation");
+    }
     public void Test()
     {
         if (!coroutineActivated)
@@ -27,9 +32,19 @@ public class FinishGame : MonoBehaviour
     {
         if (other.CompareTag("Branch"))
         {
+<<<<<<< Updated upstream
         winGame.Raise();
         Highlighter.instance.ClearCircles();
         generator._timeBetweenIterations = 0.05f;
+=======
+            foreach (Transform children in rockformation.transform)
+            {
+                children.transform.GetChild(0).GetComponentInChildren<Collider>().enabled = false;
+            }
+            generator.BranchHitBarrier();
+            winGame.Raise();
+            generator._timeBetweenIterations = 0.05f;
+>>>>>>> Stashed changes
         }
     }
 
@@ -52,6 +67,11 @@ public class FinishGame : MonoBehaviour
     }
     public IEnumerator waitSeconds()
     {
+<<<<<<< Updated upstream
+=======
+        yield return new WaitForSeconds(generator._timeBetweenIterations + 0.01f);
+        Highlighter.instance.ClearCircles();
+>>>>>>> Stashed changes
         yield return new WaitForSeconds(1f);
         generator.finishGrowing = true;
         StartCoroutine(growFlowers());
@@ -61,8 +81,13 @@ public class FinishGame : MonoBehaviour
 
         for (int i=/*generator._branches.Count-1*/generator._extremities.Count-1; i>=0; i--)
         {
+<<<<<<< Updated upstream
             /*if(generator._branches[i]._children.Count == 0)
             {*/
+=======
+            if(generator._branches[i]._children.Count == 0 && generator._branches[i].canBloom)
+            {
+>>>>>>> Stashed changes
                 int randomNumber = Random.Range(clusterMin, clusterMax);
                 for (int j = 0; j < randomNumber; j++)
                 {
