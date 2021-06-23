@@ -4043,10 +4043,30 @@ PrefabInstance:
       propertyPath: m_CullTransparentMesh
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1990558542295496376, guid: 1f39572d0882f4bda87498c5b0abde39,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 230
+      objectReference: {fileID: 0}
     - target: {fileID: 1990558542295496377, guid: 1f39572d0882f4bda87498c5b0abde39,
         type: 3}
       propertyPath: m_Text
       value: NO MORE GROWING BRANCHES!
+      objectReference: {fileID: 0}
+    - target: {fileID: 1990558542295496377, guid: 1f39572d0882f4bda87498c5b0abde39,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1990558542295496377, guid: 1f39572d0882f4bda87498c5b0abde39,
+        type: 3}
+      propertyPath: m_FontData.m_MaxSize
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 1990558542295496379, guid: 1f39572d0882f4bda87498c5b0abde39,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1990558542803173683, guid: 1f39572d0882f4bda87498c5b0abde39,
         type: 3}

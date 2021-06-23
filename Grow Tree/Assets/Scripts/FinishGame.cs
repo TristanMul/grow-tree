@@ -49,10 +49,10 @@ public class FinishGame : MonoBehaviour
             }
         }
 
-        if (growingBranches == 0 && Highlighter.instance.highlights.Count == 0 && winGame != null)
+        if (growingBranches == 0 && Highlighter.instance.highlights.Count == 0)
         {
             yield return new WaitForSeconds(0.5f);
-            if (growingBranches == 0)
+            if (growingBranches == 0 && winGame != null)
             {
                 loseGame.Raise();
             }
