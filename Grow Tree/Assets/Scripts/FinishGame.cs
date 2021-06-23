@@ -70,7 +70,7 @@ public class FinishGame : MonoBehaviour
     {
         yield return new WaitForSeconds(generator._timeBetweenIterations + 0.01f);
         Highlighter.instance.ClearCircles();
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(5f);
         generator.finishGrowing = true;
         StartCoroutine(growFlowers());
     }
