@@ -33,7 +33,7 @@ public class Generator : MonoBehaviour
         public float _finalSize = 0f;
         public bool hitBarrier = false;
         public bool detached = false;
-        public bool canBloom = false;
+
         public Branch(Vector3 start, Vector3 end, Vector3 direction, Branch parent = null)
         {
             _start = start;
@@ -166,6 +166,7 @@ public class Generator : MonoBehaviour
     void Update()
     {
         branchHitBarrier = BranchHitBarrier();
+
         if (!branchHitBarrier && !finishGrowing && (_branches.Count < maxBranchCount || !alternate))
         {
             _timeSinceLastIteration += Time.deltaTime;
