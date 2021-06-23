@@ -28,15 +28,11 @@ public class FinishGame : MonoBehaviour
     {
         if (other.CompareTag("Branch"))
         {
-<<<<<<< HEAD
-            
             winGame.Raise();
             generator._timeBetweenIterations = 0.05f;
-=======
         winGame.Raise();
         Highlighter.instance.ClearCircles();
         generator._timeBetweenIterations = 0.05f;
->>>>>>> parent of 92a0ab8 (Blooming changes)
         }
     }
 
@@ -64,12 +60,9 @@ public class FinishGame : MonoBehaviour
     }
     public IEnumerator waitSeconds()
     {
-<<<<<<< HEAD
         yield return new WaitForSeconds(generator._timeBetweenIterations + 0.01f);
         Highlighter.instance.ClearCircles();
-=======
         yield return new WaitForSeconds(1f);
->>>>>>> parent of 92a0ab8 (Blooming changes)
         generator.finishGrowing = true;
         StartCoroutine(growFlowers());
     }
@@ -78,13 +71,8 @@ public class FinishGame : MonoBehaviour
 
         for (int i=generator._branches.Count-1; i>=0; i--)
         {
-<<<<<<< HEAD
             if(generator._branches[i]._children.Count == 0)
             {
-=======
-            /*if(generator._branches[i]._children.Count == 0)
-            {*/
->>>>>>> parent of 92a0ab8 (Blooming changes)
                 int randomNumber = Random.Range(clusterMin, clusterMax);
                 for (int j = 0; j < randomNumber; j++)
                 {
