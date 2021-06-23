@@ -26,7 +26,7 @@ public class CameraFollow : MonoBehaviour
         iterationTimer = 0f;
         cam = GetComponent<Camera>();
         radar = GameObject.Find("MainCanvas").GetComponent<Highlighter>();
-        if(finishPosition == null)
+        if (finishPosition == null)
         {
             finishPosition = GameObject.Find("FinishCamera").GetComponent<Transform>();
         }
@@ -34,40 +34,44 @@ public class CameraFollow : MonoBehaviour
 
     void LateUpdate()
     {
-        iterationTimer += Time.deltaTime;
-
-        if (radar.highlights.Count == 0)
+        if (!finished)
         {
-            _attractorsList.Clear();
-            foreach (Generator.Branch extremedy in Generator.instance._extremities)
+
+            iterationTimer += Time.deltaTime;
+
+            if (radar.highlights.Count == 0)
             {
-                if (extremedy._canGrow)
+                _attractorsList.Clear();
+                foreach (Generator.Branch extremity in Generator.instance._extremities)
                 {
-                    _attractorsList.Add(extremedy._start);
+                    if (!extremity._grown)
+                    {
+                        _attractorsList.Add(extremity._start);
+                    }
                 }
+
+                if (_attractorsList.Count == 0)
+                    return;
+
+                if (iterationTimer > timeSinceIteration)
+                {
+                    MoveCamera();
+                    iterationTimer = 0f;
+                }
+                ZoomCamera();
+            }
+            else
+            {
+                velocity = Vector3.zero;
             }
 
-            if (_attractorsList.Count == 0)
-                return;
-            
-            if (iterationTimer > timeSinceIteration)
-            {
-                MoveCamera();
-                iterationTimer = 0f;
-            }
-            ZoomCamera();
+            //if(cam.velocity == Vector3.zero && !Generator.instance.BranchHitBarrier())
+            //{
+            //    print("dead");
+            //}
+
         }
         else
-        {
-            velocity = Vector3.zero;
-        }
-
-        //if(cam.velocity == Vector3.zero && !Generator.instance.BranchHitBarrier())
-        //{
-        //    print("dead");
-        //}
-
-        if (finished)
         {
             //transform.position = Vector3.SmoothDamp(transform.position, finishPosition.position, ref velocity, cameraSmoothing);
             transform.position = Vector3.Lerp(transform.position, finishPosition.position, Time.deltaTime);
