@@ -14,6 +14,7 @@ public class FinishGame : MonoBehaviour
     [SerializeField] private int clusterMax = 3;
     [SerializeField] private float maxDeviation;
     bool coroutineActivated = false;
+    bool wonGame = false;
     private int growingBranches = 0;
     public void Start()
     {
@@ -36,6 +37,7 @@ public class FinishGame : MonoBehaviour
             {
                 children.transform.GetChild(0).GetComponentInChildren<Collider>().enabled = false;
             }
+            wonGame = true;
             winGame.Raise();
             generator._timeBetweenIterations = 0.05f;
         winGame.Raise();
@@ -60,7 +62,7 @@ public class FinishGame : MonoBehaviour
         if (growingBranches == 0 && Highlighter.instance.highlights.Count == 0)
         {
             yield return new WaitForSeconds(0.5f);
-            if (growingBranches == 0 && winGame != null)
+            if (growingBranches == 0 && !wonGame)
             {
                 loseGame.Raise();
             }

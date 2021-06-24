@@ -2544,6 +2544,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5914857903402369969, guid: a690fb50cf9c49941bce80cf8c5a5dae,
+        type: 3}
+      propertyPath: minDistance
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 5914857903402369970, guid: a690fb50cf9c49941bce80cf8c5a5dae,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3518,8 +3523,8 @@ MonoBehaviour:
   flowers:
   - {fileID: 5668859698987896634, guid: 8629f70e18d14b74dad9a5cfcf369378, type: 3}
   generator: {fileID: 1324661855}
-  flowerRatio: 7
-  clusterMin: 5
+  flowerRatio: 0
+  clusterMin: 7
   clusterMax: 5
   maxDeviation: 0.25
 --- !u!54 &1919158863
@@ -7025,7 +7030,7 @@ PrefabInstance:
         type: 3}
       propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1919158862}
+      objectReference: {fileID: 0}
     - target: {fileID: 3680122567213996723, guid: 52be7bd6dfa6da246a126c073249dded,
         type: 3}
       propertyPath: m_CastShadows
