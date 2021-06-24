@@ -1034,7 +1034,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.65
+  m_Radius: 0.75
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1919158859
 MeshRenderer:
@@ -4594,16 +4594,6 @@ PrefabInstance:
       propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1919158862}
-    - target: {fileID: 3680122567213996720, guid: 52be7bd6dfa6da246a126c073249dded,
-        type: 3}
-      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Test
-      objectReference: {fileID: 0}
-    - target: {fileID: 3680122567213996723, guid: 52be7bd6dfa6da246a126c073249dded,
-        type: 3}
-      propertyPath: m_CastShadows
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3680122567213996724, guid: 52be7bd6dfa6da246a126c073249dded,
         type: 3}
       propertyPath: otherAttractors
@@ -4614,21 +4604,6 @@ PrefabInstance:
       propertyPath: CapsulesParent
       value: 
       objectReference: {fileID: 136612052}
-    - target: {fileID: 3680122567213996724, guid: 52be7bd6dfa6da246a126c073249dded,
-        type: 3}
-      propertyPath: _timeBetweenIterations
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3680122567213996724, guid: 52be7bd6dfa6da246a126c073249dded,
-        type: 3}
-      propertyPath: _branchLength
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3680122567213996724, guid: 52be7bd6dfa6da246a126c073249dded,
-        type: 3}
-      propertyPath: _killRange
-      value: 0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 3680122567213996725, guid: 52be7bd6dfa6da246a126c073249dded,
         type: 3}
       propertyPath: m_LocalPosition.x

@@ -384,8 +384,10 @@ public class Generator : MonoBehaviour
             int vid = _radialSubdivisions * i;
             b._verticesId = vid;
 
+            Quaternion quat;
+
             // quaternion to rotate the vertices along the branch direction
-            Quaternion quat = Quaternion.FromToRotation(Vector3.up, b._direction);
+            quat = Quaternion.FromToRotation(Vector3.up, b._direction);
 
             // construction of the vertices 
             for (int s = 0; s < _radialSubdivisions; s++)
