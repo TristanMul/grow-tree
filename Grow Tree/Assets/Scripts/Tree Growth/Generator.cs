@@ -398,7 +398,7 @@ public class Generator : MonoBehaviour
                 // radius is hard-coded to 0.1f for now
                 Vector3 pos;
                 pos = new Vector3(Mathf.Cos(alpha) * b._size, 0, Mathf.Sin(alpha) * b._size);
-
+                
                 pos = quat * pos; // rotation
 
 
@@ -501,15 +501,6 @@ public class Generator : MonoBehaviour
             {
                 turnedOffBranch.Add(_extremities[i]);
             }
-        }
-        Debug.Log("ex: " + _extremities.Count);
-        Debug.Log("off " + turnedOffBranch.Count);
-
-        if (turnedOffBranch.Count > _branches.Count &&
-            turnedOffBranch.Count != 0 && _branches.Count != 0)
-        {
-            Debug.Log("no excrement");
-            //finishGrowing = true;
         }
     }
 
