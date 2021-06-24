@@ -52,7 +52,7 @@ MonoBehaviour:
   _timeBetweenIterations: 0.2
   _attractionRange: 2
   _killRange: 0.5
-  _randomGrowth: 0.05
+  _randomGrowth: 0.02
   _radialSubdivisions: 10
   _extremitiesSize: 0.03
   _invertGrowth: 2.4
