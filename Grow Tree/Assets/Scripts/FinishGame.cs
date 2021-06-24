@@ -33,16 +33,9 @@ public class FinishGame : MonoBehaviour
     {
         if (other.CompareTag("Branch"))
         {
-            foreach (Transform children in rockformation.transform)
-            {
-                children.transform.GetChild(0).GetComponentInChildren<Collider>().enabled = false;
-            }
             wonGame = true;
             winGame.Raise();
             generator._timeBetweenIterations = 0.05f;
-        winGame.Raise();
-        Highlighter.instance.ClearCircles();
-        generator._timeBetweenIterations = 0.05f;
         }
     }
 
@@ -58,8 +51,7 @@ public class FinishGame : MonoBehaviour
                 growingBranches++;
             }
         }
-
-        if (growingBranches == 0 && Highlighter.instance.highlights.Count == 0)
+        if ((growingBranches == 0 && Highlighter.instance.highlights.Count == 0))
         {
             yield return new WaitForSeconds(0.5f);
             if (growingBranches == 0 && !wonGame)
@@ -74,6 +66,7 @@ public class FinishGame : MonoBehaviour
         Highlighter.instance.ClearCircles();
         yield return new WaitForSeconds(5f);
         generator.finishGrowing = true;
+        Debug.Log("activating growflowers");
         StartCoroutine(growFlowers());
     }
     public IEnumerator growFlowers()
@@ -81,8 +74,9 @@ public class FinishGame : MonoBehaviour
 
         for (int i=generator._branches.Count-1; i>=0; i--)
         {
-            if(generator._branches[i]._children.Count == 0)
+            if(generator._branches[i]._children.Count == 0 && generator._branches[i].canBloom)
             {
+                
                 int randomNumber = Random.Range(clusterMin, clusterMax);
                 for (int j = 0; j < randomNumber; j++)
                 {
