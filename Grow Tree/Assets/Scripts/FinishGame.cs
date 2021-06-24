@@ -13,6 +13,7 @@ public class FinishGame : MonoBehaviour
     [SerializeField] private int clusterMax = 3;
     [SerializeField] private float maxDeviation;
     bool coroutineActivated = false;
+    bool wonGame = false;
     private int growingBranches = 0;
 
     public void Test()
@@ -28,11 +29,9 @@ public class FinishGame : MonoBehaviour
     {
         if (other.CompareTag("Branch"))
         {
+            wonGame = true;
             winGame.Raise();
             generator._timeBetweenIterations = 0.05f;
-        winGame.Raise();
-        Highlighter.instance.ClearCircles();
-        generator._timeBetweenIterations = 0.05f;
         }
     }
 
@@ -48,11 +47,10 @@ public class FinishGame : MonoBehaviour
                 growingBranches++;
             }
         }
-        //Debug.Log(growingBranches + " & " + Highlighter.instance.highlights.Count);
         if ((growingBranches == 0 && Highlighter.instance.highlights.Count == 0))
         {
             yield return new WaitForSeconds(0.5f);
-            if (growingBranches == 0)
+            if (growingBranches == 0 && !wonGame)
             {
                 loseGame.Raise();
             }
