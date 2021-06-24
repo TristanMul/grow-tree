@@ -33,6 +33,10 @@ public class FinishGame : MonoBehaviour
     {
         if (other.CompareTag("Branch"))
         {
+            foreach (Transform children in rockformation.transform)
+            {
+                children.transform.GetChild(0).GetComponentInChildren<Collider>().enabled = false;
+            }
             wonGame = true;
             winGame.Raise();
             generator._timeBetweenIterations = 0.05f;
