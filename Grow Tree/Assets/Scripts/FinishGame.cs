@@ -48,13 +48,8 @@ public class FinishGame : MonoBehaviour
                 growingBranches++;
             }
         }
-<<<<<<< Updated upstream
-
-        if (growingBranches == 0 && Highlighter.instance.highlights.Count == 0 && winGame != null)
-=======
         //Debug.Log(growingBranches + " & " + Highlighter.instance.highlights.Count);
         if ((growingBranches == 0 && Highlighter.instance.highlights.Count == 0))
->>>>>>> Stashed changes
         {
             yield return new WaitForSeconds(0.5f);
             if (growingBranches == 0)

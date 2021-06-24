@@ -7201,14 +7201,11 @@ PrefabInstance:
       propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1919158862}
-<<<<<<< Updated upstream
-=======
     - target: {fileID: 3680122567213996720, guid: 52be7bd6dfa6da246a126c073249dded,
         type: 3}
       propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Test
       objectReference: {fileID: 0}
->>>>>>> Stashed changes
     - target: {fileID: 3680122567213996723, guid: 52be7bd6dfa6da246a126c073249dded,
         type: 3}
       propertyPath: m_CastShadows
