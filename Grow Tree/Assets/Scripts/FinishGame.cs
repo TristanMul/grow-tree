@@ -7,6 +7,7 @@ public class FinishGame : MonoBehaviour
     [SerializeField] private GameEvent winGame;
     [SerializeField] private GameEvent loseGame;
     [SerializeField] private GameObject[] flowers;
+    private GameObject rockformation;
     [SerializeField] Generator generator;
     [SerializeField] private int flowerRatio;
     [SerializeField] private int clusterMin = 5;
@@ -15,7 +16,10 @@ public class FinishGame : MonoBehaviour
     bool coroutineActivated = false;
     bool wonGame = false;
     private int growingBranches = 0;
-
+    public void Start()
+    {
+        rockformation = GameObject.Find("Rock formation");
+    }
     public void Test()
     {
         if (!coroutineActivated)
@@ -60,7 +64,7 @@ public class FinishGame : MonoBehaviour
     {
         yield return new WaitForSeconds(generator._timeBetweenIterations + 0.01f);
         Highlighter.instance.ClearCircles();
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(5f);
         generator.finishGrowing = true;
         Debug.Log("activating growflowers");
         StartCoroutine(growFlowers());
