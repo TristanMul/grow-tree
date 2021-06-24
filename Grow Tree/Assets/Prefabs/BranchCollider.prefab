@@ -60,6 +60,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7d8bcc47cb472546a7dfaf44107c4fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loseGame: {fileID: 11400000, guid: 3e16d612130c25145bffa8316987c27c, type: 2}
 --- !u!114 &3114706243474454962
 MonoBehaviour:
   m_ObjectHideFlags: 0

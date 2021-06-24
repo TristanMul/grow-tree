@@ -33,6 +33,7 @@ public class Generator : MonoBehaviour
         public float _finalSize = 0f;
         public bool hitBarrier = false;
         public bool detached = false;
+        public bool canBloom = false;
 
         public Branch(Vector3 start, Vector3 end, Vector3 direction, Branch parent = null)
         {
@@ -553,7 +554,7 @@ public class Generator : MonoBehaviour
     }
 
 
-    bool branchHitBarrier;
+    public bool branchHitBarrier;
     /// <summary>
     /// Checks if any branches have hit a barrier
     /// </summary>

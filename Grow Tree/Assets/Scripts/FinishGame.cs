@@ -48,8 +48,13 @@ public class FinishGame : MonoBehaviour
                 growingBranches++;
             }
         }
+<<<<<<< Updated upstream
 
         if (growingBranches == 0 && Highlighter.instance.highlights.Count == 0 && winGame != null)
+=======
+        //Debug.Log(growingBranches + " & " + Highlighter.instance.highlights.Count);
+        if ((growingBranches == 0 && Highlighter.instance.highlights.Count == 0))
+>>>>>>> Stashed changes
         {
             yield return new WaitForSeconds(0.5f);
             if (growingBranches == 0)
@@ -64,6 +69,7 @@ public class FinishGame : MonoBehaviour
         Highlighter.instance.ClearCircles();
         yield return new WaitForSeconds(1f);
         generator.finishGrowing = true;
+        Debug.Log("activating growflowers");
         StartCoroutine(growFlowers());
     }
     public IEnumerator growFlowers()
@@ -71,8 +77,9 @@ public class FinishGame : MonoBehaviour
 
         for (int i=generator._branches.Count-1; i>=0; i--)
         {
-            if(generator._branches[i]._children.Count == 0)
+            if(generator._branches[i]._children.Count == 0 && generator._branches[i].canBloom)
             {
+                
                 int randomNumber = Random.Range(clusterMin, clusterMax);
                 for (int j = 0; j < randomNumber; j++)
                 {
