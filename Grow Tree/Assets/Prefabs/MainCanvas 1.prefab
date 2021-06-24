@@ -206,7 +206,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 100.00003}
-  m_SizeDelta: {x: 1000, y: 250}
+  m_SizeDelta: {x: 1000, y: 230}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1990558542295496262
 CanvasRenderer:
@@ -215,7 +215,7 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1990558542295496379}
-  m_CullTransparentMesh: 0
+  m_CullTransparentMesh: 1
 --- !u!114 &1990558542295496377
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -240,14 +240,14 @@ MonoBehaviour:
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 0
-    m_MaxSize: 160
+    m_MaxSize: 300
     m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: NO MORE GROWING BRANCHES
+  m_Text: NO MORE GROWING BRANCHES!
 --- !u!114 &7966152066744263381
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -378,7 +378,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8425eed7acf903247aea527857f20768, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highlightCircle: {fileID: 0}
+  highlightCircle: {fileID: 2629922539039076625, guid: ad8745d3e778b7c4bba0fa4a3c0c7bec,
+    type: 3}
 --- !u!1 &1990558543209964809
 GameObject:
   m_ObjectHideFlags: 0
