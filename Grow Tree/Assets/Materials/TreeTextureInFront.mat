@@ -40,12 +40,12 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
-        m_Texture: {fileID: 2800000, guid: 31892ea6b3f8e614ba125699a9366592, type: 3}
-        m_Scale: {x: 1, y: 1}
+        m_Texture: {fileID: 2800000, guid: d05a31efd9dc7c6488fb918108b5550a, type: 3}
+        m_Scale: {x: 4, y: 4}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 31892ea6b3f8e614ba125699a9366592, type: 3}
-        m_Scale: {x: 1, y: 1}
+        m_Texture: {fileID: 2800000, guid: d05a31efd9dc7c6488fb918108b5550a, type: 3}
+        m_Scale: {x: 4, y: 4}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
@@ -69,7 +69,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _GlossMapScale: 1
-    - _Glossiness: 0.5
+    - _Glossiness: 0
     - _GlossyReflections: 1
     - _Metallic: 0
     - _Mode: 0
@@ -86,7 +86,7 @@ Material:
     - _ZWrite: 1
     - _animateRimWidth: 0
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissionColor: {r: 0.27342337, g: 0.27342337, b: 0.27342337, a: 1}
+    - _Color: {r: 0.3301887, g: 0.20958027, b: 0.054512277, a: 1}
+    - _EmissionColor: {r: 0.4056604, g: 0.34975103, b: 0.29659134, a: 1}
     - _RimColor: {r: 1, g: 0, b: 0, a: 1}
     - _RimSecondaryColor: {r: 1, g: 0, b: 0, a: 1}

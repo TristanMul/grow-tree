@@ -47,26 +47,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 524c27571c0f2ec47b3d7d568d52c4c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _nbAttractors: 600
-  _radius: 5
   _startPosition: {x: 0, y: 0, z: 0}
-  _branchLength: 0.1
-  _timeBetweenIterations: 0.2
+  _branchLength: 0.2
+  _timeBetweenIterations: 0.4
   _attractionRange: 2
-  _killRange: 0.3
+  _killRange: 0.5
   _randomGrowth: 0.15
   _radialSubdivisions: 10
-  _extremitiesSize: 0.025
-  _invertGrowth: 2.2
+  _extremitiesSize: 0.03
+  _invertGrowth: 2.4
   indexCounter: 0
   maxBranchCount: 100
   _attractors: []
   _activeAttractors: 
   _capsules: []
   finishGrowing: 0
-  alternate: 1
+  alternate: 0
   currentVertices: []
-  otherAtrractors: {fileID: 0}
+  otherAttractors: {fileID: 0}
+  CapsulesParent: {fileID: 0}
   branchColliderPrefab: {fileID: 3114706243474454963, guid: f655fedf26d588245886a6d10f829172,
     type: 3}
   attractorList: {fileID: 11400000, guid: a5cb163dede309440b266b725befc409, type: 2}
@@ -80,7 +79,7 @@ MeshRenderer:
   m_GameObject: {fileID: 3680122567213996727}
   m_Enabled: 1
   m_CastShadows: 0
-  m_ReceiveShadows: 1
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1

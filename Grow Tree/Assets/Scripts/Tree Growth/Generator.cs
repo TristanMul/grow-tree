@@ -33,6 +33,7 @@ public class Generator : MonoBehaviour
         public float _finalSize = 0f;
         public bool hitBarrier = false;
         public bool detached = false;
+        public bool canBloom = false;
 
         public Branch(Vector3 start, Vector3 end, Vector3 direction, Branch parent = null)
         {
@@ -96,6 +97,7 @@ public class Generator : MonoBehaviour
     //public List<Transform> customAtrractors = new List<Transform>();
 
     public GameObject otherAttractors;
+    public GameObject CapsulesParent;
     //public List<Transform> otherAtrractorsList = new List<Transform>();
 
     [Header("Other")]
@@ -548,10 +550,11 @@ public class Generator : MonoBehaviour
         newBranch.transform.up = b._direction.normalized;
         newBranch.name = b._index.ToString();
         _capsules.Add(newBranch);
+        newBranch.transform.parent = CapsulesParent.transform;
     }
 
 
-    bool branchHitBarrier;
+    public bool branchHitBarrier;
     /// <summary>
     /// Checks if any branches have hit a barrier
     /// </summary>
@@ -584,20 +587,4 @@ public class Generator : MonoBehaviour
     }
 
 
-    /*    bool isStopping;
-        public IEnumerator StopGrowingInTime(float duration, Branch branch)
-        {
-            if (!isStopping)
-            {
-                isStopping = true;
-
-                yield return new WaitForSeconds(duration);
-                if (branch != null)
-                {
-                    StopBranchGrowing(branch);
-                }
-                isStopping = false;
-            }
-            yield return null;
-        }*/
 }
