@@ -18,6 +18,7 @@ public class Highlighter : MonoBehaviour
 
 
     [SerializeField] GameObject highlightCircle;
+    [SerializeField] private GameObject tutorialSwipe;
     [HideInInspector] public List<HighLight> highlights = new List<HighLight>();
     Camera cam;
     public static Highlighter instance;
@@ -65,4 +66,5 @@ public class Highlighter : MonoBehaviour
             }
         }
     }
-}
+
+    }
