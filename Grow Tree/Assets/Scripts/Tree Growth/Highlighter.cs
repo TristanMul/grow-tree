@@ -16,9 +16,10 @@ public class Highlighter : MonoBehaviour
         }
     }
 
-
+    [HideInInspector] public int tutorialLocation;
     [SerializeField] GameObject highlightCircle;
     [SerializeField] private GameObject tutorialSwipe;
+    [SerializeField] private float timeToWait = 3.5f;
     [HideInInspector] public List<HighLight> highlights = new List<HighLight>();
     Camera cam;
     public static Highlighter instance;
@@ -57,7 +58,7 @@ public class Highlighter : MonoBehaviour
     /// <param name="branches"></param>
     public void UpdateCircles()
     {
-        for (int i = highlights.Count-1; i >= 0; i--)//Reverse for loop so you can remove stuff
+        for (int i = highlights.Count - 1; i >= 0; i--)//Reverse for loop so you can remove stuff
         {
             if (highlights[i].branch.detached)
             {
@@ -66,5 +67,10 @@ public class Highlighter : MonoBehaviour
             }
         }
     }
-
-    }
+/*    public IEnumerator showTutorial(Generator.Branch branch)
+    {
+        tutorialLocation = branch._index;
+        yield return new WaitForSeconds(timeToWait);
+        Instantiate(tutorialSwipe, branch._start, Quaternion.LookRotation(branch._direction));
+    }*/
+}
