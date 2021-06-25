@@ -384,8 +384,10 @@ public class Generator : MonoBehaviour
             int vid = _radialSubdivisions * i;
             b._verticesId = vid;
 
+            Quaternion quat;
+
             // quaternion to rotate the vertices along the branch direction
-            Quaternion quat = Quaternion.FromToRotation(Vector3.up, b._direction);
+            quat = Quaternion.FromToRotation(Vector3.up, b._direction);
 
             // construction of the vertices 
             for (int s = 0; s < _radialSubdivisions; s++)
@@ -396,7 +398,7 @@ public class Generator : MonoBehaviour
                 // radius is hard-coded to 0.1f for now
                 Vector3 pos;
                 pos = new Vector3(Mathf.Cos(alpha) * b._size, 0, Mathf.Sin(alpha) * b._size);
-
+                
                 pos = quat * pos; // rotation
 
 
@@ -499,15 +501,6 @@ public class Generator : MonoBehaviour
             {
                 turnedOffBranch.Add(_extremities[i]);
             }
-        }
-        Debug.Log("ex: " + _extremities.Count);
-        Debug.Log("off " + turnedOffBranch.Count);
-
-        if (turnedOffBranch.Count > _branches.Count &&
-            turnedOffBranch.Count != 0 && _branches.Count != 0)
-        {
-            Debug.Log("no excrement");
-            //finishGrowing = true;
         }
     }
 

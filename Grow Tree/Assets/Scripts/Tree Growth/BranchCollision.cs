@@ -20,7 +20,6 @@ public class BranchCollision : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        /*Debug.Log(other.gameObject.tag);*/
         if (other.gameObject.tag == "Barrier")
         {
             StopCoroutine(finish.CheckIfLost());
@@ -35,7 +34,6 @@ public class BranchCollision : MonoBehaviour
             Debug.Log("Growing branches: " + growingBranches);
             if(growingBranches == 1)
             {
-                Debug.Log("Raising event");
                 loseGame.Raise();
             }
             Generator.instance.StopBranchGrowing(index);

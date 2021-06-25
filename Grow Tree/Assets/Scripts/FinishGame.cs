@@ -68,7 +68,7 @@ public class FinishGame : MonoBehaviour
     {
         yield return new WaitForSeconds(generator._timeBetweenIterations + 0.01f);
         Highlighter.instance.ClearCircles();
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(3f);
         generator.finishGrowing = true;
         Debug.Log("activating growflowers");
         StartCoroutine(growFlowers());
