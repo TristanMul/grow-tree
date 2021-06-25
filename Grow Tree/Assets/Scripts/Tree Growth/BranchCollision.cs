@@ -33,15 +33,12 @@ public class BranchCollision : MonoBehaviour
                 }
             }
             Debug.Log("Growing branches: " + growingBranches);
-            if(growingBranches == 1 && Highlighter.instance.highlights.Count == 1 && Generator.instance.branchHitBarrier)
+            if(growingBranches == 1)
             {
                 Debug.Log("Raising event");
                 loseGame.Raise();
             }
-            else
-            {
             Generator.instance.StopBranchGrowing(index);
-            }
         }
     }
 }
