@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3763290345309979216}
   m_Layer: 0
   m_Name: Leaf
-  m_TagString: Untagged
+  m_TagString: Attractor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

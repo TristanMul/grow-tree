@@ -4512,7 +4512,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1215476940}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11, y: 7, z: 0}
+  m_LocalPosition: {x: -1, y: 7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -6200,7 +6200,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.75
+  m_Radius: 0.5
   m_Height: 5
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: -2.5}
@@ -6259,7 +6259,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1919158857}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.87, y: 6.95, z: 3.46}
+  m_LocalPosition: {x: -1, y: 6.95, z: 3.46}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children: []
   m_Father: {fileID: 0}
@@ -6283,8 +6283,8 @@ MonoBehaviour:
   - {fileID: 6291745684950820257, guid: 4cd767e35cd1c384ba09416b189595fd, type: 3}
   generator: {fileID: 1324661855}
   flowerRatio: 0
-  clusterMin: 7
-  clusterMax: 5
+  clusterMin: 5
+  clusterMax: 3
   maxDeviation: 0.25
 --- !u!54 &1919158863
 Rigidbody:

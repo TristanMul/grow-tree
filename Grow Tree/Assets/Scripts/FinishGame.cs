@@ -38,6 +38,11 @@ public class FinishGame : MonoBehaviour
                 children.transform.GetChild(0).GetComponentInChildren<Collider>().enabled = false;
             }
             wonGame = true;
+            generator.alternate = false;
+       /*     foreach(Vector3 attractor in generator._attractors)
+            {
+                if(attractor.)
+            }*/
             winGame.Raise();
             generator._timeBetweenIterations = 0.05f;
         }
@@ -88,8 +93,8 @@ public class FinishGame : MonoBehaviour
                     float x = Random.Range(-maxDeviation, maxDeviation);
                     float y = Random.Range(-maxDeviation, maxDeviation);
                     Instantiate(flowers[randomItem], generator._branches[i]._end + new Vector3(x, y, -0.5f), new Quaternion(0, 0, 0, 0));
+                yield return new WaitForSeconds(0.1f/randomNumber);
                 }
-                yield return new WaitForSeconds(0.05f);
             }
         }
     }
