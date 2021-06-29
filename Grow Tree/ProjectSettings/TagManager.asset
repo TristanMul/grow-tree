@@ -9,6 +9,7 @@ TagManager:
   - Sun
   - Branch
   - FinishCamera
+  - Attractor
   layers:
   - Default
   - TransparentFX

@@ -34,7 +34,7 @@ public class CameraFollow : MonoBehaviour
 
     void LateUpdate()
     {
-        if (!finished)
+        if (!finished && Generator.instance.movingCamera)
         {
 
             iterationTimer += Time.deltaTime;
