@@ -15,6 +15,6 @@ public class FlowerBloom : MonoBehaviour
 
         petal.GetComponent<SpriteRenderer>().color = colors[randomColor];
         }
-       // fallingLeaves.GetComponent<ParticleSystem>().startColor = colors[randomColor];
+       fallingLeaves.GetComponent<ParticleSystem>().startColor = colors[randomColor];
     }
 }

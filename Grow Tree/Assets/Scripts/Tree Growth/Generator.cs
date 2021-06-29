@@ -88,6 +88,8 @@ public class Generator : MonoBehaviour
     public List<Branch> _extremities = new List<Branch>();
     public bool finishGrowing = false;
     public bool alternate;
+    public bool started = false;
+    public bool movingCamera = false;
     // the elpsed time since the last iteration, this is used for the purpose of animation
     float _timeSinceLastIteration = 0f;
 
@@ -168,7 +170,7 @@ public class Generator : MonoBehaviour
     {
         branchHitBarrier = BranchHitBarrier();
 
-        if (!branchHitBarrier && !finishGrowing && (_branches.Count < maxBranchCount || !alternate))
+        if (!branchHitBarrier && !finishGrowing && (_branches.Count < maxBranchCount || !alternate) && started)
         {
             _timeSinceLastIteration += Time.deltaTime;
 

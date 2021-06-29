@@ -28,6 +28,7 @@ public class Slicer : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0)){
             StartUpdateTrail();
+            startGame();
         }
         else if(Input.GetMouseButtonUp(0)){
             StopUpdateTrail();
@@ -74,6 +75,16 @@ public class Slicer : MonoBehaviour
         }
 
         
+    }
+    void startGame()
+    {
+        Generator.instance.movingCamera = true;
+        StartCoroutine(Startgrowth());
+    }
+    IEnumerator Startgrowth()
+    {
+        yield return new WaitForSeconds(1f);
+        Generator.instance.started = true;
     }
 
     void DisableThis()
