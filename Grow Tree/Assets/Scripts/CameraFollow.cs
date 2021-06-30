@@ -89,6 +89,7 @@ public class CameraFollow : MonoBehaviour
 
     void MoveCamera()
     {
+        transform.rotation = Quaternion.EulerRotation(0, 0, 0);
         Vector3 centerPos = GetCenterPoint();
         newPos = centerPos + cameraOffset;
         transform.position = Vector3.SmoothDamp(transform.position, newPos, ref velocity, cameraSmoothing);

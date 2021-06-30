@@ -34,7 +34,7 @@ public class FinishGame : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Branch"))
+        if (other.CompareTag("Branch") && !wonGame)
         {
             foreach (Transform children in rockformation.transform)
             {
@@ -42,6 +42,7 @@ public class FinishGame : MonoBehaviour
             }
             generator._attractors = attractorsInRange;
             wonGame = true;
+            generator._killRange = 0.25f;
             generator.alternate = false;
             winGame.Raise();
             generator._timeBetweenIterations = 0.05f;
