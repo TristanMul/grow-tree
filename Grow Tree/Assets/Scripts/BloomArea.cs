@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class BloomArea : MonoBehaviour
 {
+    private List<Vector3> attractorsInRange;
+    private void Start()
+    {
+        attractorsInRange.AddRange(Generator.instance._attractors);
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Branch"))
