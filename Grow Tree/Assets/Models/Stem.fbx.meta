@@ -1,14 +1,9 @@
 fileFormatVersion: 2
-guid: b69ed24a53a747f408064bb6c6f9c264
+guid: 59a7ab5077933473482883a279f433d0
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Cliff_Mat
-    second: {fileID: 2100000, guid: da0b6a3af42c51241ae88077906d50cb, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 1
     materialName: 0
@@ -92,7 +87,7 @@ ModelImporter:
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   avatarSetup: 0
   additionalBone: 0
