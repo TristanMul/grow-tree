@@ -9,9 +9,10 @@ public class BloomArea : MonoBehaviour
         if (other.CompareTag("Branch"))
         {            Generator.instance._branches[int.Parse(other.name)].canBloom = true;
         }
-        if (other.CompareTag("Attractor"))
+/*        if (other.CompareTag("Attractor"))
         {
-            other.GetComponent<Attractor>().killable = false;
-        }
+            Debug.Log(other.transform.position);
+            attractorsInRange.Remove(other.transform.position);
+        }*/
     }
 }

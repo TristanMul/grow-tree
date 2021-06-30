@@ -114,6 +114,7 @@ public class Generator : MonoBehaviour
 
     void Awake()
     {
+        GenerateAttractors();
         // initilization 
         if (instance == null)
         {
@@ -152,8 +153,7 @@ public class Generator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GenerateAttractors();
-
+   
         _filter = GetComponent<MeshFilter>();
 
         // we generate the first branch 
@@ -170,7 +170,7 @@ public class Generator : MonoBehaviour
     {
         branchHitBarrier = BranchHitBarrier();
 
-        if (!branchHitBarrier && !finishGrowing && (_branches.Count < maxBranchCount || !alternate) && started)
+        if (!branchHitBarrier && !finishGrowing && (_branches.Count < maxBranchCount || !alternate) && started && _attractors.Count > 0)
         {
             _timeSinceLastIteration += Time.deltaTime;
 

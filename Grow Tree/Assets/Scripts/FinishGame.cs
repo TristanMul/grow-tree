@@ -7,12 +7,15 @@ public class FinishGame : MonoBehaviour
     [SerializeField] private GameEvent winGame;
     [SerializeField] private GameEvent loseGame;
     [SerializeField] private GameObject[] flowers;
+    [SerializeField] private GameObject[] leaves;
     private GameObject rockformation;
     [SerializeField] Generator generator;
     [SerializeField] private int flowerRatio;
     [SerializeField] private int clusterMin = 5;
     [SerializeField] private int clusterMax = 3;
     [SerializeField] private float maxDeviation;
+    [SerializeField] private float maxAngle;
+    public List<Vector3> attractorsInRange;
     bool coroutineActivated = false;
     bool wonGame = false;
     private int growingBranches = 0;
@@ -31,18 +34,21 @@ public class FinishGame : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
+        if (other.CompareTag("Attractor"))
+        {
+            Debug.Log("GetAttractors");
+            attractorsInRange.Add(other.transform.position);
+        }
         if (other.CompareTag("Branch"))
         {
+            Debug.Log("Triggered");
             foreach (Transform children in rockformation.transform)
             {
                 children.transform.GetChild(0).GetComponentInChildren<Collider>().enabled = false;
             }
+            generator._attractors = attractorsInRange;
             wonGame = true;
             generator.alternate = false;
-       /*     foreach(Vector3 attractor in generator._attractors)
-            {
-                if(attractor.)
-            }*/
             winGame.Raise();
             generator._timeBetweenIterations = 0.05f;
         }
@@ -91,8 +97,10 @@ public class FinishGame : MonoBehaviour
                 {
                     int randomItem = Random.Range(0, flowers.Length);
                     float x = Random.Range(-maxDeviation, maxDeviation);
+                    float xAngle = Random.Range(-maxAngle, maxAngle);
+                    float yAngle = Random.Range(-maxAngle, maxAngle);
                     float y = Random.Range(-maxDeviation, maxDeviation);
-                    Instantiate(flowers[randomItem], generator._branches[i]._end + new Vector3(x, y, -0.5f), new Quaternion(0, 0, 0, 0));
+                    Instantiate(flowers[randomItem], generator._branches[i]._end + new Vector3(x, y, -0.5f), new Quaternion(xAngle, yAngle, 0, 0));
                 yield return new WaitForSeconds(0.1f/randomNumber);
                 }
             }
