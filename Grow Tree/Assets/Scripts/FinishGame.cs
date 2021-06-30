@@ -34,14 +34,8 @@ public class FinishGame : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Attractor"))
-        {
-            Debug.Log("GetAttractors");
-            attractorsInRange.Add(other.transform.position);
-        }
         if (other.CompareTag("Branch"))
         {
-            Debug.Log("Triggered");
             foreach (Transform children in rockformation.transform)
             {
                 children.transform.GetChild(0).GetComponentInChildren<Collider>().enabled = false;
@@ -75,15 +69,16 @@ public class FinishGame : MonoBehaviour
             }
         }
     }
+
     public IEnumerator waitSeconds()
     {
         yield return new WaitForSeconds(generator._timeBetweenIterations + 0.01f);
         Highlighter.instance.ClearCircles();
         yield return new WaitForSeconds(3f);
         generator.finishGrowing = true;
-        Debug.Log("activating growflowers");
         StartCoroutine(growFlowers());
     }
+
     public IEnumerator growFlowers()
     {
 
