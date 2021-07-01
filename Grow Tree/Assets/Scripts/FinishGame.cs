@@ -82,12 +82,25 @@ public class FinishGame : MonoBehaviour
 
     public IEnumerator growFlowers()
     {
-
-        for (int i=generator._branches.Count-1; i>=0; i--)
+        for (int i = generator._branches.Count - 1; i >= 0; i--)
         {
-            if(generator._branches[i]._children.Count == 0 && generator._branches[i].canBloom)
+            if (generator._branches[i]._children.Count == 0 && generator._branches[i].canBloom)
             {
-                
+                    int randomItem = Random.Range(0, flowers.Length);
+                    float x = Random.Range(-maxDeviation, maxDeviation);
+                    float y = Random.Range(-maxDeviation, maxDeviation);
+                    Instantiate(leaves[randomItem], generator._branches[i]._end + new Vector3(0,0, 0.25f), Quaternion.LookRotation(generator._branches[i]._direction));
+                    yield return new WaitForSeconds(0.1f);
+            }
+        }
+    }
+    public IEnumerator growLeaves()
+    {
+        for (int i = generator._branches.Count - 1; i >= 0; i--)
+        {
+            if (generator._branches[i]._children.Count == 0 && generator._branches[i].canBloom)
+            {
+
                 int randomNumber = Random.Range(clusterMin, clusterMax);
                 for (int j = 0; j < randomNumber; j++)
                 {
@@ -97,7 +110,7 @@ public class FinishGame : MonoBehaviour
                     float yAngle = Random.Range(-maxAngle, maxAngle);
                     float y = Random.Range(-maxDeviation, maxDeviation);
                     Instantiate(flowers[randomItem], generator._branches[i]._end + new Vector3(x, y, -0.5f), new Quaternion(xAngle, yAngle, 0, 0));
-                yield return new WaitForSeconds(0.1f/randomNumber);
+                    yield return new WaitForSeconds(0.1f / randomNumber);
                 }
             }
         }

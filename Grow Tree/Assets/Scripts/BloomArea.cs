@@ -19,7 +19,6 @@ public class BloomArea : MonoBehaviour
         }
         if (other.CompareTag("Attractor"))
         {
-            Debug.Log("adding attractor");
             finish.attractorsInRange.Add(other.transform.position);
         }
     }
