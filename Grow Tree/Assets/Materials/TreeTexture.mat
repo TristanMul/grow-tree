@@ -9,12 +9,13 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: TreeTexture
   m_Shader: {fileID: 4800000, guid: dd634194929f3544aaf32d15d1e62077, type: 3}
-  m_ShaderKeywords: _EMISSION _USERIM_ON
+  m_ShaderKeywords: _ALPHATEST_ON _EMISSION _USERIM_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
+  m_CustomRenderQueue: 2450
+  stringTagMap:
+    RenderType: TransparentCutout
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -72,7 +73,7 @@ Material:
     - _Glossiness: 0
     - _GlossyReflections: 1
     - _Metallic: 0
-    - _Mode: 0
+    - _Mode: 1
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _RimFalloff: 1
