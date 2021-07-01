@@ -3318,8 +3318,8 @@ MonoBehaviour:
   leaves: []
   generator: {fileID: 1324661855}
   flowerRatio: 0
-  clusterMin: 7
-  clusterMax: 5
+  clusterMin: 2
+  clusterMax: 1
   maxDeviation: 0.25
   maxAngle: 0
   attractorsInRange: []

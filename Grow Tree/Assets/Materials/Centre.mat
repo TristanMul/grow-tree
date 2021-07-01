@@ -7,10 +7,10 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Petal
+  m_Name: Centre
   m_Shader: {fileID: 4800000, guid: 7a2a90f4e7dfe46bd9aeac7a5351111a, type: 3}
   m_ShaderKeywords: _EMISSION
-  m_LightmapFlags: 0
+  m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -86,7 +86,7 @@ Material:
     - _ZWrite: 1
     - _animateRimWidth: 0
     m_Colors:
-    - _Color: {r: 0.93725497, g: 0.54509807, b: 0.8352942, a: 1}
-    - _EmissionColor: {r: 1, g: 0.25, b: 1, a: 1}
+    - _Color: {r: 1, g: 0.80784315, b: 0.21226412, a: 1}
+    - _EmissionColor: {r: 0.5566038, g: 0.42539462, b: 0.018378438, a: 1}
     - _RimColor: {r: 0, g: 0, b: 0, a: 1}
     - _RimSecondaryColor: {r: 0, g: 0, b: 0, a: 1}
