@@ -75,8 +75,8 @@ public class CameraFollow : MonoBehaviour
         {
             //transform.position = Vector3.SmoothDamp(transform.position, finishPosition.position, ref velocity, cameraSmoothing);
             transform.position = Vector3.Lerp(transform.position, finishPosition.position, Time.deltaTime);
-            //RenderSettings.fogEndDistance += (transform.position.z - finishPosition.position.z) / 100f;
-            //RenderSettings.fogStartDistance += (transform.position.z - finishPosition.position.z) / 100f;
+            RenderSettings.fogEndDistance += (transform.position.z - finishPosition.position.z) / 100f;
+            RenderSettings.fogStartDistance += (transform.position.z - finishPosition.position.z) / 100f;
         }
     }
     //}
