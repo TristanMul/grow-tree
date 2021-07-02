@@ -5904,17 +5904,17 @@ PrefabInstance:
     - target: {fileID: 2102506386247937301, guid: 98f11b6c0dc6d1d4aae62bbc609da802,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.43
+      value: 6.15
       objectReference: {fileID: 0}
     - target: {fileID: 2102506386247937301, guid: 98f11b6c0dc6d1d4aae62bbc609da802,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.69
+      value: 4.6900034
       objectReference: {fileID: 0}
     - target: {fileID: 2102506386247937301, guid: 98f11b6c0dc6d1d4aae62bbc609da802,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -16.68
+      value: -13.52
       objectReference: {fileID: 0}
     - target: {fileID: 2102506386247937301, guid: 98f11b6c0dc6d1d4aae62bbc609da802,
         type: 3}
@@ -9866,17 +9866,17 @@ PrefabInstance:
     - target: {fileID: 7103415322470691944, guid: 9b841fce405295145beb3ca4a64e430a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.43
+      value: 6.15
       objectReference: {fileID: 0}
     - target: {fileID: 7103415322470691944, guid: 9b841fce405295145beb3ca4a64e430a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.69
+      value: 4.6900034
       objectReference: {fileID: 0}
     - target: {fileID: 7103415322470691944, guid: 9b841fce405295145beb3ca4a64e430a,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -16.68
+      value: -13.52
       objectReference: {fileID: 0}
     - target: {fileID: 7103415322470691944, guid: 9b841fce405295145beb3ca4a64e430a,
         type: 3}
@@ -10682,7 +10682,7 @@ MonoBehaviour:
   clusterMin: 2
   clusterMax: 1
   maxDeviation: 0.25
-  maxAngle: 0
+  maxAngle: 30
   attractorsInRange: []
 --- !u!54 &1919158863
 Rigidbody:
@@ -15691,31 +15691,6 @@ PrefabInstance:
       propertyPath: CapsulesParent
       value: 
       objectReference: {fileID: 136612052}
-    - target: {fileID: 3680122567213996724, guid: 52be7bd6dfa6da246a126c073249dded,
-        type: 3}
-      propertyPath: alternate
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3680122567213996724, guid: 52be7bd6dfa6da246a126c073249dded,
-        type: 3}
-      propertyPath: _randomGrowth
-      value: 0.001
-      objectReference: {fileID: 0}
-    - target: {fileID: 3680122567213996724, guid: 52be7bd6dfa6da246a126c073249dded,
-        type: 3}
-      propertyPath: _invertGrowth
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3680122567213996724, guid: 52be7bd6dfa6da246a126c073249dded,
-        type: 3}
-      propertyPath: _extremitiesSize
-      value: 0.02
-      objectReference: {fileID: 0}
-    - target: {fileID: 3680122567213996724, guid: 52be7bd6dfa6da246a126c073249dded,
-        type: 3}
-      propertyPath: _radialSubdivisions
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 3680122567213996725, guid: 52be7bd6dfa6da246a126c073249dded,
         type: 3}
       propertyPath: m_LocalPosition.x

@@ -104,7 +104,7 @@ public class FinishGame : MonoBehaviour
                     GeneratedFlower = Instantiate(flowers[randomItem], generator._branches[i]._end + new Vector3(x, y, 0), new Quaternion(0, 0, 0, 0));
                     GeneratedFlower.transform.Rotate(xAngle, yAngle, 0);
                     GeneratedFlower.transform.localScale = new Vector3(randomSize, randomSize, randomSize);
-                    yield return new WaitForSeconds(0.1f / randomNumber);
+                    yield return new WaitForSeconds(0.01f / randomNumber);
                 }
             }
         }
