@@ -88,7 +88,7 @@ public class Slicer : MonoBehaviour
 
     public void DisableObject()
     {
-        sliceObject.gameObject.SetActive(false);
+        sliceObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
     }
 
     Vector3 GetRayEndPoint(){
