@@ -96,7 +96,7 @@ public class FinishGame : MonoBehaviour
                     float xAngle = Random.Range(-maxAngle, maxAngle);
                     float yAngle = Random.Range(-maxAngle, maxAngle);
                     float y = Random.Range(-maxDeviation, maxDeviation);
-                    Instantiate(flowers[randomItem], generator._branches[i]._end + new Vector3(x, y, -0.5f), new Quaternion(xAngle, 180, 0, 0));
+                    Instantiate(flowers[randomItem], generator._branches[i]._end + new Vector3(x, y, 0), new Quaternion(xAngle, 180, 0, 0));
                     yield return new WaitForSeconds(0.1f / randomNumber);
                 }
             }
