@@ -75,6 +75,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cutBranchPrefab: {fileID: 3348747014625355422, guid: 30b99c6a974d9344a818c90c583372a9,
     type: 3}
+  leaves: {fileID: 1373173872932723656, guid: 0ec58d879b42b004a80165d74c186b6d, type: 3}
   breakParticles: {fileID: 4067706806818858250, guid: 910dffb41488fc04089371737a7baab3,
     type: 3}
 --- !u!54 &-630378875520416067
