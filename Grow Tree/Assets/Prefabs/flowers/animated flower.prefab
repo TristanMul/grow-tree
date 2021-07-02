@@ -1759,6 +1759,11 @@ PrefabInstance:
       propertyPath: stopAction
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 4633526440716006329, guid: a72d61f9e92e3be4e9de26d6ba10b07b,
+        type: 3}
+      propertyPath: startDelay.scalar
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4633526440716006331, guid: a72d61f9e92e3be4e9de26d6ba10b07b,
         type: 3}
       propertyPath: m_Name
