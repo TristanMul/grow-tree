@@ -15703,7 +15703,7 @@ PrefabInstance:
     - target: {fileID: 3680122567213996724, guid: 52be7bd6dfa6da246a126c073249dded,
         type: 3}
       propertyPath: _invertGrowth
-      value: 2
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 3680122567213996724, guid: 52be7bd6dfa6da246a126c073249dded,
         type: 3}
