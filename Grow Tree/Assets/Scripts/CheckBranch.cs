@@ -5,6 +5,7 @@ using UnityEngine;
 public class CheckBranch : MonoBehaviour
 {
     [SerializeField] GameObject cutBranchPrefab;
+    [SerializeField] GameObject leaves;
     FinishGame finish;
     public GameObject breakParticles;
     RaycastHit hit;
@@ -25,6 +26,8 @@ public class CheckBranch : MonoBehaviour
             SliceOffBranch(cutOffBranch);
             DuplicateBranch(cutOffBranch);
             GameObject particles = Instantiate(breakParticles, gameObject.transform.position, Quaternion.identity);
+          /*  GameObject Leaves = Instantiate(leaves, generator._branches[int.Parse(transform.gameObject.name)]._parent._start, Quaternion.identity);
+            Leaves.transform.Rotate(new Vector3(-90,-90,90));*/
             generator.maxBranchCount += cutOffBranches.Count;
             StartCoroutine(finish.CheckIfLost());
             cutOffBranches.Clear();
