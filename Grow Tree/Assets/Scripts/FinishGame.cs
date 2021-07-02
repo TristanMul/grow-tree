@@ -87,7 +87,10 @@ public class FinishGame : MonoBehaviour
         {
             if (generator._branches[i]._children.Count == 0 && generator._branches[i].canBloom)
             {
-
+                int randomLeaves = Random.Range(0, leaves.Length -1);
+                GameObject BunchOfLeaves;
+                BunchOfLeaves = Instantiate(leaves[randomLeaves], generator._branches[i]._start, Quaternion.LookRotation(generator._branches[i]._direction));
+                BunchOfLeaves.transform.Rotate(-90, -90, 90);
                 int randomNumber = Random.Range(clusterMin, clusterMax);
                 for (int j = 0; j < randomNumber; j++)
                 {
@@ -96,7 +99,11 @@ public class FinishGame : MonoBehaviour
                     float xAngle = Random.Range(-maxAngle, maxAngle);
                     float yAngle = Random.Range(-maxAngle, maxAngle);
                     float y = Random.Range(-maxDeviation, maxDeviation);
-                    Instantiate(flowers[randomItem], generator._branches[i]._end + new Vector3(x, y, 0), new Quaternion(xAngle, 180, 0, 0));
+                    float randomSize = Random.Range(0.5f, 1f);
+                    GameObject GeneratedFlower;
+                    GeneratedFlower = Instantiate(flowers[randomItem], generator._branches[i]._end + new Vector3(x, y, 0), new Quaternion(0,0, 0, 0));
+                    GeneratedFlower.transform.Rotate(xAngle, yAngle, 0);
+                    GeneratedFlower.transform.localScale = new Vector3(randomSize, randomSize, randomSize);
                     yield return new WaitForSeconds(0.1f / randomNumber);
                 }
             }
@@ -117,8 +124,8 @@ public class FinishGame : MonoBehaviour
                     float xAngle = Random.Range(-maxAngle, maxAngle);
                     float yAngle = Random.Range(-maxAngle, maxAngle);
                     float y = Random.Range(-maxDeviation, maxDeviation);
-                    Instantiate(flowers[randomItem], generator._branches[i]._end + new Vector3(x, y, -0.5f), new Quaternion(xAngle, yAngle, 0, 0));
-                    yield return new WaitForSeconds(0.1f / randomNumber);
+                    Instantiate(leaves[randomItem], generator._branches[i]._end + new Vector3(x, y, -0.5f), new Quaternion(xAngle, yAngle, 0, 0));
+                    yield return new WaitForSeconds(randomNumber);
                 }
             }
         }

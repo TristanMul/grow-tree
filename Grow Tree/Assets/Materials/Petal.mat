@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Petal
   m_Shader: {fileID: 4800000, guid: 7a2a90f4e7dfe46bd9aeac7a5351111a, type: 3}
-  m_ShaderKeywords: _ALPHATEST_ON _EMISSION
+  m_ShaderKeywords: _ALPHATEST_ON _EMISSION _USEFALLOFF_ON
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -76,13 +76,13 @@ Material:
     - _Mode: 1
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _RimFalloff: 2
+    - _RimFalloff: 3
     - _RimWidth: 0.1
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
-    - _UseFalloff: 0
+    - _UseFalloff: 1
     - _UseRim: 0
     - _ZWrite: 1
     - _animateRimWidth: 0

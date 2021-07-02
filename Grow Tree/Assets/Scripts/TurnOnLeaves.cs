@@ -12,6 +12,7 @@ public class TurnOnLeaves : MonoBehaviour
     {
         chosenNumber = Random.Range(0, 3);
         leaves[chosenNumber].GetComponent<MeshRenderer>().enabled = false;
+        leaves[chosenNumber].transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
 /*        foreach(GameObject leaf in leaves)
         {
             leaf.GetComponent<MeshRenderer>().enabled = false;
