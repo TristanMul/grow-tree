@@ -33,7 +33,6 @@ public class Slicer : MonoBehaviour
         else if(Input.GetMouseButtonUp(0)){
             StopUpdateTrail();
         }
-
     }
 
     private void FixedUpdate() {
@@ -73,23 +72,23 @@ public class Slicer : MonoBehaviour
             Time.fixedDeltaTime = 0.02f;
             sliceObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
         }
-
-        
     }
+
     void startGame()
     {
         Generator.instance.movingCamera = true;
         StartCoroutine(Startgrowth());
     }
+
     IEnumerator Startgrowth()
     {
         yield return new WaitForSeconds(1f);
         Generator.instance.started = true;
     }
 
-    void DisableThis()
+    public void DisableObject()
     {
-        this.enabled = false;
+        sliceObject.gameObject.SetActive(false);
     }
 
     Vector3 GetRayEndPoint(){
