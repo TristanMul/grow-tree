@@ -31,7 +31,7 @@ public class BranchCollision : MonoBehaviour
                     growingBranches++;
                 }
             }
-            Debug.Log("Growing branches: " + growingBranches);
+/*            Debug.Log("Growing branches: " + growingBranches);*/
             if(growingBranches == 1)
             {
                 loseGame.Raise();

@@ -10,31 +10,34 @@ public class CheckBranch : MonoBehaviour
     public GameObject breakParticles;
     RaycastHit hit;
     Generator generator;
-
+    bool routineActivated = false;
     List<Generator.Branch> cutOffBranches;
 
 
-    private void OnEnable() {
+    private void OnEnable()
+    {
         finish = GameObject.Find("Sun").GetComponent<FinishGame>();
         generator = GameObject.Find("Tree").GetComponent<Generator>();
     }
 
-    private void OnTriggerEnter(Collider other) {
-        if(other.gameObject.CompareTag("Slicer")){
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Slicer"))
+        {
             GetComponent<Collider>().enabled = false;
             Generator.Branch cutOffBranch = generator._branches[int.Parse(transform.gameObject.name)];
+            StartCoroutine(growLeaves());
             SliceOffBranch(cutOffBranch);
             DuplicateBranch(cutOffBranch);
             GameObject particles = Instantiate(breakParticles, gameObject.transform.position, Quaternion.identity);
-          /*  GameObject Leaves = Instantiate(leaves, generator._branches[int.Parse(transform.gameObject.name)]._parent._start, Quaternion.identity);
-            Leaves.transform.Rotate(new Vector3(-90,-90,90));*/
             generator.maxBranchCount += cutOffBranches.Count;
             StartCoroutine(finish.CheckIfLost());
             cutOffBranches.Clear();
         }
     }
 
-    public void CutBranch(){
+    public void CutBranch()
+    {
         GetComponent<Collider>().enabled = false;
 
         Generator.Branch cutOffBranch = generator._branches[int.Parse(transform.gameObject.name)];
@@ -44,8 +47,9 @@ public class CheckBranch : MonoBehaviour
         cutOffBranches.Clear();
     }
 
-    void SliceOffBranch(Generator.Branch cutOffBranch){
-        if(cutOffBranch == generator._firstBranch) return;
+    void SliceOffBranch(Generator.Branch cutOffBranch)
+    {
+        if (cutOffBranch == generator._firstBranch) return;
 
         cutOffBranch._parent._children.Remove(cutOffBranch);
         cutOffBranch._parent._canGrow = false;
@@ -60,9 +64,23 @@ public class CheckBranch : MonoBehaviour
         AddChildrenToList(cutOffBranch);
     }
 
-    void DuplicateBranch(Generator.Branch cutOffBranch){
+    void DuplicateBranch(Generator.Branch cutOffBranch)
+    {
         GameObject newBranch = Instantiate(cutBranchPrefab, generator.transform.position, Quaternion.identity);
         newBranch.GetComponent<CreateCutBranch>().CreateMesh(cutOffBranches, cutOffBranch, generator);
+    }
+    public IEnumerator growLeaves()
+    {
+        if (!routineActivated)
+        {
+            routineActivated = true;
+            GameObject Leaves = Instantiate(leaves, generator._branches[int.Parse(transform.gameObject.name)]._start, Quaternion.identity);
+            Leaves.transform.Rotate(new Vector3(0, 180, -90));
+            Debug.Log(routineActivated);
+            yield return new WaitForSeconds(1f);
+            Debug.Log("Waited");
+            routineActivated = false;
+        }
     }
 
     private void AddChildrenToList(Generator.Branch branch)
@@ -87,7 +105,7 @@ public class CheckBranch : MonoBehaviour
             generator._extremities.Remove(branch);
             ResetBranches();
             cutOffBranches.Add(branch);
-            
+
         }
         branch.detached = true;
     }

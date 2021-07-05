@@ -35,7 +35,6 @@ public class Highlighter : MonoBehaviour
 
     public void AddCircleFromWorldPos(Generator.Branch branch)
     {
-        Debug.Log("Adding circle");
         GameObject newCircle = Instantiate(highlightCircle, transform);
         newCircle.transform.position = Camera.main.WorldToScreenPoint(branch._start);
         HighLight h = new HighLight(branch, newCircle);
@@ -44,7 +43,6 @@ public class Highlighter : MonoBehaviour
 
     public void ClearCircles()
     {
-        Debug.Log("Clearing circles");
         foreach (HighLight h in highlights)
         {
             Destroy(h.circleGameObject);
