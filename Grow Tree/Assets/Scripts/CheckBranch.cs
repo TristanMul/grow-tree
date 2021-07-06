@@ -10,7 +10,8 @@ public class CheckBranch : MonoBehaviour
     public GameObject breakParticles;
     RaycastHit hit;
     Generator generator;
-    bool routineActivated = false;
+    int lastBranchCut;
+    static bool routineActivated = false;
     List<Generator.Branch> cutOffBranches;
 
 
@@ -26,7 +27,8 @@ public class CheckBranch : MonoBehaviour
         {
             GetComponent<Collider>().enabled = false;
             Generator.Branch cutOffBranch = generator._branches[int.Parse(transform.gameObject.name)];
-            StartCoroutine(growLeaves());
+            /*lastBranchCut = int.Parse(transform.gameObject.name);
+                StartCoroutine(growLeaves());*/
             SliceOffBranch(cutOffBranch);
             DuplicateBranch(cutOffBranch);
             GameObject particles = Instantiate(breakParticles, gameObject.transform.position, Quaternion.identity);
@@ -74,12 +76,13 @@ public class CheckBranch : MonoBehaviour
         if (!routineActivated)
         {
             routineActivated = true;
-            GameObject Leaves = Instantiate(leaves, generator._branches[int.Parse(transform.gameObject.name)]._start, Quaternion.identity);
-            Leaves.transform.Rotate(new Vector3(0, 180, -90));
             Debug.Log(routineActivated);
+            GameObject Leaves = Instantiate(leaves, generator._branches[lastBranchCut]._start, Quaternion.LookRotation(generator._branches[int.Parse(transform.gameObject.name)]._direction));
+            Leaves.transform.Rotate(new Vector3(-90, 0, 90));
             yield return new WaitForSeconds(1f);
             Debug.Log("Waited");
             routineActivated = false;
+        yield return null;
         }
     }
 

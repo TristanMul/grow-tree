@@ -7,6 +7,7 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] private VectorList activeAttractors;
     [SerializeField] private List<Vector3> _attractorsList;
     [SerializeField] private Transform finishPosition;
+    [SerializeField] private Transform startPosition;
     public Vector3 cameraOffset;
     Vector3 newPos;
     public float cameraSmoothing;
@@ -34,7 +35,7 @@ public class CameraFollow : MonoBehaviour
 
     void LateUpdate()
     {
-        if (!finished && Generator.instance.movingCamera)
+        if (!finished && Generator.instance.movingCamera && Generator.instance.started)
         {
 
             iterationTimer += Time.deltaTime;
@@ -71,12 +72,18 @@ public class CameraFollow : MonoBehaviour
             //}
 
         }
-        else
+        else if(finished)
         {
             //transform.position = Vector3.SmoothDamp(transform.position, finishPosition.position, ref velocity, cameraSmoothing);
             transform.position = Vector3.Lerp(transform.position, finishPosition.position, Time.deltaTime);
+            transform.rotation = Quaternion.Lerp(transform.rotation, finishPosition.rotation, Time.deltaTime);
             RenderSettings.fogEndDistance += (transform.position.z - finishPosition.position.z) / 100f;
             RenderSettings.fogStartDistance += (transform.position.z - finishPosition.position.z) / 100f;
+        }
+        else if (!Generator.instance.started)
+        {
+            transform.position = Vector3.Lerp(transform.position, startPosition.position, Time.deltaTime);
+            transform.rotation = Quaternion.Lerp(transform.rotation, startPosition.rotation, Time.deltaTime);
         }
     }
     //}
