@@ -5,12 +5,12 @@ using UnityEngine;
 public class CheckBranch : MonoBehaviour
 {
     [SerializeField] GameObject cutBranchPrefab;
-    [SerializeField] GameObject leaves;
+    [SerializeField] GameObject leaf;
     FinishGame finish;
     public GameObject breakParticles;
     RaycastHit hit;
     Generator generator;
-    int lastBranchCut;
+    Vector3 lastBranchCut;
     static bool routineActivated = false;
     List<Generator.Branch> cutOffBranches;
 
@@ -27,8 +27,8 @@ public class CheckBranch : MonoBehaviour
         {
             GetComponent<Collider>().enabled = false;
             Generator.Branch cutOffBranch = generator._branches[int.Parse(transform.gameObject.name)];
-            /*lastBranchCut = int.Parse(transform.gameObject.name);
-                StartCoroutine(growLeaves());*/
+            lastBranchCut = generator._branches[int.Parse(transform.gameObject.name)]._start;
+            StartCoroutine(growLeaves());
             SliceOffBranch(cutOffBranch);
             DuplicateBranch(cutOffBranch);
             GameObject particles = Instantiate(breakParticles, gameObject.transform.position, Quaternion.identity);
@@ -68,8 +68,16 @@ public class CheckBranch : MonoBehaviour
 
     void DuplicateBranch(Generator.Branch cutOffBranch)
     {
-        GameObject newBranch = Instantiate(cutBranchPrefab, generator.transform.position, Quaternion.identity);
+        GameObject newBranch = Instantiate(cutBranchPrefab, generator.transform.position, Quaternion.identity) as GameObject;
         newBranch.GetComponent<CreateCutBranch>().CreateMesh(cutOffBranches, cutOffBranch, generator);
+        newBranch.tag = "CutBranch";
+        if(GameManager.leaves.Count > 0)
+        {
+        foreach(GameObject growingLeaf in GameManager.leaves)
+        {
+            growingLeaf.GetComponent<Collider>().enabled = true;
+        }
+        }
     }
     public IEnumerator growLeaves()
     {
@@ -77,12 +85,13 @@ public class CheckBranch : MonoBehaviour
         {
             routineActivated = true;
             Debug.Log(routineActivated);
-            GameObject Leaves = Instantiate(leaves, generator._branches[lastBranchCut]._start, Quaternion.LookRotation(generator._branches[int.Parse(transform.gameObject.name)]._direction));
-            Leaves.transform.Rotate(new Vector3(-90, 0, 90));
             yield return new WaitForSeconds(1f);
+            GameObject Leaves = Instantiate(leaf, lastBranchCut, Quaternion.LookRotation(generator._branches[int.Parse(transform.gameObject.name)]._direction)) as GameObject;
+            GameManager.leaves.Add(Leaves);
+            Leaves.transform.Rotate(new Vector3(-90, 0, 90));
+            Leaves.transform.parent = generator._capsules[int.Parse(transform.gameObject.name)].transform;
             Debug.Log("Waited");
             routineActivated = false;
-        yield return null;
         }
     }
 
