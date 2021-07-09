@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class LeafManager : MonoBehaviour
 {
-    public static List<GameObject> leaves;
-    public static GameManager instance;
+    public List<GameObject> leaves;
+    public static LeafManager instance;
     // Start is called before the first frame update
     void Awake()
     {
