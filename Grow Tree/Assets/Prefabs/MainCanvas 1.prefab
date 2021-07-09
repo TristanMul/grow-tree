@@ -276,6 +276,7 @@ GameObject:
   - component: {fileID: 1990558542803173681}
   - component: {fileID: 1990558542803173680}
   - component: {fileID: 7219657400606306709}
+  - component: {fileID: 2121464934}
   m_Layer: 5
   m_Name: MainCanvas 1
   m_TagString: Untagged
@@ -378,8 +379,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8425eed7acf903247aea527857f20768, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tutorialLocation: 0
   highlightCircle: {fileID: 2629922539039076625, guid: ad8745d3e778b7c4bba0fa4a3c0c7bec,
     type: 3}
+  tutorialSwipe: {fileID: 0}
+  timeToWait: 3.5
+--- !u!114 &2121464934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1990558542803173683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57e79916151f4b641b1e947b92b97b32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leaves: []
 --- !u!1 &1990558543209964809
 GameObject:
   m_ObjectHideFlags: 0
