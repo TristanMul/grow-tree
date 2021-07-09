@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2319414663225545873}
   - component: {fileID: 1177230323094062237}
   - component: {fileID: 1497619014996402856}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: SliceObject
   m_TagString: Slicer
   m_Icon: {fileID: 0}
@@ -94,6 +94,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1747860617089587931, guid: 84d24837ebec1a641ba424ac180c0fb1,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 7914295204092479630, guid: 84d24837ebec1a641ba424ac180c0fb1,
         type: 3}
