@@ -62,13 +62,10 @@ public class CheckBranch : MonoBehaviour
         if (!routineActivated)
         {
             routineActivated = true;
-            yield return new WaitForSeconds(0.1f);
-            //if(int.Parse(transform.gameObject.name) < generator._branches.Count)
-            //{
-                GameObject Leaf = Instantiate(leaf, lastBranchCut, Quaternion.identity) as GameObject;
-                LeafManager.instance.leaves.Add(Leaf);
-                Leaf.transform.Rotate(new Vector3(branch._direction.x, branch._direction.y, branch._direction.z + 180));
-            //}
+            yield return new WaitForSeconds(0.15f);
+            GameObject Leaf = Instantiate(leaf, lastBranchCut, Quaternion.identity) as GameObject;
+            LeafManager.instance.leaves.Add(Leaf);
+            Leaf.transform.Rotate(new Vector3(branch._direction.x, branch._direction.y, branch._direction.z + 180));
             routineActivated = false;
         }
     }
