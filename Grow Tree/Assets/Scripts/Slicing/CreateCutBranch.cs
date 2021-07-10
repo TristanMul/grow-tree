@@ -113,6 +113,7 @@ public class CreateCutBranch : MonoBehaviour
         foreach(GameObject Leaf in LeafManager.instance.leaves)
         {
             Leaf.GetComponent<Collider>().enabled = true;
+            Leaf.GetComponent<CheckBranches>().StartWait();
         }
     }
 }

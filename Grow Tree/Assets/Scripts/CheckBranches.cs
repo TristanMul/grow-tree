@@ -12,7 +12,17 @@ public class CheckBranches : MonoBehaviour
             LeafManager.instance.leaves.Remove(this.gameObject);
             gameObject.GetComponent<Animator>().enabled = false;
             Destroy(gameObject.GetComponent<Rigidbody>());
-            this.GetComponent<Collider>().enabled = false;
         }
+    }
+
+    public void StartWait()
+    {
+        StartCoroutine(Wait());
+    }
+
+    IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(0.1f);
+        GetComponent<Collider>().enabled = false;
     }
 }
