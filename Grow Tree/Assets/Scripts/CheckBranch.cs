@@ -65,7 +65,7 @@ public class CheckBranch : MonoBehaviour
             yield return new WaitForSeconds(0.15f);
             GameObject Leaf = Instantiate(leaf, lastBranchCut, Quaternion.identity) as GameObject;
             LeafManager.instance.leaves.Add(Leaf);
-            Leaf.transform.Rotate(new Vector3(branch._direction.x, branch._direction.y, branch._direction.z + 180));
+            Leaf.transform.Rotate(new Vector3(branch._direction.x, branch._direction.y + 180, branch._direction.z));
             routineActivated = false;
         }
     }

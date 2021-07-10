@@ -43,7 +43,7 @@ public class FinishGame : MonoBehaviour
             generator._attractors = attractorsInRange;
             wonGame = true;
             generator._killRange = 0.1f;
-            //generator._invertGrowth = 1.6f;
+            generator._invertGrowth = 1.7f;
             generator.alternate = false;
             winGame.Raise();
             generator._timeBetweenIterations = 0.05f;
@@ -76,7 +76,7 @@ public class FinishGame : MonoBehaviour
     {
         yield return new WaitForSeconds(generator._timeBetweenIterations + 0.01f);
         Highlighter.instance.ClearCircles();
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         generator.finishGrowing = true;
         StartCoroutine(growFlowers());
     }
