@@ -10,6 +10,8 @@ public class CheckBranches : MonoBehaviour
         {
             transform.parent = other.transform.parent;
             LeafManager.instance.leaves.Remove(this.gameObject);
+            gameObject.GetComponent<Animator>().enabled = false;
+            Destroy(gameObject.GetComponent<Rigidbody>());
             this.GetComponent<Collider>().enabled = false;
         }
     }
