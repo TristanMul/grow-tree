@@ -60,6 +60,7 @@ public class CheckBranch : MonoBehaviour
         newBranch.GetComponent<CreateCutBranch>().CreateMesh(cutOffBranches, cutOffBranch, generator);
         //newBranch.tag = "CutBranch";
     }
+
     public IEnumerator growLeaves()
     {
         if (!routineActivated)
@@ -68,23 +69,16 @@ public class CheckBranch : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
             if(int.Parse(transform.gameObject.name) < generator._branches.Count)
             {
-                GameObject Leaves = Instantiate(leaf, lastBranchCut, Quaternion.LookRotation(generator._branches[int.Parse(transform.gameObject.name)]._direction)) as GameObject;
-                LeafManager.instance.leaves.Add(Leaves);
-                Leaves.transform.Rotate(new Vector3(-90, 0, 90));
+                GameObject Leaf = Instantiate(leaf, lastBranchCut, Quaternion.LookRotation(generator._branches[int.Parse(transform.gameObject.name)]._direction)) as GameObject;
+                LeafManager.instance.leaves.Add(Leaf);
+                Leaf.transform.Rotate(new Vector3(-90, 0, 90));
             }
-        routineActivated = false;
+            routineActivated = false;
         }
-}
+    }
 
     private void AddChildrenToList(Generator.Branch branch)
     {
-        if (LeafManager.instance.leaves.Count > 0)
-        {
-            foreach (GameObject growingLeaf in LeafManager.instance.leaves)
-            {
-                growingLeaf.GetComponent<Collider>().enabled = true;
-            }
-        }
         if (branch._children != null)
         {
             for (int i = 0; i < branch._children.Count; i++)
@@ -127,6 +121,5 @@ public class CheckBranch : MonoBehaviour
         {
             generator._capsules[i].gameObject.name = i.ToString();
         }
-
     }
 }

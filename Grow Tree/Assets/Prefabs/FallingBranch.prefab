@@ -55,6 +55,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 578a7d302464ea74ab9aad2fd6e8ca57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  branchColliderPrefab: {fileID: 3114706243474454963, guid: 2b5c91fcca4c84d3eab6376a7588394c,
+    type: 3}
 --- !u!23 &3348747014625355394
 MeshRenderer:
   m_ObjectHideFlags: 0

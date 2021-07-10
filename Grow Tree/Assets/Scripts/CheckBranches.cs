@@ -6,8 +6,9 @@ public class CheckBranches : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Branch"))
+        if (other.CompareTag("CutBranch"))
         {
+            transform.parent = other.transform.parent;
             this.GetComponent<Collider>().enabled = false;
         }
     }
