@@ -39,17 +39,14 @@ public class CheckBranch : MonoBehaviour
 
     void SliceOffBranch(Generator.Branch cutOffBranch)
     {
-        if (cutOffBranch == generator._firstBranch) return;
-
+        if (cutOffBranch == generator._firstBranch)
+            return;
         cutOffBranch._parent._children.Remove(cutOffBranch);
         cutOffBranch._parent._canGrow = false;
         cutOffBranch._parent = null;
-
-        //cutOffBranches = new List<Generator.Branch>();
         cutOffBranches.Add(cutOffBranch);
         generator._capsules.Remove(generator._capsules[cutOffBranch._index]);
         generator._branches.Remove(cutOffBranch);
-
         ResetBranches();
         AddChildrenToList(cutOffBranch);
     }
@@ -58,7 +55,6 @@ public class CheckBranch : MonoBehaviour
     {
         GameObject newBranch = Instantiate(cutBranchPrefab, generator.transform.position, Quaternion.identity) as GameObject;
         newBranch.GetComponent<CreateCutBranch>().CreateMesh(cutOffBranches, cutOffBranch, generator);
-        //newBranch.tag = "CutBranch";
     }
 
     public IEnumerator growLeaves()
@@ -103,6 +99,7 @@ public class CheckBranch : MonoBehaviour
         }
         branch.detached = true;
     }
+
     private void ResetBranches()
     {
         foreach (Generator.Branch b in generator._extremities)
