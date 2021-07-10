@@ -27,7 +27,7 @@ public class CheckBranch : MonoBehaviour
             GetComponent<Collider>().enabled = false;
             Generator.Branch cutOffBranch = generator._branches[int.Parse(transform.gameObject.name)];
             lastBranchCut = generator._branches[int.Parse(transform.gameObject.name)]._start;
-            StartCoroutine(growLeaves());
+            StartCoroutine(growLeaves(cutOffBranch));
             SliceOffBranch(cutOffBranch);
             DuplicateBranch(cutOffBranch);
             GameObject particles = Instantiate(breakParticles, gameObject.transform.position, Quaternion.identity);
@@ -57,7 +57,7 @@ public class CheckBranch : MonoBehaviour
         newBranch.GetComponent<CreateCutBranch>().CreateMesh(cutOffBranches, cutOffBranch, generator);
     }
 
-    public IEnumerator growLeaves()
+    public IEnumerator growLeaves(Generator.Branch branch)
     {
         if (!routineActivated)
         {
@@ -67,7 +67,7 @@ public class CheckBranch : MonoBehaviour
             {
                 GameObject Leaf = Instantiate(leaf, lastBranchCut, Quaternion.LookRotation(generator._branches[int.Parse(transform.gameObject.name)]._direction)) as GameObject;
                 LeafManager.instance.leaves.Add(Leaf);
-                Leaf.transform.Rotate(new Vector3(-90, 0, 90));
+                Leaf.transform.Rotate(new Vector3(branch._direction.x, branch._direction.y - 90, branch._direction.z + 180));
             }
             routineActivated = false;
         }
