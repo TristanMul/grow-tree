@@ -6,18 +6,17 @@ using System;
 [RequireComponent(typeof(MeshFilter))]
 public class CreateCutBranch : MonoBehaviour
 {
-
     List<Generator.Branch> branchesToDraw;
     Generator generator;
-
     MeshFilter meshFilter;
     Generator.Branch branch;
     Rigidbody rb;
     float angularVelRange = .25f;
+    public GameObject branchColliderPrefab;
 
     public void CreateMesh(List<Generator.Branch> Branches, Generator.Branch cutOffBranch, Generator _generator)
     {
-
+        StartCoroutine(LeafCheck());
         branchesToDraw = null;
         meshFilter = GetComponent<MeshFilter>();
         branch = cutOffBranch;
@@ -34,8 +33,6 @@ public class CreateCutBranch : MonoBehaviour
             rb.velocity = new Vector3(0f, 1f, 0f);
         }
         Highlighter.instance.UpdateCircles();
-
-        //UnityEngine.Random.Range(-angularVelRange, angularVelRange)
     }
 
     void MakeMesh()
@@ -49,6 +46,7 @@ public class CreateCutBranch : MonoBehaviour
         for (int i = 1; i < branchesToDraw.Count; i++)
         {
             Generator.Branch b = branchesToDraw[i];
+            AddCapsule(b);
             int fid = i * generator._radialSubdivisions * 2 * 3;
             // index of the bottom vertices 
             int bId = b._parent != null ? b._parent._verticesId : generator._branches.Count * generator._radialSubdivisions;
@@ -92,11 +90,29 @@ public class CreateCutBranch : MonoBehaviour
                 }
                 transform.position += branch._start;*/
         Mesh branchMesh = new Mesh();
-
         branchMesh.vertices = vertices;
         branchMesh.triangles = triangles;
         branchMesh.RecalculateNormals();
         branchMesh.SetUVs(0 ,Generator.instance.UVs);
         meshFilter.mesh = branchMesh;
+    }
+
+    private void AddCapsule(Generator.Branch b)
+    {
+        GameObject newBranch = Instantiate(branchColliderPrefab);
+        newBranch.transform.position = new Vector3((b._start.x + b._end.x) / 2, (b._start.y + b._end.y) / 2, (b._start.z + b._end.z) / 2);
+        newBranch.transform.localScale = new Vector3(0.1f, Vector2.Distance(b._start, b._end) - 0.02f, 0.1f);
+        newBranch.transform.up = b._direction.normalized;
+        newBranch.gameObject.tag = "CutBranch";
+        newBranch.transform.parent = transform;
+    }
+
+    IEnumerator LeafCheck()
+    {
+        yield return new WaitForSeconds(0.01f);
+        foreach(GameObject Leaf in LeafManager.instance.leaves)
+        {
+            Leaf.GetComponent<Collider>().enabled = true;
+        }
     }
 }
