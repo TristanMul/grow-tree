@@ -9,6 +9,7 @@ public class CheckBranches : MonoBehaviour
         if (other.CompareTag("CutBranch"))
         {
             transform.parent = other.transform.parent;
+            LeafManager.instance.leaves.Remove(this.gameObject);
             this.GetComponent<Collider>().enabled = false;
         }
     }
