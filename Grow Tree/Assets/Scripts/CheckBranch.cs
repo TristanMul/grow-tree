@@ -13,8 +13,6 @@ public class CheckBranch : MonoBehaviour
     static Vector3 lastBranchCut;
     static bool routineActivated = false;
     public List<Generator.Branch> cutOffBranches = new List<Generator.Branch>();
-    public List<GameObject> addedLeaves = new List<GameObject>();
-
 
     private void OnEnable()
     {
@@ -60,27 +58,22 @@ public class CheckBranch : MonoBehaviour
     {
         GameObject newBranch = Instantiate(cutBranchPrefab, generator.transform.position, Quaternion.identity) as GameObject;
         newBranch.GetComponent<CreateCutBranch>().CreateMesh(cutOffBranches, cutOffBranch, generator);
-        newBranch.tag = "CutBranch";
-        foreach(GameObject leafs in addedLeaves)
-        {
-            Debug.Log("Changing parent");
-            leafs.transform.parent = this.gameObject.transform;
-        }
+        //newBranch.tag = "CutBranch";
     }
     public IEnumerator growLeaves()
     {
         if (!routineActivated)
         {
             routineActivated = true;
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.1f);
             if(int.Parse(transform.gameObject.name) < generator._branches.Count)
             {
-            GameObject Leaves = Instantiate(leaf, lastBranchCut, Quaternion.LookRotation(generator._branches[int.Parse(transform.gameObject.name)]._direction)) as GameObject;
-            LeafManager.instance.leaves.Add(Leaves);
-            Leaves.transform.Rotate(new Vector3(-90, 0, 90));
+                GameObject Leaves = Instantiate(leaf, lastBranchCut, Quaternion.LookRotation(generator._branches[int.Parse(transform.gameObject.name)]._direction)) as GameObject;
+                LeafManager.instance.leaves.Add(Leaves);
+                Leaves.transform.Rotate(new Vector3(-90, 0, 90));
             }
         routineActivated = false;
-    }
+        }
 }
 
     private void AddChildrenToList(Generator.Branch branch)
@@ -102,7 +95,6 @@ public class CheckBranch : MonoBehaviour
                 ResetBranches();
                 cutOffBranches.Add(branch._children[i]);
                 AddChildrenToList(branch._children[i]);
-                generator._capsules[branch._children[i]._index].transform.gameObject.GetComponent<CheckBranch>().cutOffBranches = cutOffBranches;
             }
         }
         else
