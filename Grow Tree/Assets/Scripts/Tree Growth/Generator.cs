@@ -109,6 +109,9 @@ public class Generator : MonoBehaviour
     public event Action OnStopGrowing;
     public event Action OnStartGrowing;
 
+    //Rotate point
+    GameObject rotatePoint;
+
     void Awake()
     {
         GenerateAttractors();
@@ -150,9 +153,7 @@ public class Generator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-   
         _filter = GetComponent<MeshFilter>();
-
         // we generate the first branch 
         _firstBranch = new Branch(_startPosition, _startPosition + new Vector3(0, _branchLength, 0), new Vector3(0, 1, 0));
         _firstBranch._index = indexCounter;
@@ -160,6 +161,8 @@ public class Generator : MonoBehaviour
         _branches.Add(_firstBranch);
         _extremities.Add(_firstBranch);
         AddCapsule(_firstBranch);
+        rotatePoint = new GameObject("Rotate point");
+        rotatePoint.transform.position = _startPosition;
     }
 
     // Update is called once per frame
@@ -333,8 +336,8 @@ public class Generator : MonoBehaviour
             }
 
         }
-        
-        if (_extremities.Count >= 0)
+
+        if (_extremities.Count >= 0 && !finishGrowing)
             ToMesh();
     }
 

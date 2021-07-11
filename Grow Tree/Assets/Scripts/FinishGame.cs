@@ -8,7 +8,9 @@ public class FinishGame : MonoBehaviour
     [SerializeField] private GameEvent loseGame;
     [SerializeField] private GameObject[] flowers;
     [SerializeField] private GameObject[] leaves;
-    private GameObject rockformation;
+    GameObject rockformation;
+    GameObject Tree;
+    GameObject rotationPoint;
     [SerializeField] Generator generator;
     [SerializeField] private int flowerRatio;
     [SerializeField] private int clusterMin = 5;
@@ -23,6 +25,8 @@ public class FinishGame : MonoBehaviour
     public void Start()
     {
         rockformation = GameObject.Find("Rock formation");
+        Tree = GameObject.Find("Tree");
+        rotationPoint = GameObject.Find("Rotate point");
     }
 
     public void Test()
@@ -77,12 +81,13 @@ public class FinishGame : MonoBehaviour
     {
         yield return new WaitForSeconds(generator._timeBetweenIterations + 0.01f);
         Highlighter.instance.ClearCircles();
-        //foreach (GameObject Leaf in LeafManager.instance.leaves)
-        //{
-        //    //Destroy(Leaf);
-        //    Leaf.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-        //}
+      
         yield return new WaitForSeconds(2f);
+        Tree.transform.parent = rotationPoint.transform;
+        foreach (GameObject Leaf in LeafManager.instance.leaves)
+        {
+            Leaf.transform.parent = Tree.transform;
+        }
         generator.finishGrowing = true;
         StartCoroutine(growFlowers());
     }
@@ -95,9 +100,10 @@ public class FinishGame : MonoBehaviour
             if (generator._branches[i]._children.Count == 0 && generator._branches[i].canBloom)
             {
                 int randomLeaves = Random.Range(0, leaves.Length -1);
-                GameObject BunchOfLeaves;
-                BunchOfLeaves = Instantiate(leaves[randomLeaves], generator._branches[i]._start, Quaternion.LookRotation(generator._branches[i]._direction));
-                BunchOfLeaves.transform.Rotate(0, -90, 90);
+                GameObject GeneratedLeafs;
+                GeneratedLeafs = Instantiate(leaves[randomLeaves], generator._branches[i]._start, Quaternion.LookRotation(generator._branches[i]._direction));
+                GeneratedLeafs.transform.Rotate(0, -90, 90);
+                GeneratedLeafs.transform.parent = Tree.transform;
                 int randomNumber = Random.Range(clusterMin, clusterMax);
                 for (int j = 0; j < randomNumber; j++)
                 {
@@ -111,27 +117,7 @@ public class FinishGame : MonoBehaviour
                     GeneratedFlower = Instantiate(flowers[randomItem], generator._branches[i]._end + new Vector3(x, y, 0), new Quaternion(0, 0, 0, 0));
                     GeneratedFlower.transform.Rotate(xAngle, yAngle, 0);
                     GeneratedFlower.transform.localScale = new Vector3(randomSize, randomSize, randomSize);
-                    yield return null;
-                }
-            }
-        }
-    }
-
-    public IEnumerator growLeaves()
-    {
-        for (int i = generator._branches.Count - 1; i >= 0; i--)
-        {
-            if (generator._branches[i]._children.Count == 0 && generator._branches[i].canBloom)
-            {
-                int randomNumber = Random.Range(clusterMin, clusterMax);
-                for (int j = 0; j < randomNumber; j++)
-                {
-                    int randomItem = Random.Range(0, flowers.Length);
-                    float x = Random.Range(-maxDeviation, maxDeviation);
-                    float xAngle = Random.Range(-maxAngle, maxAngle);
-                    float yAngle = Random.Range(-maxAngle, maxAngle);
-                    float y = Random.Range(-maxDeviation, maxDeviation);
-                    Instantiate(leaves[randomItem], generator._branches[i]._end + new Vector3(x, y, -0.5f), new Quaternion(xAngle, yAngle, 0, 0));
+                    GeneratedFlower.transform.parent = Tree.transform;
                     yield return null;
                 }
             }

@@ -92,7 +92,7 @@ Material:
     - _ZWrite: 1
     - _animateRimWidth: 0
     m_Colors:
-    - _Color: {r: 0.4811321, g: 0.35348943, b: 0.19290674, a: 1}
+    - _Color: {r: 0.3490566, g: 0.27489766, b: 0.18276076, a: 1}
     - _EmissionColor: {r: 0.4056604, g: 0.34975103, b: 0.29659134, a: 1}
     - _RimColor: {r: 1, g: 0, b: 0, a: 1}
     - _RimSecondaryColor: {r: 1, g: 0, b: 0, a: 1}
