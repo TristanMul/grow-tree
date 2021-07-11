@@ -45,7 +45,7 @@ public class FinishGame : MonoBehaviour
             generator._attractors = attractorsInRange;
             wonGame = true;
             generator._killRange = 0.1f;
-            generator._invertGrowth = 1.7f;
+            generator._invertGrowth = 1.6f;
             generator.alternate = false;
             winGame.Raise();
             generator._timeBetweenIterations = 0.05f;

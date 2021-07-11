@@ -1,4 +1,4 @@
-﻿Shader "Custom/test2"
+﻿Shader "Custom/test"
 {
     Properties
 	{
@@ -63,7 +63,7 @@
 
     SubShader
 		{
-			Tags { "RenderType"="Opaque" "PerformanceChecks"="False" "IgnoreProjector" = "True" "Queue" = "Geometry+1"}
+			Tags { "RenderType"="Opaque" "PerformanceChecks"="False" "IgnoreProjector" = "True" "Queue" = "Geometry"}
 			LOD 200
         Stencil {
             Ref 1

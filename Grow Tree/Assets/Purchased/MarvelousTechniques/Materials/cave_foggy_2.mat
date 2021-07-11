@@ -5,7 +5,8 @@ Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: cave_foggy_2
   m_Shader: {fileID: 4800000, guid: e9e093e639ab34f05bb1e9c0ecee6d38, type: 3}
   m_ShaderKeywords: USE_FOG_DISTANCE USE_FOG_DISTANSE
@@ -80,10 +81,12 @@ Material:
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _RightLight: 3.79
+    - _RimPower: 0
     - _ShadowPower: 0.25
     - _SrcBlend: 1
     - _TopLight: 4.62
     - _UVSec: 0
+    - _UseDirLight: 0
     - _UseFogDistance: 1
     - _UseLightMap: 0
     - _UseRealtimeShadow: 0
@@ -94,6 +97,10 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FogColor: {r: 0.79517066, g: 0.9338235, b: 0.7690311, a: 0.019607844}
+    - _LightDirF: {r: 0, g: 0, b: -1, a: 1}
+    - _LightDirR: {r: 1, g: 0, b: 0, a: 1}
+    - _LightDirT: {r: 0, g: 1, b: 0, a: 1}
     - _LightTint: {r: 1, g: 1, b: 1, a: 0}
     - _LightmapColor: {r: 0, g: 0.8014706, b: 0.03869175, a: 0}
     - _MainColor: {r: 0.21323532, g: 0.21323532, b: 0.21323532, a: 0}
+    - _RimColor: {r: 0, g: 0, b: 0, a: 0}
