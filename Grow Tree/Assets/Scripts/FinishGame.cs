@@ -19,19 +19,21 @@ public class FinishGame : MonoBehaviour
     bool coroutineActivated = false;
     bool wonGame = false;
     private int growingBranches = 0;
+
     public void Start()
     {
         rockformation = GameObject.Find("Rock formation");
     }
+
     public void Test()
     {
         if (!coroutineActivated)
         {
             coroutineActivated = true;
-            StartCoroutine(waitSeconds());
-           
+            StartCoroutine(Wait());
         }
     }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Branch") && !wonGame)
@@ -53,7 +55,6 @@ public class FinishGame : MonoBehaviour
     public IEnumerator CheckIfLost()
     {
         yield return new WaitForSeconds(generator._timeBetweenIterations + 0.01f);
-
         growingBranches = 0;
         foreach (Generator.Branch branch in generator._extremities)
         {
@@ -62,7 +63,7 @@ public class FinishGame : MonoBehaviour
                 growingBranches++;
             }
         }
-        if ((growingBranches == 0 && Highlighter.instance.highlights.Count == 0))
+        if (growingBranches == 0 && Highlighter.instance.highlights.Count == 0)
         {
             yield return new WaitForSeconds(0.5f);
             if (growingBranches == 0 && !wonGame)
@@ -72,10 +73,15 @@ public class FinishGame : MonoBehaviour
         }
     }
 
-    public IEnumerator waitSeconds()
+    public IEnumerator Wait()
     {
         yield return new WaitForSeconds(generator._timeBetweenIterations + 0.01f);
         Highlighter.instance.ClearCircles();
+        //foreach (GameObject Leaf in LeafManager.instance.leaves)
+        //{
+        //    //Destroy(Leaf);
+        //    Leaf.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+        //}
         yield return new WaitForSeconds(2f);
         generator.finishGrowing = true;
         StartCoroutine(growFlowers());
@@ -105,18 +111,18 @@ public class FinishGame : MonoBehaviour
                     GeneratedFlower = Instantiate(flowers[randomItem], generator._branches[i]._end + new Vector3(x, y, 0), new Quaternion(0, 0, 0, 0));
                     GeneratedFlower.transform.Rotate(xAngle, yAngle, 0);
                     GeneratedFlower.transform.localScale = new Vector3(randomSize, randomSize, randomSize);
-                    yield return null/*new WaitForSeconds(0.01f / randomNumber)*/;
+                    yield return null;
                 }
             }
         }
     }
+
     public IEnumerator growLeaves()
     {
         for (int i = generator._branches.Count - 1; i >= 0; i--)
         {
             if (generator._branches[i]._children.Count == 0 && generator._branches[i].canBloom)
             {
-
                 int randomNumber = Random.Range(clusterMin, clusterMax);
                 for (int j = 0; j < randomNumber; j++)
                 {
@@ -126,7 +132,7 @@ public class FinishGame : MonoBehaviour
                     float yAngle = Random.Range(-maxAngle, maxAngle);
                     float y = Random.Range(-maxDeviation, maxDeviation);
                     Instantiate(leaves[randomItem], generator._branches[i]._end + new Vector3(x, y, -0.5f), new Quaternion(xAngle, yAngle, 0, 0));
-                    yield return new WaitForSeconds(randomNumber);
+                    yield return null;
                 }
             }
         }

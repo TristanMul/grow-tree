@@ -10413,6 +10413,11 @@ PrefabInstance:
       propertyPath: _killRange
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 3680122567213996724, guid: 52be7bd6dfa6da246a126c073249dded,
+        type: 3}
+      propertyPath: _randomGrowth
+      value: 0.005
+      objectReference: {fileID: 0}
     - target: {fileID: 3680122567213996725, guid: 52be7bd6dfa6da246a126c073249dded,
         type: 3}
       propertyPath: m_LocalPosition.x

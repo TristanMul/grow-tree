@@ -66,9 +66,6 @@ public class Generator : MonoBehaviour
     public float _extremitiesSize = 0.05f;
     [Range(0f, 5f), Tooltip("Growth power, of the branches size")]
     public float _invertGrowth = 2f;
-
-
-
     public int indexCounter = 0;
     public int maxBranchCount;
     // the attractor points
@@ -243,7 +240,6 @@ public class Generator : MonoBehaviour
                                 _activeAttractors.Add(ia);
                             }
                         }
-
                         ia++;
                     }
 
@@ -340,7 +336,6 @@ public class Generator : MonoBehaviour
         
         if (_extremities.Count >= 0)
             ToMesh();
-        //GameOverCheck();
     }
 
     /**
@@ -480,52 +475,8 @@ public class Generator : MonoBehaviour
 
     }
 
-    public List<Branch> turnedOffBranch = new List<Branch>();
-    void GameOverCheck()
-    {
-        //if (_branches.Count != 0 && turnedOffBranch.Count != 0)
-        //{
-        //    Debug.Log("ex: " + _branches.Count);
-        //    Debug.Log("off " + turnedOffBranch.Count);
-        //}
-
-        //foreach (Branch b in _branches)
-        //{
-        //    if (!b._canGrow && !branchHitBarrier)
-        //    {
-        //        turnedOffBranch.Add(b);
-        //    }
-        //}
-        turnedOffBranch.Clear();
-        for (int i = 0; i < _extremities.Count; i++)
-        {
-            if (!_extremities[i]._canGrow)
-            {
-                turnedOffBranch.Add(_extremities[i]);
-            }
-        }
-    }
-
     void OnDrawGizmos()
     {
-        /*
-		if (_attractors == null) {
-			return;
-		}
-		// we draw the attractors
-		for (int i = 0; i < _attractors.Count; i++) {
-			if (_activeAttractors.Contains(i)) {
-				Gizmos.color = Color.yellow;
-			} else {
-				Gizmos.color = Color.red;
-			}
-			Gizmos.DrawSphere(_attractors[i], 0.22f);
-		}
-
-		Gizmos.color = new Color(0.4f, 0.4f, 0.4f, 0.4f);
-		Gizmos.DrawSphere(_extremities[0]._end, _attractionRange);
-		*/
-
         // we draw the branches 
         foreach (Branch b in _branches)
         {
@@ -547,7 +498,6 @@ public class Generator : MonoBehaviour
         _capsules.Add(newBranch);
         newBranch.transform.parent = CapsulesParent.transform;
     }
-
 
     public bool branchHitBarrier;
     /// <summary>
@@ -580,6 +530,4 @@ public class Generator : MonoBehaviour
         OnStopGrowing?.Invoke();
         Highlighter.instance.AddCircleFromWorldPos(_branches[index]);
     }
-
-
 }
