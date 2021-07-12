@@ -26,7 +26,6 @@ public class FinishGame : MonoBehaviour
     {
         rockformation = GameObject.Find("Rock formation");
         Tree = GameObject.Find("Tree");
-        rotationPoint = GameObject.Find("Rotate point");
     }
 
     public void Test()
@@ -81,7 +80,7 @@ public class FinishGame : MonoBehaviour
     {
         yield return new WaitForSeconds(generator._timeBetweenIterations + 0.01f);
         Highlighter.instance.ClearCircles();
-      
+        rotationPoint = GameObject.Find("Rotate point");
         yield return new WaitForSeconds(2f);
         Tree.transform.parent = rotationPoint.transform;
         foreach (GameObject Leaf in LeafManager.instance.leaves)
