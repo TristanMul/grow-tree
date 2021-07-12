@@ -7,10 +7,12 @@ public class Slicer : MonoBehaviour
     [SerializeField] GameObject sliceObjectPrefab;
     [SerializeField] float sliceSpeed;  // Speed of sliceObject.
     [SerializeField] float minDistance; // Minimum distance betweeen touch point and sliceObject to move sliceObject.
+    [SerializeField] GameObject lineObjectPrefab;
 
     Rigidbody2D rb;
     Camera cam;
     bool isUpdateTrail = false;
+    [SerializeField] bool AltSlice;
     GameObject sliceObject;
     Vector3 rayStart;
     Vector3 prevTouchPos;
@@ -27,11 +29,26 @@ public class Slicer : MonoBehaviour
     void Update()
     {
         if(Input.GetMouseButtonDown(0)){
+            if (AltSlice)
+            {
+                //GameObject sliceLine = Instantiate(sliceObject, );
+                //Transform startpoint = sliceLine.transform.Find("StartPoint").transform;
+            }
+            else
+            {
             StartUpdateTrail();
+            }
             startGame();
         }
         else if(Input.GetMouseButtonUp(0)){
+            if (AltSlice)
+            {
+
+            }
+            else
+            {
             StopUpdateTrail();
+            }
         }
     }
 
