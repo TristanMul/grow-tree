@@ -8,7 +8,7 @@ public class TurnOnLeaves : MonoBehaviour
 
     void Start()
     {
-        int rdm = Random.Range(1, leaves.Count);
+        int rdm = Random.Range(1, leaves.Count-1);
         for (int i = 0; i < rdm; i++)
         {
             int chosenNumber = Random.Range(0, leaves.Count);
