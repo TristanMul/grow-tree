@@ -96,7 +96,7 @@ public class Slicer : MonoBehaviour
         sliceLine = Instantiate(lineObjectPrefab, transform);
         startPoint = sliceLine.transform.Find("StartPoint").transform;
         endPoint = sliceLine.transform.Find("EndPoint").transform;
-        startPoint.position = GetRayEndPoint();
+        startPoint.transform.position = GetRayEndPoint();
     }
 
     void StopUpdateTrail()
@@ -109,7 +109,8 @@ public class Slicer : MonoBehaviour
     {
         updateLine = false;
         sliceObject = Instantiate(sliceObjectPrefab, startPoint);
-        if (canSlice)
+        Vector3 wrongPosition = new Vector3(-6f, 1.8f, 0f);
+        if (canSlice && endPoint)
         {
             canSlice = false;
             endPoint.transform.position = GetRayEndPoint();
@@ -185,8 +186,7 @@ public class Slicer : MonoBehaviour
             elapsed += Time.deltaTime;
             if (sliceObject)
             {
-                Debug.Log(sliceObject.transform.position);
-                Debug.Log(endPoint.position);
+                sliceObject.GetComponent<Collider>().enabled = true;
                 sliceObject.transform.position = Vector3.Lerp(sliceObject.transform.position, endPoint.position, elapsed / (duration * distance));
             }
             yield return null;
