@@ -164,7 +164,8 @@ public class Slicer : MonoBehaviour
         while (elapsed < duration)
         {
             elapsed += Time.deltaTime;
-            sliceObject.transform.position = Vector3.Lerp(startPoint.position, endPoint.position, elapsed / duration);
+            if (sliceObject)
+                sliceObject.transform.position = Vector3.Lerp(sliceObject.transform.position, endPoint.position, elapsed / duration);
             yield return null;
         }
         Destroy(sliceObject);
