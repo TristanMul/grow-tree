@@ -19,6 +19,8 @@ public class Slicer : MonoBehaviour
     Vector3 rayStart;
     Vector3 prevTouchPos;
     Transform startPoint, endPoint;
+    bool canSlice = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,25 +34,31 @@ public class Slicer : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (AltSlice)
-            {
-                StartUpdateLine();
-            }
-            else
-            {
-                StartUpdateTrail();
+            if (canSlice)
+            { 
+                if (AltSlice)
+                {
+                    StartUpdateLine();
+                }
+                else
+                {
+                    StartUpdateTrail();
+                }
             }
             startGame();
         }
         else if (Input.GetMouseButtonUp(0))
         {
-            if (AltSlice)
+            if (canSlice)
             {
-                StopUpdateLine();
-            }
-            else
-            {
-                StopUpdateTrail();
+                if (AltSlice)
+                {
+                    StopUpdateLine();
+                }
+                else
+                {
+                    StopUpdateTrail();
+                }
             }
         }
     }
@@ -73,11 +81,16 @@ public class Slicer : MonoBehaviour
         sliceObject = Instantiate(sliceObjectPrefab, transform);
         sliceObject.transform.position = GetRayEndPoint();
     }
+
     void StartUpdateLine()
     {
         if (sliceObject)
         {
             Destroy(sliceObject);
+        }
+        if (sliceLine)
+        {
+            Destroy(sliceLine);
         }
         updateLine = true;
         sliceLine = Instantiate(lineObjectPrefab, transform);
@@ -85,17 +98,25 @@ public class Slicer : MonoBehaviour
         endPoint = sliceLine.transform.Find("EndPoint").transform;
         startPoint.position = GetRayEndPoint();
     }
+
     void StopUpdateTrail()
     {
         isUpdateTrail = false;
         Destroy(sliceObject);
     }
+
     void StopUpdateLine()
     {
         updateLine = false;
-        StartCoroutine(SliceObjects());
-
+        sliceObject = Instantiate(sliceObjectPrefab, startPoint);
+        if (canSlice)
+        {
+            canSlice = false;
+            endPoint.transform.position = GetRayEndPoint();
+            StartCoroutine(MoveSlicer());
+        }
     }
+
     void MoveSliceObject()
     {
         if (!sliceObject) return;
@@ -118,6 +139,7 @@ public class Slicer : MonoBehaviour
         if (!sliceLine) return;
         endPoint.position = GetRayEndPoint();
     }
+
     void startGame()
     {
         Generator.instance.movingCamera = true;
@@ -128,6 +150,8 @@ public class Slicer : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         Generator.instance.started = true;
+        yield return new WaitForSeconds(2f);
+        canSlice = true;
     }
 
     public void DisableObject()
@@ -152,24 +176,23 @@ public class Slicer : MonoBehaviour
         return rayEnd;
     }
 
-    IEnumerator SliceObjects()
-    {
-        yield return null;
-        sliceObject = Instantiate(sliceObjectPrefab, startPoint);
-        StartCoroutine(MoveSlicer());
-    }
     IEnumerator MoveSlicer()
     {
         float elapsed = 0f;
+        float distance = Vector3.Distance(startPoint.position, endPoint.position);
         while (elapsed < duration)
         {
             elapsed += Time.deltaTime;
             if (sliceObject)
-                sliceObject.transform.position = Vector3.Lerp(sliceObject.transform.position, endPoint.position, elapsed / duration);
+            {
+                Debug.Log(sliceObject.transform.position);
+                Debug.Log(endPoint.position);
+                sliceObject.transform.position = Vector3.Lerp(sliceObject.transform.position, endPoint.position, elapsed / (duration * distance));
+            }
             yield return null;
         }
         Destroy(sliceObject);
         Destroy(sliceLine);
-
+        canSlice = true;
     }
 }

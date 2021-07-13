@@ -120,6 +120,7 @@ public class Generator : MonoBehaviour
         {
             instance = this;
         }
+        started = false;
     }
 
     void GenerateAttractors()
