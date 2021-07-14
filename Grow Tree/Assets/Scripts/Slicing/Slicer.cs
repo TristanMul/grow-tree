@@ -9,11 +9,14 @@ public class Slicer : MonoBehaviour
     [SerializeField] float minDistance; // Minimum distance betweeen touch point and sliceObject to move sliceObject.
     [SerializeField] GameObject lineObjectPrefab;
     [SerializeField] float duration;
+    [SerializeField] float minSliceDistance;
+    [SerializeField] bool addMinDistance;
     Rigidbody2D rb;
     Camera cam;
+    public static Slicer instance;
     bool isUpdateTrail = false;
     bool updateLine = false;
-    [SerializeField] bool AltSlice;
+    public bool AltSlice;
     GameObject sliceObject;
     GameObject sliceLine;
     Vector3 rayStart;
@@ -21,6 +24,13 @@ public class Slicer : MonoBehaviour
     Transform startPoint, endPoint;
     bool canSlice = false;
 
+    private void Awake()
+    {
+        if(instance = null)
+        {
+            instance = this;
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -93,6 +103,7 @@ public class Slicer : MonoBehaviour
             Destroy(sliceLine);
         }
         updateLine = true;
+        Generator.instance.isSlicing = true;
         sliceLine = Instantiate(lineObjectPrefab, transform);
         startPoint = sliceLine.transform.Find("StartPoint").transform;
         endPoint = sliceLine.transform.Find("EndPoint").transform;
@@ -107,6 +118,7 @@ public class Slicer : MonoBehaviour
 
     void StopUpdateLine()
     {
+        Generator.instance.isSlicing = false;
         updateLine = false;
         sliceObject = Instantiate(sliceObjectPrefab, startPoint);
         Vector3 wrongPosition = new Vector3(-6f, 1.8f, 0f);
@@ -184,7 +196,7 @@ public class Slicer : MonoBehaviour
         while (elapsed < duration)
         {
             elapsed += Time.deltaTime;
-            if (sliceObject)
+            if (sliceObject && (distance > minSliceDistance || !addMinDistance))
             {
                 sliceObject.GetComponent<Collider>().enabled = true;
                 sliceObject.transform.position = Vector3.Lerp(sliceObject.transform.position, endPoint.position, elapsed / (duration * distance));

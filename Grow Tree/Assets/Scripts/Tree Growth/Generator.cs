@@ -87,6 +87,7 @@ public class Generator : MonoBehaviour
     public bool alternate;
     public bool started = false;
     public bool movingCamera = false;
+    public bool isSlicing = false;
     // the elpsed time since the last iteration, this is used for the purpose of animation
     float _timeSinceLastIteration = 0f;
 
@@ -171,7 +172,7 @@ public class Generator : MonoBehaviour
     {
         branchHitBarrier = BranchHitBarrier();
 
-        if (!branchHitBarrier && !finishGrowing && (_branches.Count < maxBranchCount || !alternate) && started && _attractors.Count > 0)
+        if (!branchHitBarrier && !finishGrowing && (_branches.Count < maxBranchCount || !alternate)&& !isSlicing && started && _attractors.Count > 0)
         {
             _timeSinceLastIteration += Time.deltaTime;
 
