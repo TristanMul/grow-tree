@@ -59,24 +59,18 @@ public class CheckBranch : MonoBehaviour
 
     public IEnumerator growLeaves(Generator.Branch branch)
     {
-        if (Slicer.instance.AltSlice)
+        if (!routineActivated)
         {
-            if (!routineActivated)
+            routineActivated = true;
+            if (!Slicer.instance.AltSlice)
             {
-                routineActivated = true;
                 yield return new WaitForSeconds(0.15f);
-                GameObject Leaf = Instantiate(leaf, lastBranchCut, Quaternion.identity) as GameObject;
-                LeafManager.instance.leaves.Add(Leaf);
-                Leaf.transform.Rotate(new Vector3(branch._direction.x, branch._direction.y + 180, branch._direction.z));
-                routineActivated = false;
             }
-        }
-        else
-        {
+            else yield return new WaitForSeconds(0.015f);
             GameObject Leaf = Instantiate(leaf, lastBranchCut, Quaternion.identity) as GameObject;
             LeafManager.instance.leaves.Add(Leaf);
             Leaf.transform.Rotate(new Vector3(branch._direction.x, branch._direction.y + 180, branch._direction.z));
-            yield return null;
+            routineActivated = false;
         }
     }
 
