@@ -61,22 +61,22 @@ public class CheckBranch : MonoBehaviour
     {
         if (Slicer.instance.AltSlice)
         {
-        if (!routineActivated)
-        {
-            routineActivated = true;
-            yield return new WaitForSeconds(0.15f);
-            GameObject Leaf = Instantiate(leaf, lastBranchCut, Quaternion.identity) as GameObject;
-            LeafManager.instance.leaves.Add(Leaf);
-            Leaf.transform.Rotate(new Vector3(branch._direction.x, branch._direction.y + 180, branch._direction.z));
-            routineActivated = false;
-        }
+            if (!routineActivated)
+            {
+                routineActivated = true;
+                yield return new WaitForSeconds(0.15f);
+                GameObject Leaf = Instantiate(leaf, lastBranchCut, Quaternion.identity) as GameObject;
+                LeafManager.instance.leaves.Add(Leaf);
+                Leaf.transform.Rotate(new Vector3(branch._direction.x, branch._direction.y + 180, branch._direction.z));
+                routineActivated = false;
+            }
         }
         else
         {
-            yield return null;
             GameObject Leaf = Instantiate(leaf, lastBranchCut, Quaternion.identity) as GameObject;
             LeafManager.instance.leaves.Add(Leaf);
             Leaf.transform.Rotate(new Vector3(branch._direction.x, branch._direction.y + 180, branch._direction.z));
+            yield return null;
         }
     }
 
