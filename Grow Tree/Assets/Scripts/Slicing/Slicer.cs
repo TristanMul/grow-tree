@@ -156,7 +156,7 @@ public class Slicer : MonoBehaviour
         endPoint.position = GetRayEndPoint();
         /*Quaternion rotation*//*axe.rotation =  Quaternion.LookRotation(endPoint.position, Vector3.up);*/
         axe.transform.LookAt(endPoint.position, Vector3.up);
-        axe.eulerAngles = new Vector3(axe.eulerAngles.x, 90, axe.eulerAngles.z);
+        //axe.eulerAngles = new Vector3(axe.eulerAngles.x, 90, axe.eulerAngles.z);
     }
 
     void startGame()
