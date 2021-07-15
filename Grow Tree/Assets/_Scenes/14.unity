@@ -6914,6 +6914,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1896511369651932693, guid: a690fb50cf9c49941bce80cf8c5a5dae,
+        type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5914857903402369969, guid: a690fb50cf9c49941bce80cf8c5a5dae,
         type: 3}
       propertyPath: minDistance
@@ -6927,7 +6932,7 @@ PrefabInstance:
     - target: {fileID: 5914857903402369969, guid: a690fb50cf9c49941bce80cf8c5a5dae,
         type: 3}
       propertyPath: duration
-      value: 0.6
+      value: 0.65
       objectReference: {fileID: 0}
     - target: {fileID: 5914857903402369969, guid: a690fb50cf9c49941bce80cf8c5a5dae,
         type: 3}
@@ -6998,6 +7003,11 @@ PrefabInstance:
     - target: {fileID: 5914857903402369974, guid: a690fb50cf9c49941bce80cf8c5a5dae,
         type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8541846848551058509, guid: a690fb50cf9c49941bce80cf8c5a5dae,
+        type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

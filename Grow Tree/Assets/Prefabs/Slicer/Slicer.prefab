@@ -47,12 +47,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sliceObjectPrefab: {fileID: 5201212812551447740, guid: da941861b468da8498a39655f20f92f6,
     type: 3}
-  sliceSpeed: 30
-  minDistance: 0.1
+  axeObjectPrefab: {fileID: 5201212812551447740, guid: 9b4162f4868c3ef4b8f9f518b1f81a3e,
+    type: 3}
   lineObjectPrefab: {fileID: 8142144651745038363, guid: edb430104863f5342bcd976a0fd3a08f,
     type: 3}
-  duration: 0.25
+  sliceSpeed: 30
+  minDistance: 0.1
+  duration: 0.65
   minSliceDistance: 1
+  addMinDistance: 0
   AltSlice: 1
 --- !u!114 &1896511369651932693
 MonoBehaviour:
@@ -81,17 +84,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 5914857903402369969}
-        m_MethodName: DisableObject
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &8541846848551058509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,17 +103,6 @@ MonoBehaviour:
       - m_Target: {fileID: 5914857903402369969}
         m_MethodName: set_enabled
         m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 5914857903402369969}
-        m_MethodName: DisableObject
-        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

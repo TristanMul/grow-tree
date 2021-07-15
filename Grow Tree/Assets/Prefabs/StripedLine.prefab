@@ -70,13 +70,13 @@ LineRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 4
+  m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 2}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.6
+    widthMultiplier: 1.5
     widthCurve:
       serializedVersion: 2
       m_Curve:
