@@ -197,6 +197,7 @@ public class Slicer : MonoBehaviour
 
     IEnumerator MoveSlicer()
     {
+        axeObject.transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).gameObject.SetActive(true);
         float elapsed = 0f;
         float distance = Vector3.Distance(startPoint.position, endPoint.position);
         while (elapsed < duration)
