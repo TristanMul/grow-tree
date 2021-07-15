@@ -6914,32 +6914,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1896511369651932693, guid: a690fb50cf9c49941bce80cf8c5a5dae,
-        type: 3}
-      propertyPath: Response.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5914857903402369969, guid: a690fb50cf9c49941bce80cf8c5a5dae,
-        type: 3}
-      propertyPath: minDistance
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5914857903402369969, guid: a690fb50cf9c49941bce80cf8c5a5dae,
-        type: 3}
-      propertyPath: sliceSpeed
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 5914857903402369969, guid: a690fb50cf9c49941bce80cf8c5a5dae,
-        type: 3}
-      propertyPath: duration
-      value: 0.65
-      objectReference: {fileID: 0}
-    - target: {fileID: 5914857903402369969, guid: a690fb50cf9c49941bce80cf8c5a5dae,
-        type: 3}
-      propertyPath: axeObjectPrefab
-      value: 
-      objectReference: {fileID: 5201212812551447740, guid: 9b4162f4868c3ef4b8f9f518b1f81a3e,
-        type: 3}
     - target: {fileID: 5914857903402369970, guid: a690fb50cf9c49941bce80cf8c5a5dae,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6999,16 +6973,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Slicer
-      objectReference: {fileID: 0}
-    - target: {fileID: 5914857903402369974, guid: a690fb50cf9c49941bce80cf8c5a5dae,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8541846848551058509, guid: a690fb50cf9c49941bce80cf8c5a5dae,
-        type: 3}
-      propertyPath: Response.m_PersistentCalls.m_Calls.Array.size
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a690fb50cf9c49941bce80cf8c5a5dae, type: 3}
