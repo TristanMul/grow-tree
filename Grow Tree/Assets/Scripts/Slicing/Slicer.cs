@@ -5,9 +5,10 @@ using UnityEngine;
 public class Slicer : MonoBehaviour
 {
     [SerializeField] GameObject sliceObjectPrefab;
+    [SerializeField] GameObject axeObjectPrefab;
+    [SerializeField] GameObject lineObjectPrefab;
     [SerializeField] float sliceSpeed;  // Speed of sliceObject.
     [SerializeField] float minDistance; // Minimum distance betweeen touch point and sliceObject to move sliceObject.
-    [SerializeField] GameObject lineObjectPrefab;
     [SerializeField] float duration;
     [SerializeField] float minSliceDistance;
     [SerializeField] bool addMinDistance;
@@ -18,10 +19,12 @@ public class Slicer : MonoBehaviour
     bool updateLine = false;
     public bool AltSlice;
     GameObject sliceObject;
+    GameObject axeObject;
     GameObject sliceLine;
     Vector3 rayStart;
     Vector3 prevTouchPos;
     Transform startPoint, endPoint;
+    Transform axe;
     bool canSlice = false;
 
     private void Awake()
@@ -106,6 +109,8 @@ public class Slicer : MonoBehaviour
         startPoint = sliceLine.transform.Find("StartPoint").transform;
         endPoint = sliceLine.transform.Find("EndPoint").transform;
         startPoint.transform.position = GetRayEndPoint();
+        axeObject = Instantiate(axeObjectPrefab, startPoint);
+        axe = axeObject.transform.Find("RotatingAxe").transform;
     }
 
     void StopUpdateTrail()
@@ -118,7 +123,7 @@ public class Slicer : MonoBehaviour
     {
         Generator.instance.isSlicing = false;
         updateLine = false;
-        sliceObject = Instantiate(sliceObjectPrefab, startPoint);
+        
         Vector3 wrongPosition = new Vector3(-6f, 1.8f, 0f);
         if (canSlice && endPoint)
         {
@@ -149,6 +154,9 @@ public class Slicer : MonoBehaviour
     {
         if (!sliceLine) return;
         endPoint.position = GetRayEndPoint();
+        /*Quaternion rotation*//*axe.rotation =  Quaternion.LookRotation(endPoint.position, Vector3.up);*/
+        axe.transform.LookAt(endPoint.position, Vector3.up);
+        axe.eulerAngles = new Vector3(axe.eulerAngles.x, 90, axe.eulerAngles.z);
     }
 
     void startGame()
@@ -194,14 +202,14 @@ public class Slicer : MonoBehaviour
         while (elapsed < duration)
         {
             elapsed += Time.deltaTime;
-            if (sliceObject && (distance > minSliceDistance || !addMinDistance))
+            if (axeObject && (distance > minSliceDistance || !addMinDistance))
             {
-                sliceObject.GetComponent<Collider>().enabled = true;
-                sliceObject.transform.position = Vector3.Lerp(sliceObject.transform.position, endPoint.position, elapsed / (duration * distance));
+                axeObject.GetComponent<Collider>().enabled = true;
+                axeObject.transform.position = Vector3.Lerp(axeObject.transform.position, endPoint.position, elapsed / (duration * distance));
             }
             yield return null;
         }
-        Destroy(sliceObject);
+        Destroy(axeObject);
         Destroy(sliceLine);
         canSlice = true;
     }
