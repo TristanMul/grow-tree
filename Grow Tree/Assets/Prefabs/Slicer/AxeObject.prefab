@@ -461,7 +461,7 @@ PrefabInstance:
     - target: {fileID: 8861270848191598757, guid: 84d24837ebec1a641ba424ac180c0fb1,
         type: 3}
       propertyPath: m_Time
-      value: 0.1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 8861270848191598757, guid: 84d24837ebec1a641ba424ac180c0fb1,
         type: 3}
