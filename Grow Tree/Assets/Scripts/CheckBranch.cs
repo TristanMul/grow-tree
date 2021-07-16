@@ -12,6 +12,7 @@ public class CheckBranch : MonoBehaviour
     Generator generator;
     static Vector3 lastBranchCut;
     static bool routineActivated = false;
+    public static bool validSlice = false;
     public List<Generator.Branch> cutOffBranches = new List<Generator.Branch>();
 
     private void OnEnable()
@@ -24,6 +25,7 @@ public class CheckBranch : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Slicer"))
         {
+            validSlice = true;
             GetComponent<Collider>().enabled = false;
             Generator.Branch cutOffBranch = generator._branches[int.Parse(transform.gameObject.name)];
             lastBranchCut = generator._branches[int.Parse(transform.gameObject.name)]._start;

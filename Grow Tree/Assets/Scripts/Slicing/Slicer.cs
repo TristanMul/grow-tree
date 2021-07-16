@@ -7,11 +7,17 @@ public class Slicer : MonoBehaviour
     [SerializeField] GameObject sliceObjectPrefab;
     [SerializeField] GameObject axeObjectPrefab;
     [SerializeField] GameObject lineObjectPrefab;
+    [SerializeField] GameObject startText;
+    [SerializeField] GameObject tutorialHand;
+    [SerializeField] GameEvent loseGame;
     [SerializeField] float sliceSpeed;  // Speed of sliceObject.
     [SerializeField] float minDistance; // Minimum distance betweeen touch point and sliceObject to move sliceObject.
     [SerializeField] float duration;
     [SerializeField] float minSliceDistance;
+    [SerializeField] float waitTime;
     [SerializeField] bool addMinDistance;
+    [SerializeField] int maxSlices;
+    int slicesLeft;
     Rigidbody2D rb;
     Camera cam;
     public static Slicer instance;
@@ -38,6 +44,7 @@ public class Slicer : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         cam = Camera.main;
         rayStart = cam.transform.position;
+        slicesLeft = maxSlices;
     }
 
     // Update is called once per frame
@@ -161,6 +168,7 @@ public class Slicer : MonoBehaviour
 
     void startGame()
     {
+        startText.SetActive(false);
         Generator.instance.movingCamera = true;
         StartCoroutine(Startgrowth());
     }
@@ -170,6 +178,7 @@ public class Slicer : MonoBehaviour
         yield return new WaitForSeconds(1f);
         Generator.instance.started = true;
         yield return new WaitForSeconds(2f);
+        StartCoroutine(activateTutorial());
         canSlice = true;
     }
 
@@ -210,8 +219,36 @@ public class Slicer : MonoBehaviour
             }
             yield return null;
         }
+        if (CheckBranch.validSlice)
+        {
+            slicesLeft--;
+        }
+        if(slicesLeft < 0)
+        {
+            loseGame.Raise();
+        }
         Destroy(axeObject);
         Destroy(sliceLine);
         canSlice = true;
+    }
+    IEnumerator activateTutorial()
+    {
+        yield return new WaitForSeconds(waitTime);
+        if(slicesLeft == maxSlices)
+        {
+            tutorialHand.SetActive(true);
+            deactivateTutorial();
+        }
+    }
+    void deactivateTutorial()
+    {
+        if(slicesLeft != maxSlices)
+        {
+            tutorialHand.SetActive(false);
+        }
+        else
+        {
+            deactivateTutorial();
+        }
     }
 }
