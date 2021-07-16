@@ -51,11 +51,16 @@ MonoBehaviour:
     type: 3}
   lineObjectPrefab: {fileID: 8142144651745038363, guid: edb430104863f5342bcd976a0fd3a08f,
     type: 3}
+  startText: {fileID: 0}
+  tutorialHand: {fileID: 0}
+  loseGame: {fileID: 11400000, guid: 3e16d612130c25145bffa8316987c27c, type: 2}
   sliceSpeed: 30
   minDistance: 0.1
-  duration: 0.5
+  duration: 0.25
   minSliceDistance: 1
+  waitTime: 3
   addMinDistance: 0
+  maxSlices: 10
   AltSlice: 1
 --- !u!114 &1896511369651932693
 MonoBehaviour:

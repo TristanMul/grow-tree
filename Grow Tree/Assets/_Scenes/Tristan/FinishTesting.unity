@@ -3713,12 +3713,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1100134382}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1101845981 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1101845981, guid: 1f39572d0882f4bda87498c5b0abde39,
-    type: 3}
-  m_PrefabInstance: {fileID: 7100157415727355885}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1106404772
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4165,41 +4159,14 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5914857903402369969, guid: a690fb50cf9c49941bce80cf8c5a5dae,
         type: 3}
-      propertyPath: duration
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 5914857903402369969, guid: a690fb50cf9c49941bce80cf8c5a5dae,
-        type: 3}
-      propertyPath: minSliceDistance
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5914857903402369969, guid: a690fb50cf9c49941bce80cf8c5a5dae,
-        type: 3}
-      propertyPath: axeObjectPrefab
-      value: 
-      objectReference: {fileID: 5201212812551447740, guid: 9b4162f4868c3ef4b8f9f518b1f81a3e,
-        type: 3}
-    - target: {fileID: 5914857903402369969, guid: a690fb50cf9c49941bce80cf8c5a5dae,
-        type: 3}
-      propertyPath: tutorial
-      value: 
-      objectReference: {fileID: 1101845981}
-    - target: {fileID: 5914857903402369969, guid: a690fb50cf9c49941bce80cf8c5a5dae,
-        type: 3}
       propertyPath: startText
       value: 
       objectReference: {fileID: 2007293974}
     - target: {fileID: 5914857903402369969, guid: a690fb50cf9c49941bce80cf8c5a5dae,
         type: 3}
-      propertyPath: maxSlices
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5914857903402369969, guid: a690fb50cf9c49941bce80cf8c5a5dae,
-        type: 3}
-      propertyPath: loseGame
+      propertyPath: tutorialHand
       value: 
-      objectReference: {fileID: 11400000, guid: 3e16d612130c25145bffa8316987c27c,
-        type: 2}
+      objectReference: {fileID: 8056221887373324243}
     - target: {fileID: 5914857903402369970, guid: a690fb50cf9c49941bce80cf8c5a5dae,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10797,6 +10764,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 537c531228ce00a4481f04feb6641e65, type: 3}
+--- !u!1 &8056221887373324243 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8056221886294041587, guid: 537c531228ce00a4481f04feb6641e65,
+    type: 3}
+  m_PrefabInstance: {fileID: 8056221887373324242}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8142144651307614352
 PrefabInstance:
   m_ObjectHideFlags: 0
