@@ -8,13 +8,14 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: LeafActive
-  m_Shader: {fileID: 4800000, guid: c42163615ed676844a5d72f4b5f2098f, type: 3}
-  m_ShaderKeywords: _EMISSION
+  m_Shader: {fileID: 4800000, guid: 7a2a90f4e7dfe46bd9aeac7a5351111a, type: 3}
+  m_ShaderKeywords: _ALPHATEST_ON _EMISSION _GLOSSYREFLECTIONS_OFF _SPECULARHIGHLIGHTS_OFF
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
+  m_CustomRenderQueue: 2450
+  stringTagMap:
+    RenderType: TransparentCutout
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -70,15 +71,15 @@ Material:
     - _DstBlend: 0
     - _GlossMapScale: 1
     - _Glossiness: 0
-    - _GlossyReflections: 1
+    - _GlossyReflections: 0
     - _Metallic: 0
-    - _Mode: 0
+    - _Mode: 1
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _RimFalloff: 2
     - _RimWidth: 0.1
     - _SmoothnessTextureChannel: 0
-    - _SpecularHighlights: 1
+    - _SpecularHighlights: 0
     - _SrcBlend: 1
     - _UVSec: 0
     - _UseFalloff: 0
@@ -86,7 +87,7 @@ Material:
     - _ZWrite: 1
     - _animateRimWidth: 0
     m_Colors:
-    - _Color: {r: 0.49216247, g: 0.8207547, b: 0.4452207, a: 1}
+    - _Color: {r: 0.64705884, g: 0.85098046, b: 0.5882353, a: 1}
     - _EmissionColor: {r: 0.3591366, g: 0.5660378, b: 0.32840872, a: 1}
     - _RimColor: {r: 0, g: 0, b: 0, a: 1}
     - _RimSecondaryColor: {r: 0, g: 0, b: 0, a: 1}
