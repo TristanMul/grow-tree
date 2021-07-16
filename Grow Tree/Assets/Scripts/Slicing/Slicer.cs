@@ -32,10 +32,12 @@ public class Slicer : MonoBehaviour
     Transform startPoint, endPoint;
     Transform axe;
     bool canSlice = false;
+    bool firstTouch = false;
 
     private void Awake()
     {
         instance = this;
+        firstTouch = false;
     }
 
     // Start is called before the first frame update
@@ -53,7 +55,12 @@ public class Slicer : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             if (canSlice)
-            { 
+            {
+                if (!firstTouch)
+                {
+                    firstTouch = true;
+                    tutorialHand.SetActive(false);
+                }
                 if (AltSlice)
                 {
                     StartUpdateLine();
@@ -231,24 +238,13 @@ public class Slicer : MonoBehaviour
         Destroy(sliceLine);
         canSlice = true;
     }
+
     IEnumerator activateTutorial()
     {
         yield return new WaitForSeconds(waitTime);
-        if(slicesLeft == maxSlices)
+        if(!firstTouch)
         {
             tutorialHand.SetActive(true);
-            deactivateTutorial();
-        }
-    }
-    void deactivateTutorial()
-    {
-        if(slicesLeft != maxSlices)
-        {
-            tutorialHand.SetActive(false);
-        }
-        else
-        {
-            deactivateTutorial();
         }
     }
 }
