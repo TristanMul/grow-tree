@@ -213,6 +213,7 @@ public class Slicer : MonoBehaviour
 
     IEnumerator MoveSlicer()
     {
+        Time.fixedDeltaTime = 0.01f;
         axeObject.transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).gameObject.SetActive(true);
         float elapsed = 0f;
         float distance = Vector3.Distance(startPoint.position, endPoint.position);
@@ -234,6 +235,7 @@ public class Slicer : MonoBehaviour
         {
             loseGame.Raise();
         }
+        Time.fixedDeltaTime = 0.02f;
         Destroy(axeObject);
         Destroy(sliceLine);
         canSlice = true;
