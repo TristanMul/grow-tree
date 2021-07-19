@@ -45,6 +45,7 @@ public class Slicer : MonoBehaviour
         cam = Camera.main;
         rayStart = cam.transform.position;
         slicesLeft = maxSlices;
+        CheckAmountOfSlices.instance.UpdateSlices(slicesLeft, maxSlices);
     }
 
     // Update is called once per frame
@@ -53,7 +54,7 @@ public class Slicer : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             if (canSlice)
-            { 
+            {
                 if (AltSlice)
                 {
                     StartUpdateLine();
@@ -130,7 +131,7 @@ public class Slicer : MonoBehaviour
     {
         Generator.instance.isSlicing = false;
         updateLine = false;
-        
+
         Vector3 wrongPosition = new Vector3(-6f, 1.8f, 0f);
         if (canSlice && endPoint)
         {
@@ -223,8 +224,10 @@ public class Slicer : MonoBehaviour
         {
             slicesLeft--;
         }
-        if(slicesLeft < 0)
+        CheckAmountOfSlices.instance.UpdateSlices(maxSlices, slicesLeft);
+        if (slicesLeft < 1)
         {
+            Generator.instance.finishGrowing = true;
             loseGame.Raise();
         }
         Destroy(axeObject);
@@ -234,7 +237,7 @@ public class Slicer : MonoBehaviour
     IEnumerator activateTutorial()
     {
         yield return new WaitForSeconds(waitTime);
-        if(slicesLeft == maxSlices)
+        if (slicesLeft == maxSlices)
         {
             tutorialHand.SetActive(true);
             deactivateTutorial();
@@ -242,7 +245,7 @@ public class Slicer : MonoBehaviour
     }
     void deactivateTutorial()
     {
-        if(slicesLeft != maxSlices)
+        if (slicesLeft != maxSlices)
         {
             tutorialHand.SetActive(false);
         }
