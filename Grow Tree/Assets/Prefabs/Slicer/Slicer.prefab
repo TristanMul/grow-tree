@@ -60,7 +60,7 @@ MonoBehaviour:
   minSliceDistance: 1
   waitTime: 3
   addMinDistance: 0
-  maxSlices: 10
+  maxSlices: 30
   AltSlice: 1
 --- !u!114 &1896511369651932693
 MonoBehaviour:

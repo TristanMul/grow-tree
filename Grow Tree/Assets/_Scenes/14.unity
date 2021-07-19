@@ -7084,6 +7084,11 @@ PrefabInstance:
       propertyPath: startText
       value: 
       objectReference: {fileID: 729394403}
+    - target: {fileID: 5914857903402369969, guid: a690fb50cf9c49941bce80cf8c5a5dae,
+        type: 3}
+      propertyPath: maxSlices
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 5914857903402369970, guid: a690fb50cf9c49941bce80cf8c5a5dae,
         type: 3}
       propertyPath: m_LocalPosition.x
