@@ -77,6 +77,7 @@ public class CameraFollow : MonoBehaviour
             //transform.position = Vector3.SmoothDamp(transform.position, finishPosition.position, ref velocity, cameraSmoothing);
             transform.position = Vector3.Lerp(transform.position, finishPosition.position, Time.deltaTime);
             transform.rotation = Quaternion.Lerp(transform.rotation, finishPosition.rotation, Time.deltaTime);
+            cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, 60f, Time.deltaTime);
             RenderSettings.fogEndDistance += (transform.position.z - finishPosition.position.z) / 100f;
             RenderSettings.fogStartDistance += (transform.position.z - finishPosition.position.z) / 100f;
         }
@@ -91,7 +92,7 @@ public class CameraFollow : MonoBehaviour
     void ZoomCamera()
     {
         float newZoom = Mathf.Lerp(maxZoom, minZoom, GreatestDistance() / zoomLimiter);
-        cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, newZoom, Time.deltaTime); ;
+        cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, newZoom, Time.deltaTime); 
     }
 
     void MoveCamera()

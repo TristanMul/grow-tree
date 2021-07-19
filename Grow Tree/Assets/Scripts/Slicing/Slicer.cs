@@ -32,10 +32,12 @@ public class Slicer : MonoBehaviour
     Transform startPoint, endPoint;
     Transform axe;
     bool canSlice = false;
+    bool firstTouch = false;
 
     private void Awake()
     {
         instance = this;
+        firstTouch = false;
     }
 
     // Start is called before the first frame update
@@ -55,6 +57,11 @@ public class Slicer : MonoBehaviour
         {
             if (canSlice)
             {
+                if (!firstTouch)
+                {
+                    firstTouch = true;
+                    tutorialHand.SetActive(false);
+                }
                 if (AltSlice)
                 {
                     StartUpdateLine();
@@ -207,6 +214,7 @@ public class Slicer : MonoBehaviour
 
     IEnumerator MoveSlicer()
     {
+        Time.fixedDeltaTime = 0.01f;
         axeObject.transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).gameObject.SetActive(true);
         float elapsed = 0f;
         float distance = Vector3.Distance(startPoint.position, endPoint.position);
@@ -230,28 +238,18 @@ public class Slicer : MonoBehaviour
             Generator.instance.finishGrowing = true;
             loseGame.Raise();
         }
+        Time.fixedDeltaTime = 0.02f;
         Destroy(axeObject);
         Destroy(sliceLine);
         canSlice = true;
     }
+
     IEnumerator activateTutorial()
     {
         yield return new WaitForSeconds(waitTime);
-        if (slicesLeft == maxSlices)
+        if(!firstTouch)
         {
             tutorialHand.SetActive(true);
-            deactivateTutorial();
-        }
-    }
-    void deactivateTutorial()
-    {
-        if (slicesLeft != maxSlices)
-        {
-            tutorialHand.SetActive(false);
-        }
-        else
-        {
-            deactivateTutorial();
         }
     }
 }
