@@ -20,7 +20,7 @@ public class EnergyBar : MonoBehaviour
         fillImage.fillAmount = Progress;
         if(Progress <= 0)
         {
-            cutText.text = "Slice to grow";
+            cutText.text = "SLICE TO GROW";
         }
         else
         {

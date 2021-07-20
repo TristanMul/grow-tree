@@ -7534,6 +7534,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1133314061377905936, guid: 1f39572d0882f4bda87498c5b0abde39,
+        type: 3}
+      propertyPath: m_Text
+      value: SLICE TO GROW
+      objectReference: {fileID: 0}
     - target: {fileID: 1990558542803173683, guid: 1f39572d0882f4bda87498c5b0abde39,
         type: 3}
       propertyPath: m_Name
@@ -10548,7 +10553,7 @@ PrefabInstance:
     - target: {fileID: 3680122567213996724, guid: 52be7bd6dfa6da246a126c073249dded,
         type: 3}
       propertyPath: alternate
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3680122567213996724, guid: 52be7bd6dfa6da246a126c073249dded,
         type: 3}
