@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Slicer : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class Slicer : MonoBehaviour
     [SerializeField] GameObject startText;
     [SerializeField] GameObject tutorialHand;
     [SerializeField] GameEvent loseGame;
+    [SerializeField] Text losingText;
     [SerializeField] float sliceSpeed;  // Speed of sliceObject.
     [SerializeField] float minDistance; // Minimum distance betweeen touch point and sliceObject to move sliceObject.
     [SerializeField] float duration;
@@ -183,6 +185,7 @@ public class Slicer : MonoBehaviour
 
     IEnumerator Startgrowth()
     {
+        Generator.instance.startedCamera = true;
         yield return new WaitForSeconds(1f);
         Generator.instance.started = true;
         yield return new WaitForSeconds(2f);
@@ -237,6 +240,7 @@ public class Slicer : MonoBehaviour
         {
             Generator.instance.finishGrowing = true;
             loseGame.Raise();
+            losingText.text = "NO MORE CUTS LEFT!";
         }
         Time.fixedDeltaTime = 0.02f;
         Destroy(axeObject);

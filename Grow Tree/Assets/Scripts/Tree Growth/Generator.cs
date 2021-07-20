@@ -86,6 +86,7 @@ public class Generator : MonoBehaviour
     public bool finishGrowing = false;
     public bool alternate;
     public bool started = false;
+    public bool startedCamera = false;
     public bool movingCamera = false;
     public bool isSlicing = false;
     // the elpsed time since the last iteration, this is used for the purpose of animation

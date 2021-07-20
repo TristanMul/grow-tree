@@ -35,7 +35,7 @@ public class CameraFollow : MonoBehaviour
 
     void LateUpdate()
     {
-        if (!finished && Generator.instance.movingCamera && Generator.instance.started)
+        if (!finished && Generator.instance.movingCamera && Generator.instance.startedCamera)
         {
 
             iterationTimer += Time.deltaTime;
@@ -81,7 +81,7 @@ public class CameraFollow : MonoBehaviour
             RenderSettings.fogEndDistance += (transform.position.z - finishPosition.position.z) / 100f;
             RenderSettings.fogStartDistance += (transform.position.z - finishPosition.position.z) / 100f;
         }
-        else if (!Generator.instance.started)
+        else if (!Generator.instance.startedCamera)
         {
             transform.position = Vector3.Lerp(transform.position, startPosition.position, Time.deltaTime);
             transform.rotation = Quaternion.Lerp(transform.rotation, startPosition.rotation, Time.deltaTime);

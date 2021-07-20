@@ -17,6 +17,13 @@ public class CheckAmountOfSlices : MonoBehaviour
             instance = this;
         }
     }
+    private void Start()
+    {
+        if (Generator.instance.alternate)
+        {
+            this.gameObject.SetActive(false);
+        }
+    }
     public void UpdateSlices(int _maxSlices, int _slicesLeft)
     {
         maxSlices = _maxSlices;
