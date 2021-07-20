@@ -231,6 +231,8 @@ public class Slicer : MonoBehaviour
             }
             yield return null;
         }
+        if (!Generator.instance.alternate)
+        {
         if (CheckBranch.validSlice)
         {
             slicesLeft--;
@@ -241,6 +243,7 @@ public class Slicer : MonoBehaviour
             Generator.instance.finishGrowing = true;
             loseGame.Raise();
             losingText.text = "NO MORE CUTS LEFT!";
+        }
         }
         Time.fixedDeltaTime = 0.02f;
         Destroy(axeObject);
