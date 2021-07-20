@@ -54,6 +54,7 @@ MonoBehaviour:
   startText: {fileID: 0}
   tutorialHand: {fileID: 0}
   loseGame: {fileID: 11400000, guid: 3e16d612130c25145bffa8316987c27c, type: 2}
+  losingText: {fileID: 0}
   sliceSpeed: 30
   minDistance: 0.1
   duration: 0.25

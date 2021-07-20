@@ -4169,16 +4169,6 @@ PrefabInstance:
       objectReference: {fileID: 8056221887373324243}
     - target: {fileID: 5914857903402369969, guid: a690fb50cf9c49941bce80cf8c5a5dae,
         type: 3}
-      propertyPath: AltSlice
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5914857903402369969, guid: a690fb50cf9c49941bce80cf8c5a5dae,
-        type: 3}
-      propertyPath: maxSlices
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 5914857903402369969, guid: a690fb50cf9c49941bce80cf8c5a5dae,
-        type: 3}
       propertyPath: losingText
       value: 
       objectReference: {fileID: 2032482202}
