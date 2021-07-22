@@ -805,8 +805,6 @@ GameObject:
   - component: {fileID: 1990558542803173681}
   - component: {fileID: 1990558542803173680}
   - component: {fileID: 7219657400606306709}
-  - component: {fileID: 2121464934}
-  - component: {fileID: 756384792}
   - component: {fileID: 7407661224951621961}
   m_Layer: 5
   m_Name: MainCanvas 1
@@ -920,32 +918,6 @@ MonoBehaviour:
     type: 3}
   tutorialSwipe: {fileID: 0}
   timeToWait: 3.5
---- !u!114 &2121464934
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1990558542803173683}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57e79916151f4b641b1e947b92b97b32, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  leaves: []
---- !u!114 &756384792
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1990558542803173683}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57e79916151f4b641b1e947b92b97b32, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  leaves: []
 --- !u!114 &7407661224951621961
 MonoBehaviour:
   m_ObjectHideFlags: 0
